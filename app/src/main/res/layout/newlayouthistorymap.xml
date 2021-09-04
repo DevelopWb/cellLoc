@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/p31"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/layoutHistoryDataMapTitleBar"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/p28" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" >
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="20dip"
+                android:layout_height="20dip"
+                android:background="@drawable/main_logo"
+                android:scaleType="fitXY" >
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="历史位置"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnHistoryDataMapback"
+            android:layout_width="60dp"
+            android:layout_height="27dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="#00000000"
+            android:scaleType="fitXY"
+            android:src="@drawable/btnmainback" >
+        </ImageButton>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <com.amap.api.maps.MapView
+                android:id="@+id/new_his_map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/layoutHistoryDataMapStatusBar" >
+            </com.amap.api.maps.MapView>
+
+            <RelativeLayout
+                android:id="@+id/layoutHistoryDataMapStatusBar"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/p27" >
+
+                <Button
+                    android:id="@+id/btnHistoryDataMapName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:background="@drawable/statusbartitle"
+                    android:text=" 历史轨迹显示 "
+                    android:textColor="#ffffffff"
+                    android:textSize="18sp" >
+                </Button>
+
+                <Button
+                    android:id="@+id/btnHistoryDataMapRight"
+                    android:layout_width="50dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/btnhistoryright"
+                    android:onClick="pos" >
+                </Button>
+
+                <Button
+                    android:id="@+id/btnHistoryDataMapLeft"
+                    android:layout_width="50dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="1dp"
+                    android:background="@drawable/btnhistoryleft"
+                    android:onClick="pre" >
+                </Button>
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>
