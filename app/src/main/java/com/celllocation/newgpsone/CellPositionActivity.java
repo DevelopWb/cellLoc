@@ -40,7 +40,7 @@ public class CellPositionActivity extends TabActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.cell_position);
         initHost();
-        initReg();
+//        initReg();
     }
 
     private void initReg() {

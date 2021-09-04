@@ -1,8 +1,14 @@
 package com.celllocation.newgpsone;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
+import android.provider.Settings;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 
 public class PubUtill {
 	
@@ -12,7 +18,36 @@ public class PubUtill {
 	public static boolean isDrawable = true;
 	public static boolean DianxinClicked = false;
 	public static String URL_Reg_Center = "http://218.246.35.198:8082";//注册码中心系统
+	public static String getIMEIDeviceId(Context context) {
 
+		String deviceId;
+
+		if (Build.VERSION.SDK_INT >= 28)
+		{
+			deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+		} else {
+			final TelephonyManager mTelephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+				if (context.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+					return "";
+				}
+			}
+			assert mTelephony != null;
+			if (mTelephony.getDeviceId() != null)
+			{
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+				{
+					deviceId = mTelephony.getImei();
+				}else {
+					deviceId = mTelephony.getDeviceId();
+				}
+			} else {
+				deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+			}
+		}
+		Log.d("deviceId", deviceId);
+		return deviceId;
+	}
 // 判断网络是否正常
 
 	public static boolean isConnected(Context context) {

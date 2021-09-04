@@ -1,18 +1,26 @@
 package com.celllocation.newgpsone;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ListView;
+
+import androidx.core.app.ActivityCompat;
 
 import com.celllocation.R;
 import com.celllocation.newgpsone.bean.CellHisData;
 
 import java.util.List;
+import java.util.UUID;
 
 public class NewHistoryDataActivity extends Activity {
     Button mbtnconfirm;
@@ -32,9 +40,7 @@ public class NewHistoryDataActivity extends Activity {
         dialog = new Dialog(this, R.style.DialogStyle);
         dialog.setContentView(R.layout.dialog);
         dialog.show();
-        TelephonyManager tm = (TelephonyManager) this
-                .getSystemService(Context.TELEPHONY_SERVICE);
-        phone = tm.getDeviceId();
+        phone = PubUtill.getIMEIDeviceId(this);
         m_listHistoryData = (ListView)findViewById(R.id.listHistoryData);
 
 

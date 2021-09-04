@@ -83,9 +83,10 @@ public class NewHistoryMapActivity extends Activity implements
     }
 
     private void getNeedDatas() {
-        TelephonyManager tm = (TelephonyManager) this
-                .getSystemService(Context.TELEPHONY_SERVICE);
-        phone = tm.getDeviceId();
+//        TelephonyManager tm = (TelephonyManager) this
+//                .getSystemService(Context.TELEPHONY_SERVICE);
+//        phone = tm.getDeviceId();
+        phone = PubUtill.getIMEIDeviceId(this);
         arrays = helper.GetCellHisDatas(phone);
         arrs = new CellHisData[arrays.size()];
         for (int i = 0; i < arrays.size(); i++) {
