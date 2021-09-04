@@ -40,19 +40,19 @@ import jxl.read.biff.BiffException;
 public class FileManagerActivity extends ListActivity {
 
     /**
-     * ÎÄ¼ş£¨¼Ğ£©Ãû×Ö
+     * æ–‡ä»¶ï¼ˆå¤¹ï¼‰åå­—
      */
     private List<String> items = null;
     /**
-     * ÎÄ¼ş£¨¼Ğ£©Â·¾¶
+     * æ–‡ä»¶ï¼ˆå¤¹ï¼‰è·¯å¾„
      */
     private List<String> paths = null;
     /**
-     * ¸ùÄ¿Â¼
+     * æ ¹ç›®å½•
      **/
     private String rootPath = "/";
     /**
-     * ÏÔÊ¾µ±Ç°Ä¿Â¼
+     * æ˜¾ç¤ºå½“å‰ç›®å½•
      **/
     private TextView mPath;
     private ProgressDialog progress;
@@ -65,9 +65,9 @@ public class FileManagerActivity extends ListActivity {
         mPath = (TextView) findViewById(R.id.mPath);
         getFileDir("/mnt/sdcard");
         progress = new ProgressDialog(this);
-        progress.setTitle("ÎÄ¼şµ¼Èë½ø¶È");
+        progress.setTitle("æ–‡ä»¶å¯¼å…¥è¿›åº¦");
         progress.setCancelable(false);
-        progress.setMessage("ÕıÔÚµ¼Èë£¬ÇëÉÔºò...");
+        progress.setMessage("æ­£åœ¨å¯¼å…¥ï¼Œè¯·ç¨å€™...");
         progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
     }
 
@@ -82,7 +82,7 @@ public class FileManagerActivity extends ListActivity {
             if (path.equals("xls")) {
                 new MyAsyncTask(this).execute(file.getPath());
             } else {
-                Toast.makeText(this, "Çë½«excel¸ñÊ½×ª»»Îª.xlsºóÖØÊÔ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "è¯·å°†excelæ ¼å¼è½¬æ¢ä¸º.xlsåé‡è¯•", Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -93,7 +93,7 @@ public class FileManagerActivity extends ListActivity {
     }
 
     /**
-     * »ñÈ¡Ö¸¶¨Ä¿Â¼ÏÂµÄËùÓĞÎÄ¼ş(¼Ğ)
+     * è·å–æŒ‡å®šç›®å½•ä¸‹çš„æ‰€æœ‰æ–‡ä»¶(å¤¹)
      *
      * @param filePath
      */
@@ -104,7 +104,7 @@ public class FileManagerActivity extends ListActivity {
         File f = new File(filePath);
         File[] files = f.listFiles();
 
-        // ÓÃÀ´ÏÔÊ¾ ¡°·µ»Ø¸ùÄ¿Â¼¡±+"ÉÏ¼¶Ä¿Â¼"
+        // ç”¨æ¥æ˜¾ç¤º â€œè¿”å›æ ¹ç›®å½•â€+"ä¸Šçº§ç›®å½•"
         if (!filePath.equals(rootPath)) {
             items.add("rootPath");
             paths.add(rootPath);
@@ -113,7 +113,7 @@ public class FileManagerActivity extends ListActivity {
             paths.add(f.getParent());
         }
 
-        // ÏÈÅÅĞò
+        // å…ˆæ’åº
         List<File> resultList = null;
         if (files != null) {
             resultList = new ArrayList<File>();
@@ -140,7 +140,7 @@ public class FileManagerActivity extends ListActivity {
                 paths.add(file.getPath());
             }
         } else {
-            Log.i("hnyer", filePath + "ÎŞ×ÓÎÄ¼ş");
+            Log.i("hnyer", filePath + "æ— å­æ–‡ä»¶");
         }
 
         setListAdapter(new MyAdapter(this, items, paths));
@@ -154,11 +154,11 @@ public class FileManagerActivity extends ListActivity {
             this.context = context;
         }
 
-        //Ö´ĞĞÒì²½ÈÎÎñ£¨doInBackground£©Ö®Ç°Ö´ĞĞ£¬²¢ÇÒÔÚuiÏß³ÌÖĞÖ´ĞĞ
+        //æ‰§è¡Œå¼‚æ­¥ä»»åŠ¡ï¼ˆdoInBackgroundï¼‰ä¹‹å‰æ‰§è¡Œï¼Œå¹¶ä¸”åœ¨uiçº¿ç¨‹ä¸­æ‰§è¡Œ
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //¿ªÊ¼ÏÂÔØ ¶Ô»°¿ò½ø¶ÈÌõÏÔÊ¾
+            //å¼€å§‹ä¸‹è½½ å¯¹è¯æ¡†è¿›åº¦æ¡æ˜¾ç¤º
             progress.show();
             progress.setProgress(0);
         }
@@ -194,7 +194,7 @@ public class FileManagerActivity extends ListActivity {
 
                 for (int i = 0; i < sheetRows; ++i) {
                     for (int j = 0; j < sheetColumns; ++j) {
-                        // getCell(Col,Row)»ñµÃµ¥Ôª¸ñµÄÖµ
+                        // getCell(Col,Row)è·å¾—å•å…ƒæ ¼çš„å€¼
                         String content = sheet.getCell(j, i).getContents();
                         if (j == sheetColumns - 1) {
                             sb.append(content + ";");
@@ -216,12 +216,12 @@ public class FileManagerActivity extends ListActivity {
                                 if (data_.length > 0) {
                                     if (!TextUtils.isEmpty(data_[0])) {
                                         if ( !isMobileNO(data_[0])) {
-                                            return "ÊÖ»ú¸ñÊ½´íÎó";
+                                            return "æ‰‹æœºæ ¼å¼é”™è¯¯";
                                         }
                                     }
                                     if (!TextUtils.isEmpty(data_[4])) {
                                         if ( !isDateStringValid(data_[4])) {
-                                            return "ÈÕÆÚ¸ñÊ½´íÎó";
+                                            return "æ—¥æœŸæ ¼å¼é”™è¯¯";
                                         }
                                     }
                                     if (i == 1) {
@@ -244,12 +244,12 @@ public class FileManagerActivity extends ListActivity {
                                 if (data_.length > 0) {
                                     if (!TextUtils.isEmpty(data_[0])) {
                                         if ( !isMobileNO(data_[0])) {
-                                            return "ÊÖ»ú¸ñÊ½´íÎó";
+                                            return "æ‰‹æœºæ ¼å¼é”™è¯¯";
                                         }
                                     }
                                     if (!TextUtils.isEmpty(data_[3])) {
                                         if ( !isDateStringValid(data_[3])) {
-                                            return "ÈÕÆÚ¸ñÊ½´íÎó";
+                                            return "æ—¥æœŸæ ¼å¼é”™è¯¯";
                                         }
                                     }
                                     if (i == 1) {
@@ -273,16 +273,16 @@ public class FileManagerActivity extends ListActivity {
                         } else {
                             String titlle = data[0];
                             if (!TextUtils.isEmpty(titlle)&&titlle!=null) {
-                                if (!titlle.contains("PHONE") && titlle.contains("LAC") && titlle.contains("CID") && titlle.contains("ÈÕÆÚ")) {
+                                if (!titlle.contains("PHONE") && titlle.contains("LAC") && titlle.contains("CID") && titlle.contains("æ—¥æœŸ")) {
                                     return "";
                                 }
                                 String[] titles = titlle.split(",");
                                 if (PubUtill.isDianxin) {
-                                    if (!titles[0].equals("PHONE")||!titles[1].equals("SID")||!titles[2].equals("BID")||!titles[3].equals("NID")||!titles[4].equals("ÈÕÆÚ")) {
+                                    if (!titles[0].equals("PHONE")||!titles[1].equals("SID")||!titles[2].equals("BID")||!titles[3].equals("NID")||!titles[4].equals("æ—¥æœŸ")) {
                                         return "";
                                     }
                                 }else{
-                                    if (!titles[0].equals("PHONE")||!titles[1].equals("LAC")||!titles[2].equals("CID")||!titles[3].equals("ÈÕÆÚ")) {
+                                    if (!titles[0].equals("PHONE")||!titles[1].equals("LAC")||!titles[2].equals("CID")||!titles[3].equals("æ—¥æœŸ")) {
                                         return "";
                                     }
                                 }
@@ -304,20 +304,20 @@ public class FileManagerActivity extends ListActivity {
             return filePath + timers.toString() + "," + importTime;
         }
 
-        //ÔÚuiÏß³ÌÖĞÖ´ĞĞ ¿ÉÒÔ²Ù×÷ui
+        //åœ¨uiçº¿ç¨‹ä¸­æ‰§è¡Œ å¯ä»¥æ“ä½œui
         @Override
         protected void onPostExecute(String string) {
             // TODO Auto-generated method stub
             super.onPostExecute(string);
-            //ÏÂÔØÍê³É ¶Ô»°¿ò½ø¶ÈÌõÒş²Ø
+            //ä¸‹è½½å®Œæˆ å¯¹è¯æ¡†è¿›åº¦æ¡éšè—
             progress.cancel();
             Uri uri = Uri.parse(string);
             if (uri.toString().equals("")) {
-                Toast.makeText(context, "µ¼ÈëÊ§°Ü,Çë°´Ä£°åµÄ¸ñÊ½µ¼ÈëÊı¾İ", Toast.LENGTH_SHORT).show();
-            } else if (uri.toString().equals("ÈÕÆÚ¸ñÊ½´íÎó")) {
-                Toast.makeText(context, "µ¼ÈëÊ§°Ü,ÈÕÆÚ¸ñÊ½´íÎó!", Toast.LENGTH_SHORT).show();
-            }else if (uri.toString().equals("ÊÖ»ú¸ñÊ½´íÎó")) {
-                Toast.makeText(context, "µ¼ÈëÊ§°Ü,ÊÖ»ú¸ñÊ½´íÎó!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "å¯¼å…¥å¤±è´¥,è¯·æŒ‰æ¨¡æ¿çš„æ ¼å¼å¯¼å…¥æ•°æ®", Toast.LENGTH_SHORT).show();
+            } else if (uri.toString().equals("æ—¥æœŸæ ¼å¼é”™è¯¯")) {
+                Toast.makeText(context, "å¯¼å…¥å¤±è´¥,æ—¥æœŸæ ¼å¼é”™è¯¯!", Toast.LENGTH_SHORT).show();
+            }else if (uri.toString().equals("æ‰‹æœºæ ¼å¼é”™è¯¯")) {
+                Toast.makeText(context, "å¯¼å…¥å¤±è´¥,æ‰‹æœºæ ¼å¼é”™è¯¯!", Toast.LENGTH_SHORT).show();
             }else {
                 Intent intent = new Intent();
                 intent.setData(uri);
@@ -328,8 +328,8 @@ public class FileManagerActivity extends ListActivity {
         }
 
         /*
-         * ÔÚdoInBackground·½·¨ÖĞÒÑ¾­µ÷ÓÃpublishProgress·½·¨ ¸üĞÂÈÎÎñµÄÖ´ĞĞ½ø¶Èºó
-         * µ÷ÓÃÕâ¸ö·½·¨ ÊµÏÖ½ø¶ÈÌõµÄ¸üĞÂ
+         * åœ¨doInBackgroundæ–¹æ³•ä¸­å·²ç»è°ƒç”¨publishProgressæ–¹æ³• æ›´æ–°ä»»åŠ¡çš„æ‰§è¡Œè¿›åº¦å
+         * è°ƒç”¨è¿™ä¸ªæ–¹æ³• å®ç°è¿›åº¦æ¡çš„æ›´æ–°
          * */
         @Override
         protected void onProgressUpdate(Integer... values) {
@@ -339,13 +339,13 @@ public class FileManagerActivity extends ListActivity {
         }
     }
     /**
-     * ÅĞ¶Ï×Ö·û´®ÊÇ·ñÎªÈÕÆÚ¸ñÊ½
+     * åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦ä¸ºæ—¥æœŸæ ¼å¼
      * @param date
      * @return
      */
     public boolean isDateStringValid(String date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-DD");
-        // ÊäÈë¶ÔÏó²»Îª¿Õ
+        // è¾“å…¥å¯¹è±¡ä¸ä¸ºç©º
         try {
             sdf.parse(date);
             return true;
@@ -355,15 +355,15 @@ public class FileManagerActivity extends ListActivity {
     }
 
     /**
-     * ÑéÖ¤ÊÖ»ú¸ñÊ½
+     * éªŒè¯æ‰‹æœºæ ¼å¼
      */
     public boolean isMobileNO(String mobiles) {
         /*
-         * ÒÆ¶¯£º134¡¢135¡¢136¡¢137¡¢138¡¢139¡¢150¡¢151¡¢157(TD)¡¢158¡¢159¡¢187¡¢188
-		 * ÁªÍ¨£º130¡¢131¡¢132¡¢152¡¢155¡¢156¡¢185¡¢186 µçĞÅ£º133¡¢153¡¢180¡¢189¡¢£¨1349ÎÀÍ¨£©
-		 * ×Ü½áÆğÀ´¾ÍÊÇµÚÒ»Î»±Ø¶¨Îª1£¬µÚ¶şÎ»±Ø¶¨Îª3»ò5»ò8£¬ÆäËûÎ»ÖÃµÄ¿ÉÒÔÎª0-9
+         * ç§»åŠ¨ï¼š134ã€135ã€136ã€137ã€138ã€139ã€150ã€151ã€157(TD)ã€158ã€159ã€187ã€188
+		 * è”é€šï¼š130ã€131ã€132ã€152ã€155ã€156ã€185ã€186 ç”µä¿¡ï¼š133ã€153ã€180ã€189ã€ï¼ˆ1349å«é€šï¼‰
+		 * æ€»ç»“èµ·æ¥å°±æ˜¯ç¬¬ä¸€ä½å¿…å®šä¸º1ï¼Œç¬¬äºŒä½å¿…å®šä¸º3æˆ–5æˆ–8ï¼Œå…¶ä»–ä½ç½®çš„å¯ä»¥ä¸º0-9
 		 */
-        String telRegex = "[1][3758]\\d{9}";// "[1]"´ú±íµÚ1Î»ÎªÊı×Ö1£¬"[358]"´ú±íµÚ¶şÎ»¿ÉÒÔÎª3¡¢5¡¢8ÖĞµÄÒ»¸ö£¬"\\d{9}"´ú±íºóÃæÊÇ¿ÉÒÔÊÇ0¡«9µÄÊı×Ö£¬ÓĞ9Î»¡£
+        String telRegex = "[1][3758]\\d{9}";// "[1]"ä»£è¡¨ç¬¬1ä½ä¸ºæ•°å­—1ï¼Œ"[358]"ä»£è¡¨ç¬¬äºŒä½å¯ä»¥ä¸º3ã€5ã€8ä¸­çš„ä¸€ä¸ªï¼Œ"\\d{9}"ä»£è¡¨åé¢æ˜¯å¯ä»¥æ˜¯0ï½9çš„æ•°å­—ï¼Œæœ‰9ä½ã€‚
         if (TextUtils.isEmpty(mobiles))
             return false;
         else

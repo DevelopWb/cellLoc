@@ -43,7 +43,7 @@ public class CellSearchActivity extends Activity implements OnClickListener {
     private String LAC = "";
     private String CID = "";
     private String NID = "";
-    private String MNC = "0";//0´ú±íÒÆ¶¯£¬1´ú±íÁªÍ¨
+    private String MNC = "0";//0ä»£è¡¨ç§»åŠ¨ï¼Œ1ä»£è¡¨è”é€š
 
     private Thread t;
     Position GpsPos;
@@ -53,7 +53,7 @@ public class CellSearchActivity extends Activity implements OnClickListener {
     AlertDialog.Builder posprogress = null;
 
     private SharedPreferences sp;
-    private boolean istoolTip = false;//×¢²áÂë×´Ì¬¸Ä±äÊÇ·ñÌáĞÑ£¬ÀıÈç£º×¢²áÂëµ½ÆÚ£¬½ûÓÃµÈ
+    private boolean istoolTip = false;//æ³¨å†Œç çŠ¶æ€æ”¹å˜æ˜¯å¦æé†’ï¼Œä¾‹å¦‚ï¼šæ³¨å†Œç åˆ°æœŸï¼Œç¦ç”¨ç­‰
     private RegOperateTool regOperateTool;
 
     @Override
@@ -103,18 +103,18 @@ public class CellSearchActivity extends Activity implements OnClickListener {
 
                 if (PubUtill.DianxinClicked) {
                     if (TextUtils.isEmpty(lacstr)) {
-                        Toast.makeText(CellSearchActivity.this, "ÇëÌîÏµÍ³Ê¶±ğÂë",
+                        Toast.makeText(CellSearchActivity.this, "è¯·å¡«ç³»ç»Ÿè¯†åˆ«ç ",
                                 Toast.LENGTH_SHORT).show();
                         return;
                     }
                     if (TextUtils.isEmpty(cellstr)) {
-                        Toast.makeText(CellSearchActivity.this, "ÇëÌîĞ´»ùÕ¾ºÅ",
+                        Toast.makeText(CellSearchActivity.this, "è¯·å¡«å†™åŸºç«™å·",
                                 Toast.LENGTH_SHORT).show();
                         return;
                     }
                     String nidstr = NID_et.getText().toString();
                     if (TextUtils.isEmpty(nidstr)) {
-                        Toast.makeText(CellSearchActivity.this, "ÇëÌîĞ´ÍøÂçÊ¶±ğÂë",
+                        Toast.makeText(CellSearchActivity.this, "è¯·å¡«å†™ç½‘ç»œè¯†åˆ«ç ",
                                 Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -123,12 +123,12 @@ public class CellSearchActivity extends Activity implements OnClickListener {
                 } else {
                     NID = "";
                     if (TextUtils.isEmpty(lacstr)) {
-                        Toast.makeText(CellSearchActivity.this, "ÇëÌîĞ´ÉÈÇøºÅ",
+                        Toast.makeText(CellSearchActivity.this, "è¯·å¡«å†™æ‰‡åŒºå·",
                                 Toast.LENGTH_SHORT).show();
                         return;
                     }
                     if (TextUtils.isEmpty(cellstr)) {
-                        Toast.makeText(CellSearchActivity.this, "ÇëÌîĞ´»ùÕ¾ºÅ",
+                        Toast.makeText(CellSearchActivity.this, "è¯·å¡«å†™åŸºç«™å·",
                                 Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -143,7 +143,7 @@ public class CellSearchActivity extends Activity implements OnClickListener {
                     }
                 } else {
                     if (RegOperateTool.isForbidden) {
-                        Toast.makeText(CellSearchActivity.this, "×¢²áÂëÎŞĞ§£¬ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CellSearchActivity.this, "æ³¨å†Œç æ— æ•ˆï¼Œè¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     JizhanPos();
@@ -151,7 +151,7 @@ public class CellSearchActivity extends Activity implements OnClickListener {
 
 
                 break;
-            case R.id.cmcc_ll://ÒÆ¶¯
+            case R.id.cmcc_ll://ç§»åŠ¨
 
                 PubUtill.DianxinClicked = false;
                 MNC="0";
@@ -164,8 +164,8 @@ public class CellSearchActivity extends Activity implements OnClickListener {
                 telecom_ll.setBackgroundColor(android.graphics.Color
                         .parseColor("#0A8FCC"));
                 telecomNID_ll.setVisibility(View.GONE);
-                shanqu_tv.setText("LAC(ÉÈÇøºÅ) £º");
-                jizhan_tv.setText("CID( »ùÕ¾ºÅ )£º");
+                shanqu_tv.setText("LAC(æ‰‡åŒºå·) ï¼š");
+                jizhan_tv.setText("CID( åŸºç«™å· )ï¼š");
                 break;
             case R.id.unicom_ll:
                 LAC_et.setText("");
@@ -179,8 +179,8 @@ public class CellSearchActivity extends Activity implements OnClickListener {
                 telecom_ll.setBackgroundColor(android.graphics.Color
                         .parseColor("#0A8FCC"));
                 telecomNID_ll.setVisibility(View.GONE);
-                shanqu_tv.setText("LAC(ÉÈÇøºÅ) £º");
-                jizhan_tv.setText("CID( »ùÕ¾ºÅ )£º");
+                shanqu_tv.setText("LAC(æ‰‡åŒºå·) ï¼š");
+                jizhan_tv.setText("CID( åŸºç«™å· )ï¼š");
                 break;
             case R.id.telecom_ll:
                 LAC_et.setText("");
@@ -195,8 +195,8 @@ public class CellSearchActivity extends Activity implements OnClickListener {
                 unicom_ll.setBackgroundColor(android.graphics.Color
                         .parseColor("#0A8FCC"));
                 telecomNID_ll.setVisibility(View.VISIBLE);
-                shanqu_tv.setText("SID(ÏµÍ³Ê¶±ğÂë)£º");
-                jizhan_tv.setText("BID(   »ù Õ¾ ºÅ   )£º");
+                shanqu_tv.setText("SID(ç³»ç»Ÿè¯†åˆ«ç )ï¼š");
+                jizhan_tv.setText("BID(   åŸº ç«™ å·   )ï¼š");
                 break;
 
             default:
@@ -206,10 +206,10 @@ public class CellSearchActivity extends Activity implements OnClickListener {
 
     public void JizhanPos() {
         if (!DataUtil.isConnected(getApplicationContext())) {
-            Toast.makeText(CellSearchActivity.this, "ÍøÂçÒì³££¬Çë¼ì²éÊÖ»úÍøÂç", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CellSearchActivity.this, "ç½‘ç»œå¼‚å¸¸ï¼Œè¯·æ£€æŸ¥æ‰‹æœºç½‘ç»œ", Toast.LENGTH_SHORT).show();
             return;
         }
-        dlgmsg = "ÕıÔÚ½øĞĞ»ùÕ¾²éÑ¯...";
+        dlgmsg = "æ­£åœ¨è¿›è¡ŒåŸºç«™æŸ¥è¯¢...";
         ShowProgressDlg(dlgmsg);
         dlg.setMessage(dlgmsg);
         GetJizhanPosBySelf(LAC, CID, NID,MNC);
@@ -231,8 +231,8 @@ public class CellSearchActivity extends Activity implements OnClickListener {
             @Override
             public void onSuccessed(CellPosition position) {
                 String notice = position.getDesc();
-                if ("Î´²éÑ¯µ½Êı¾İ!".equals(notice)) {
-                    CellLocationFailed("Î´²éÑ¯µ½Î»ÖÃĞÅÏ¢£¬²éÑ¯Ê§°Ü");
+                if ("æœªæŸ¥è¯¢åˆ°æ•°æ®!".equals(notice)) {
+                    CellLocationFailed("æœªæŸ¥è¯¢åˆ°ä½ç½®ä¿¡æ¯ï¼ŒæŸ¥è¯¢å¤±è´¥");
                 }else{
                     GpsPos = resolveResponse(CellSearchActivity.this, position, lac, cid, nid);
                     myMessageHandler.sendEmptyMessage(6);
@@ -242,14 +242,14 @@ public class CellSearchActivity extends Activity implements OnClickListener {
 
             @Override
             public void onErro() {
-                CellLocationFailed("Î´²éÑ¯µ½Î»ÖÃĞÅÏ¢£¬²éÑ¯Ê§°Ü");
+                CellLocationFailed("æœªæŸ¥è¯¢åˆ°ä½ç½®ä¿¡æ¯ï¼ŒæŸ¥è¯¢å¤±è´¥");
             }
         });
         cellPositionNetTask.getCellPosition(lac, cid, nid,mnc);
     }
 
     /**
-     * ½âÎöÊı¾İ
+     * è§£ææ•°æ®
      *
      * @param context
      * @param cellPosition
@@ -264,15 +264,15 @@ public class CellSearchActivity extends Activity implements OnClickListener {
 
 
         Object model = cellPosition.getModel();
-        //  "×¢²áÂëÒÑ¾­½ûÓÃ"
-        if (model.equals("×¢²áÂëÒÑ¾­½ûÓÃ")) {
-            Toast.makeText(context, "×¢²áÂëÒÑ¾­½ûÓÃ,ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+        //  "æ³¨å†Œç å·²ç»ç¦ç”¨"
+        if (model.equals("æ³¨å†Œç å·²ç»ç¦ç”¨")) {
+            Toast.makeText(context, "æ³¨å†Œç å·²ç»ç¦ç”¨,è¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
             return p;
-        } else if (model.equals("×¢²áÂë´ÎÊıÒÑÓÃÍê")) {
-            Toast.makeText(context, "×¢²áÂë´ÎÊıÒÑÓÃÍê,ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+        } else if (model.equals("æ³¨å†Œç æ¬¡æ•°å·²ç”¨å®Œ")) {
+            Toast.makeText(context, "æ³¨å†Œç æ¬¡æ•°å·²ç”¨å®Œ,è¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
             return p;
-        } else if (model.equals("×¢²áÂëÊ¹ÓÃÊ±¼ä¹ıÆÚ")) {
-            Toast.makeText(context, "×¢²áÂëÊ¹ÓÃÊ±¼ä¹ıÆÚ,ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+        } else if (model.equals("æ³¨å†Œç ä½¿ç”¨æ—¶é—´è¿‡æœŸ")) {
+            Toast.makeText(context, "æ³¨å†Œç ä½¿ç”¨æ—¶é—´è¿‡æœŸ,è¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
             return p;
         } else {
             p.lac = Integer.parseInt(lac);
@@ -302,7 +302,7 @@ public class CellSearchActivity extends Activity implements OnClickListener {
             mTimer.cancel();
         }
         dlg.setMessage(notice);
-        dlg.getButton(AlertDialog.BUTTON_POSITIVE).setText("·µ»Ø");
+        dlg.getButton(AlertDialog.BUTTON_POSITIVE).setText("è¿”å›");
     }
 
 
@@ -323,7 +323,7 @@ public class CellSearchActivity extends Activity implements OnClickListener {
                         dlg.dismiss();
                     }
 
-//				Toast.makeText(CellSearchActivity.this, "»ùÕ¾²éÑ¯³É¹¦£¡",
+//				Toast.makeText(CellSearchActivity.this, "åŸºç«™æŸ¥è¯¢æˆåŠŸï¼",
 //						Toast.LENGTH_SHORT).show();
                     if (GpsPos != null) {
                         Intent intent = new Intent();
@@ -343,9 +343,9 @@ public class CellSearchActivity extends Activity implements OnClickListener {
                         mTimer.cancel();
                     }
 
-                    dlgmsg = dlgmsg + "\n" + "»ùÕ¾¶¨Î»Ê§°Ü ";
+                    dlgmsg = dlgmsg + "\n" + "åŸºç«™å®šä½å¤±è´¥ ";
                     dlg.setMessage(dlgmsg);
-                    dlg.getButton(AlertDialog.BUTTON_POSITIVE).setText("·µ»Ø");
+                    dlg.getButton(AlertDialog.BUTTON_POSITIVE).setText("è¿”å›");
 
                     break;
 
@@ -367,13 +367,13 @@ public class CellSearchActivity extends Activity implements OnClickListener {
                         mTimer.cancel();
                     }
 
-                    dlgmsg = dlgmsg + "\n" + "ÍøÂçÁ¬½Ó³¬Ê±£¬»ùÕ¾²éÑ¯Ê§°Ü ";
+                    dlgmsg = dlgmsg + "\n" + "ç½‘ç»œè¿æ¥è¶…æ—¶ï¼ŒåŸºç«™æŸ¥è¯¢å¤±è´¥ ";
                     dlg.setMessage(dlgmsg);
 
                     // android.os.Process.killProcess(android.os.Process.myPid());
 
-                    // ÉèÖÃProgressDialog µÄÒ»¸öButton
-                    dlg.getButton(AlertDialog.BUTTON_POSITIVE).setText("·µ»Ø");
+                    // è®¾ç½®ProgressDialog çš„ä¸€ä¸ªButton
+                    dlg.getButton(AlertDialog.BUTTON_POSITIVE).setText("è¿”å›");
                     break;
 
                 default:
@@ -384,34 +384,34 @@ public class CellSearchActivity extends Activity implements OnClickListener {
     };
 
     public void ShowProgressDlg(String info) {
-        // ´´½¨ProgressDialog¶ÔÏó
+        // åˆ›å»ºProgressDialogå¯¹è±¡
         posprogress = new AlertDialog.Builder(this);
 
-        // ÉèÖÃ½ø¶ÈÌõ·ç¸ñ£¬·ç¸ñÎªÔ²ĞÎ£¬Ğı×ªµÄ
+        // è®¾ç½®è¿›åº¦æ¡é£æ ¼ï¼Œé£æ ¼ä¸ºåœ†å½¢ï¼Œæ—‹è½¬çš„
         // posprogress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
-        // ÉèÖÃProgressDialog ±êÌâ
-        posprogress.setTitle("ÇëÉÔºò");
+        // è®¾ç½®ProgressDialog æ ‡é¢˜
+        posprogress.setTitle("è¯·ç¨å€™");
 
         posprogress.setMessage(info);
 
         posprogress.setCancelable(false);
 
-        // ÉèÖÃProgressDialog µÄÒ»¸öButton
-        posprogress.setPositiveButton("·ÅÆú¶¨Î»",
+        // è®¾ç½®ProgressDialog çš„ä¸€ä¸ªButton
+        posprogress.setPositiveButton("æ”¾å¼ƒå®šä½",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int i) {
 
                         if (dlg != null
                                 && dlg.getButton(AlertDialog.BUTTON_POSITIVE)
                                 .getText().toString()
-                                .equalsIgnoreCase("·µ»Ø")) {
+                                .equalsIgnoreCase("è¿”å›")) {
                             dialog.dismiss();
                             // finish();
 
                             return;
                         }
-                        // µã»÷¡°È·¶¨°´Å¥¡±È¡Ïû¶Ô»°¿ò
+                        // ç‚¹å‡»â€œç¡®å®šæŒ‰é’®â€å–æ¶ˆå¯¹è¯æ¡†
                         if (mTimer != null) {
                             mTimer.cancel();
                         }
@@ -423,7 +423,7 @@ public class CellSearchActivity extends Activity implements OnClickListener {
                     }
                 });
 
-        // ÈÃProgressDialogÏÔÊ¾
+        // è®©ProgressDialogæ˜¾ç¤º
         dlg = posprogress.show();
 
     }

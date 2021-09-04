@@ -1,6 +1,6 @@
 package com.celllocation.newgpsone.bean;
 /**
- * gps¾ÀÆ«Ëã·¨£¬ÊÊÓÃÓÚgoogle,¸ßµÂÌåÏµµÄµØÍ¼
+ * gpsçº åç®—æ³•ï¼Œé€‚ç”¨äºgoogle,é«˜å¾·ä½“ç³»çš„åœ°å›¾
  * @author Administrator
  */
 public class GpsCorrect {

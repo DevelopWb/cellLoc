@@ -98,7 +98,7 @@ public class FormDataLocationMapActivity extends Activity implements
         mapView = (MapView) findViewById(R.id.form_map);
         bitmap_onLine = BitmapFactory.decodeResource(this.getResources(),
                 R.drawable.new_ni);
-        mapView.onCreate(savedInstanceState);// ´Ë·½·¨±ØĞëÖØĞ´
+        mapView.onCreate(savedInstanceState);// æ­¤æ–¹æ³•å¿…é¡»é‡å†™
         init();
         helper = new DataHelper(this);
         dialog = new Dialog(this, R.style.DialogStyle);
@@ -184,7 +184,7 @@ public class FormDataLocationMapActivity extends Activity implements
         LatLngBounds bounds_ = builder.build();
         if (latlngs.size() == 1) {
 
-            // ÉèÖĞĞÄµãºÍzoom
+            // è®¾ä¸­å¿ƒç‚¹å’Œzoom
             aMap.moveCamera(CameraUpdateFactory
                     .newCameraPosition(new CameraPosition(latlngs.get(0), 15,
                             0, 0)));
@@ -209,17 +209,17 @@ public class FormDataLocationMapActivity extends Activity implements
         String vct = "^1700\\d{7}$";
 
         if (phone_number.matches(cm)) {
-            return "ÖĞ¹úÒÆ¶¯";
+            return "ä¸­å›½ç§»åŠ¨";
         } else if (phone_number.matches(cu)) {
-            return "ÖĞ¹úÁªÍ¨";
+            return "ä¸­å›½è”é€š";
         } else if (phone_number.matches(ct)) {
-            return "ÖĞ¹úµçĞÅ";
+            return "ä¸­å›½ç”µä¿¡";
         } else if (phone_number.matches(vcm)) {
-            return "ÖĞ¹úÒÆ¶¯";
+            return "ä¸­å›½ç§»åŠ¨";
         } else if (phone_number.matches(vcu)) {
-            return "ÖĞ¹úÁªÍ¨";
+            return "ä¸­å›½è”é€š";
         } else if (phone_number.matches(vct)) {
-            return "ÖĞ¹úµçĞÅ";
+            return "ä¸­å›½ç”µä¿¡";
         } else {
             return "";
         }
@@ -231,9 +231,9 @@ public class FormDataLocationMapActivity extends Activity implements
         size = 0;
         final StringBuffer latlng_sb = new StringBuffer();
         String mcc = "460";
-        int type = 0; // ·µ»Ø×ø±êÀàĞÍÄ¬ÈÏÖµ 0(google×ø±ê),1( °Ù¶È×ø±ê),2(gps×ø±ê)
-        final String key0 = "80bad67eb9bd4f3aa68b52f5d747c91b";//haoServiceÒÆ¶¯ÁªÍ¨½Ó¿Ú
-        String key1 = "6536fdab0b6ecb926485658af71f3a9d";// ¾ÛºÏÉêÇëµÄµçĞÅ½Ó¿ÚµÄkey
+        int type = 0; // è¿”å›åæ ‡ç±»å‹é»˜è®¤å€¼ 0(googleåæ ‡),1( ç™¾åº¦åæ ‡),2(gpsåæ ‡)
+        final String key0 = "80bad67eb9bd4f3aa68b52f5d747c91b";//haoServiceç§»åŠ¨è”é€šæ¥å£
+        String key1 = "6536fdab0b6ecb926485658af71f3a9d";// èšåˆç”³è¯·çš„ç”µä¿¡æ¥å£çš„key
         StringBuffer sur_hao_ = null;
         StringBuffer Dianxin_sb = null;
         StringRequest stringRequest_noDianxin = null;
@@ -247,7 +247,7 @@ public class FormDataLocationMapActivity extends Activity implements
                 final String lac = bean.getLac();
                 final String nid = bean.getNid();
                 final String time = bean.getTime();
-                if (tag.equals("ÖĞ¹úµçĞÅ")) {
+                if (tag.equals("ä¸­å›½ç”µä¿¡")) {
                     Dianxin_sb = new StringBuffer();
                     Dianxin_sb.append("http://v.juhe.cn/cdma/?");
                     Dianxin_sb.append("&sid=" + lac).append("&cellid=" + cid)
@@ -306,9 +306,9 @@ public class FormDataLocationMapActivity extends Activity implements
                     String sur_hao = "http://api.haoservice.com/api/getlbs";
                     sur_hao_ = new StringBuffer(sur_hao);
                     sur_hao_.append("?mcc=" + mcc);
-                    if (tag.equals("ÖĞ¹úÒÆ¶¯")) {
+                    if (tag.equals("ä¸­å›½ç§»åŠ¨")) {
                         sur_hao_.append("&mnc=" + "2");
-                    } else if (tag.equals("ÖĞ¹úÁªÍ¨")) {
+                    } else if (tag.equals("ä¸­å›½è”é€š")) {
                         sur_hao_.append("&mnc=" + "1");
                     }
                     sur_hao_.append("&cell_id=" + String.valueOf(cid) + "&lac="
@@ -328,7 +328,7 @@ public class FormDataLocationMapActivity extends Activity implements
                                 obj = new JSONObject(s);
                                 String location = obj.getString("location");
                                 if (location.equals("null")) {
-                                    //TODO ×ª¾ÛºÏ½Ó¿Ú
+                                    //TODO è½¬èšåˆæ¥å£
                                 } else {
                                     JSONObject object_ = (JSONObject) obj.get("location");
                                     String la = object_.getString("latitude");
@@ -375,7 +375,7 @@ public class FormDataLocationMapActivity extends Activity implements
     }
 
     /**
-     * µ÷ÓÃhaoServiceµÄµçĞÅ½Ó¿Ú»ñÈ¡µçĞÅÊı¾İ
+     * è°ƒç”¨haoServiceçš„ç”µä¿¡æ¥å£è·å–ç”µä¿¡æ•°æ®
      *  http://api.haoservice.com/api/getcdmalbs?sid=14175&bid=29282&nid=11&type=0&key=80bad67eb9bd4f3aa68b52f5d747c91b
      * @param lac
      * @param cid
@@ -383,7 +383,7 @@ public class FormDataLocationMapActivity extends Activity implements
      * @param key0
      */
     private void getDataFromHaoServiceOfDianxin(final String lac, final String cid,final String nid, String key0,final String time,final List<PhoneNO> arrays) {
-        int type = 0; // ·µ»Ø×ø±êÀàĞÍÄ¬ÈÏÖµ 0(google×ø±ê),1( °Ù¶È×ø±ê),2(gps×ø±ê)
+        int type = 0; // è¿”å›åæ ‡ç±»å‹é»˜è®¤å€¼ 0(googleåæ ‡),1( ç™¾åº¦åæ ‡),2(gpsåæ ‡)
         StringBuffer sbHSofDX = new StringBuffer(
                 "http://api.haoservice.com/api/getcdmalbs");
         sbHSofDX.append("?sid=" + lac + "&bid=" + cid + "&nid=" + nid
@@ -422,7 +422,7 @@ public class FormDataLocationMapActivity extends Activity implements
                         helper.SavePeopleLocation(pl);
 
                     }else{
-                        Toast.makeText(FormDataLocationMapActivity.this, "CID/"+cid+"SID/"+lac+"NID/"+nid+"Õâ×éÊı¾İ²é²»µ½Î»ÖÃĞÅÏ¢", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FormDataLocationMapActivity.this, "CID/"+cid+"SID/"+lac+"NID/"+nid+"è¿™ç»„æ•°æ®æŸ¥ä¸åˆ°ä½ç½®ä¿¡æ¯", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
@@ -455,7 +455,7 @@ public class FormDataLocationMapActivity extends Activity implements
     }
 
     /**
-     * ³õÊ¼»¯AMap¶ÔÏó
+     * åˆå§‹åŒ–AMapå¯¹è±¡
      */
     private void init() {
 
@@ -469,13 +469,13 @@ public class FormDataLocationMapActivity extends Activity implements
     }
 
     private void setUpMap() {
-        aMap.setOnMarkerClickListener(this);// ÉèÖÃµã»÷markerÊÂ¼ş¼àÌıÆ÷
-        aMap.setOnInfoWindowClickListener(this);// ÉèÖÃµã»÷infoWindowÊÂ¼ş¼àÌıÆ÷
+        aMap.setOnMarkerClickListener(this);// è®¾ç½®ç‚¹å‡»markeräº‹ä»¶ç›‘å¬å™¨
+        aMap.setOnInfoWindowClickListener(this);// è®¾ç½®ç‚¹å‡»infoWindowäº‹ä»¶ç›‘å¬å™¨
         aMap.setInfoWindowAdapter(this);
     }
 
     /**
-     * ·½·¨±ØĞëÖØĞ´
+     * æ–¹æ³•å¿…é¡»é‡å†™
      */
     @Override
     protected void onResume() {
@@ -484,7 +484,7 @@ public class FormDataLocationMapActivity extends Activity implements
     }
 
     /**
-     * ·½·¨±ØĞëÖØĞ´
+     * æ–¹æ³•å¿…é¡»é‡å†™
      */
     @Override
     protected void onPause() {
@@ -493,7 +493,7 @@ public class FormDataLocationMapActivity extends Activity implements
     }
 
     /**
-     * ·½·¨±ØĞëÖØĞ´
+     * æ–¹æ³•å¿…é¡»é‡å†™
      */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -502,7 +502,7 @@ public class FormDataLocationMapActivity extends Activity implements
     }
 
     /**
-     * ·½·¨±ØĞëÖØĞ´
+     * æ–¹æ³•å¿…é¡»é‡å†™
      */
     @Override
     protected void onDestroy() {
@@ -536,7 +536,7 @@ public class FormDataLocationMapActivity extends Activity implements
         TextView nid_detail_tv = (TextView) view.findViewById(R.id.nid_detail_tv);
         if (len == 7) {
             nid_detail_tv.setVisibility(View.VISIBLE);
-            nid_detail_tv.setText("ÍøÂçÊ¶±ğÂë(NID):" + infos[6]);
+            nid_detail_tv.setText("ç½‘ç»œè¯†åˆ«ç (NID):" + infos[6]);
         } else {
             nid_detail_tv.setVisibility(View.GONE);
         }
@@ -547,17 +547,17 @@ public class FormDataLocationMapActivity extends Activity implements
         TextView jizhan = (TextView) view.findViewById(R.id.new_jizhan);
         TextView shanqu_tv = (TextView) view.findViewById(R.id.new_shanqu_tv);
         if (len == 7) {
-            jizhan.setText("»ùÕ¾ºÅ(BID)£º" + infos[4]);
-            shanqu_tv.setText("ÏµÍ³Ê¶±ğÂë(SID)" + infos[3]);
+            jizhan.setText("åŸºç«™å·(BID)ï¼š" + infos[4]);
+            shanqu_tv.setText("ç³»ç»Ÿè¯†åˆ«ç (SID)" + infos[3]);
         } else {
-            jizhan.setText("»ùÕ¾ºÅ£º" + infos[4]);
-            shanqu_tv.setText("ÉÈÇøºÅ£º" + infos[3]);
+            jizhan.setText("åŸºç«™å·ï¼š" + infos[4]);
+            shanqu_tv.setText("æ‰‡åŒºå·ï¼š" + infos[3]);
         }
         TextView lo_tv = (TextView) view.findViewById(R.id.new_lo_tv);
-        lo_tv.setText("¾­¶È£º" + infos[1]);
+        lo_tv.setText("ç»åº¦ï¼š" + infos[1]);
 
         TextView la_tv = (TextView) view.findViewById(R.id.new_la_tv);
-        la_tv.setText("Î³¶È£º" + infos[0]);
+        la_tv.setText("çº¬åº¦ï¼š" + infos[0]);
         ImageView selfpopupclose = (ImageView) view
                 .findViewById(R.id.new_selfpopupclose);
         selfpopupclose.setOnClickListener(new View.OnClickListener() {
@@ -594,9 +594,9 @@ public class FormDataLocationMapActivity extends Activity implements
         Window window = dialog_c.getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
         window.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-        lp.width = dip2px(this, 290); // ¿í¶È
-        lp.height = dip2px(this, 160); // ¸ß¶È
-        lp.alpha = 0.7f; // Í¸Ã÷¶È
+        lp.width = dip2px(this, 290); // å®½åº¦
+        lp.height = dip2px(this, 160); // é«˜åº¦
+        lp.alpha = 0.7f; // é€æ˜åº¦
         window.setAttributes(lp);
         window.setContentView(v);
         TextView bigtext = (TextView) v.findViewById(R.id.bigtext_tv);

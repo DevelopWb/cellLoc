@@ -76,7 +76,7 @@ public class NewCellActivity extends Activity implements
     private DataHelper helper;
     private String phoneNum;
     private SharedPreferences sp;
-    private boolean istoolTip = false;//×¢²áÂë×´Ì¬¸Ä±äÊÇ·ñÌáĞÑ£¬ÀıÈç£º×¢²áÂëµ½ÆÚ£¬½ûÓÃµÈ
+    private boolean istoolTip = false;//æ³¨å†Œç çŠ¶æ€æ”¹å˜æ˜¯å¦æé†’ï¼Œä¾‹å¦‚ï¼šæ³¨å†Œç åˆ°æœŸï¼Œç¦ç”¨ç­‰
 
 
 
@@ -98,7 +98,7 @@ public class NewCellActivity extends Activity implements
                         String addr = cell.getAddress();
                         String time = cell.getTime();
                         if (addr.equals("")) {
-                            addr = "Î»ÖÃ²»Ïê";
+                            addr = "ä½ç½®ä¸è¯¦";
                         }
                         String accuracy = cell.getAccuracy();
 
@@ -122,9 +122,9 @@ public class NewCellActivity extends Activity implements
                                 .draggable(true).period(50);
                         aMap.addMarker(markerOption);
                         PubUtill.isDrawable = true;
-                        Toast.makeText(NewCellActivity.this, "»ùÕ¾¶¨Î»³É¹¦£¡",
+                        Toast.makeText(NewCellActivity.this, "åŸºç«™å®šä½æˆåŠŸï¼",
                                 Toast.LENGTH_SHORT).show();
-                        // ÔÚ¶¨Î»µã»­Ô²
+                        // åœ¨å®šä½ç‚¹ç”»åœ†
                         aMap.addCircle(new CircleOptions()
                                 .center(latlng).radius(100).strokeColor(Color.BLUE)
                                 .fillColor(Color.parseColor("#3F003399"))
@@ -138,7 +138,7 @@ public class NewCellActivity extends Activity implements
                     break;
 
                 case 7:// JiZhan position failed,self pos failed
-                    Toast.makeText(NewCellActivity.this, "»ùÕ¾¶¨Î»Ê§°Ü£¡",
+                    Toast.makeText(NewCellActivity.this, "åŸºç«™å®šä½å¤±è´¥ï¼",
                             Toast.LENGTH_SHORT).show();
                     PubUtill.isDrawable = true;
                     break;
@@ -160,7 +160,7 @@ public class NewCellActivity extends Activity implements
         sp = getSharedPreferences("REG", MODE_PRIVATE);
         istoolTip = sp.getBoolean("ISTOOLTIP", false);
         findView();
-        mapView.onCreate(savedInstanceState);// ´Ë·½·¨±ØĞëÖØĞ´
+        mapView.onCreate(savedInstanceState);// æ­¤æ–¹æ³•å¿…é¡»é‡å†™
         helper = new DataHelper(this);
         init();
         RegistBoradCast();
@@ -177,7 +177,7 @@ public class NewCellActivity extends Activity implements
 
     }
 
-    //¶¨ÒåÒ»¸ö¹ã²¥½ÓÊÜÀà
+    //å®šä¹‰ä¸€ä¸ªå¹¿æ’­æ¥å—ç±»
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -192,7 +192,7 @@ public class NewCellActivity extends Activity implements
                 }else{
                     if (RegOperateTool.isForbidden) {
                         PubUtill.isDrawable = true;
-                        Toast.makeText(NewCellActivity.this, "×¢²áÂëÎŞĞ§£¬ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewCellActivity.this, "æ³¨å†Œç æ— æ•ˆï¼Œè¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     PositionByJiZhan();
@@ -206,7 +206,7 @@ public class NewCellActivity extends Activity implements
     }
 
     /**
-     * ³õÊ¼»¯AMap¶ÔÏó
+     * åˆå§‹åŒ–AMapå¯¹è±¡
      */
     private void init() {
         if (aMap == null) {
@@ -221,14 +221,14 @@ public class NewCellActivity extends Activity implements
 
     private void setUpMap() {
 
-        aMap.setOnMarkerClickListener(this);// ÉèÖÃµã»÷markerÊÂ¼ş¼àÌıÆ÷
+        aMap.setOnMarkerClickListener(this);// è®¾ç½®ç‚¹å‡»markeräº‹ä»¶ç›‘å¬å™¨
         aMap.setInfoWindowAdapter(this);
 
     }
 
 
     /**
-     * ·½·¨±ØĞëÖØĞ´
+     * æ–¹æ³•å¿…é¡»é‡å†™
      */
     @Override
     protected void onResume() {
@@ -242,7 +242,7 @@ public class NewCellActivity extends Activity implements
             }
         }else{
             if (RegOperateTool.isForbidden) {
-                Toast.makeText(NewCellActivity.this, "×¢²áÂëÎŞĞ§£¬ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewCellActivity.this, "æ³¨å†Œç æ— æ•ˆï¼Œè¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
                 return;
             }
             PositionByJiZhan();
@@ -254,7 +254,7 @@ public class NewCellActivity extends Activity implements
 
 
         if (!DataUtil.isConnected(getApplicationContext())) {
-            Toast.makeText(NewCellActivity.this, "ÍøÂçÒì³££¬Çë¼ì²éÊÖ»úÍøÂç", Toast.LENGTH_SHORT).show();
+            Toast.makeText(NewCellActivity.this, "ç½‘ç»œå¼‚å¸¸ï¼Œè¯·æ£€æŸ¥æ‰‹æœºç½‘ç»œ", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -272,13 +272,13 @@ public class NewCellActivity extends Activity implements
 
             @Override
             public void onErro() {
-                Toast.makeText(getApplicationContext(), "¶¨Î»Ê§°Ü", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "å®šä½å¤±è´¥", Toast.LENGTH_LONG).show();
             }
         });
         cellPositionNetTask.getCellPosition(lac,cid,nid,mnc);
     }
     /**
-     * ½âÎöÊı¾İ
+     * è§£ææ•°æ®
      * @param context
      * @param cellPosition
      * @param lac
@@ -290,15 +290,15 @@ public class NewCellActivity extends Activity implements
         String time = DataUtil.getDateToString(System.currentTimeMillis());
         CellHisData cell = new CellHisData();
         Object model = cellPosition.getModel();
-        //  "×¢²áÂëÒÑ¾­½ûÓÃ"
-        if (model.equals("×¢²áÂëÒÑ¾­½ûÓÃ")) {
-            Toast.makeText(context, "×¢²áÂëÒÑ¾­½ûÓÃ,ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+        //  "æ³¨å†Œç å·²ç»ç¦ç”¨"
+        if (model.equals("æ³¨å†Œç å·²ç»ç¦ç”¨")) {
+            Toast.makeText(context, "æ³¨å†Œç å·²ç»ç¦ç”¨,è¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
             return cell;
-        } else if (model.equals("×¢²áÂë´ÎÊıÒÑÓÃÍê")) {
-            Toast.makeText(context, "×¢²áÂë´ÎÊıÒÑÓÃÍê,ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+        } else if (model.equals("æ³¨å†Œç æ¬¡æ•°å·²ç”¨å®Œ")) {
+            Toast.makeText(context, "æ³¨å†Œç æ¬¡æ•°å·²ç”¨å®Œ,è¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
             return cell;
-        } else if (model.equals("×¢²áÂëÊ¹ÓÃÊ±¼ä¹ıÆÚ")) {
-            Toast.makeText(context, "×¢²áÂëÊ¹ÓÃÊ±¼ä¹ıÆÚ,ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+        } else if (model.equals("æ³¨å†Œç ä½¿ç”¨æ—¶é—´è¿‡æœŸ")) {
+            Toast.makeText(context, "æ³¨å†Œç ä½¿ç”¨æ—¶é—´è¿‡æœŸ,è¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
             return cell;
         } else{
             cell.setCid(cid);
@@ -335,9 +335,9 @@ public class NewCellActivity extends Activity implements
         if (mTManager != null) {
             int phonetype = mTManager.getPhoneType();
             mnc = mTManager.getSubscriberId().substring(3, 5);
-            //ÒÆ¶¯00¡¢02¡¢04¡¢07
-            //ÁªÍ¨01¡¢06¡¢09
-            //µçĞÅ03¡¢05¡¢µçĞÅ4GÊ¹ÓÃ11
+            //ç§»åŠ¨00ã€02ã€04ã€07
+            //è”é€š01ã€06ã€09
+            //ç”µä¿¡03ã€05ã€ç”µä¿¡4Gä½¿ç”¨11
 
             if ("00".equals(mnc)||"02".equals(mnc)||"04".equals(mnc)||"07".equals(mnc)) {
                 mnc = "0";
@@ -353,7 +353,7 @@ public class NewCellActivity extends Activity implements
                     lac = gcl.getLac() + "";
                     GetJizhanPosBySelf(lac, cid, nid,mnc);
                 }else{
-                    Toast.makeText(this, "ÎŞ·¨»ñÈ¡»ùÕ¾ĞÅÏ¢£¬ÇëÈ·¶¨SIM¿¨°²×°Õı³£", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "æ— æ³•è·å–åŸºç«™ä¿¡æ¯ï¼Œè¯·ç¡®å®šSIMå¡å®‰è£…æ­£å¸¸", Toast.LENGTH_SHORT).show();
                 }
 
             } else if (phonetype == TelephonyManager.PHONE_TYPE_CDMA) {
@@ -365,7 +365,7 @@ public class NewCellActivity extends Activity implements
                     lac = gcl.getSystemId() + ""; // sid
                     GetJizhanPosBySelf(lac, cid, nid,mnc);
                 }else{
-                    Toast.makeText(this, "ÎŞ·¨»ñÈ¡»ùÕ¾ĞÅÏ¢£¬ÇëÈ·¶¨SIM¿¨°²×°Õı³£", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "æ— æ³•è·å–åŸºç«™ä¿¡æ¯ï¼Œè¯·ç¡®å®šSIMå¡å®‰è£…æ­£å¸¸", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -382,7 +382,7 @@ public class NewCellActivity extends Activity implements
     }
 
     /**
-     * ·½·¨±ØĞëÖØĞ´
+     * æ–¹æ³•å¿…é¡»é‡å†™
      */
     @Override
     protected void onPause() {
@@ -391,7 +391,7 @@ public class NewCellActivity extends Activity implements
     }
 
     /**
-     * ·½·¨±ØĞëÖØĞ´
+     * æ–¹æ³•å¿…é¡»é‡å†™
      */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -400,7 +400,7 @@ public class NewCellActivity extends Activity implements
     }
 
     /**
-     * ·½·¨±ØĞëÖØĞ´
+     * æ–¹æ³•å¿…é¡»é‡å†™
      */
     @Override
     protected void onDestroy() {
@@ -453,18 +453,18 @@ public class NewCellActivity extends Activity implements
         String addr = snippets[6];
         String time = snippets[8];
         if (Integer.parseInt(cid) == -1) {
-            col4 = "»ùÕ¾ºÅ£º Î´Öª";
+            col4 = "åŸºç«™å·ï¼š æœªçŸ¥";
         } else {
-            col4 = "»ùÕ¾ºÅ£º " + cid;
+            col4 = "åŸºç«™å·ï¼š " + cid;
         }
         if (nid!=null&&!TextUtils.isEmpty(nid)) {
 
             if (Integer.parseInt(cid) == -1) {
-                col5 = "ÍøÂçÊ¶±ğÂë£º Î´Öª";
+                col5 = "ç½‘ç»œè¯†åˆ«ç ï¼š æœªçŸ¥";
             } else {
-                col5 = "ÏµÍ³Ê¶±ğÂë(SID): " + String.valueOf(lac);
+                col5 = "ç³»ç»Ÿè¯†åˆ«ç (SID): " + String.valueOf(lac);
             }
-            String col6 = "ÍøÂçÊ¶±ğÂë(NID)£º" + nid;
+            String col6 = "ç½‘ç»œè¯†åˆ«ç (NID)ï¼š" + nid;
             if (col6 != null || !col6.equals("")) {
                 TextView nid_detail_tv = (TextView) view
                         .findViewById(R.id.nid_detail_tv);
@@ -473,9 +473,9 @@ public class NewCellActivity extends Activity implements
             }
         } else {
             if (Integer.parseInt(cid) == -1) {
-                col5 = "ÉÈÇøºÅ£º Î´Öª";
+                col5 = "æ‰‡åŒºå·ï¼š æœªçŸ¥";
             } else {
-                col5 = "ÉÈÇøºÅ£º " + String.valueOf(lac);
+                col5 = "æ‰‡åŒºå·ï¼š " + String.valueOf(lac);
             }
         }
         String col3 = time;
@@ -493,10 +493,10 @@ public class NewCellActivity extends Activity implements
         shanqu_tv.setText(col5);
 
         TextView lo_tv = (TextView) view.findViewById(R.id.new_lo_tv);
-        lo_tv.setText("¾­¶È£º" + lng);
+        lo_tv.setText("ç»åº¦ï¼š" + lng);
 
         TextView la_tv = (TextView) view.findViewById(R.id.new_la_tv);
-        la_tv.setText("Î³¶È£º" + lat);
+        la_tv.setText("çº¬åº¦ï¼š" + lat);
         ImageView selfpopupclose = (ImageView) view
                 .findViewById(R.id.new_selfpopupclose);
         selfpopupclose.setOnClickListener(new OnClickListener() {
@@ -543,9 +543,9 @@ public class NewCellActivity extends Activity implements
         Window window = dialog_c.getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
         window.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-        lp.width = dip2px(this, 290); // ¿í¶È
-        lp.height = dip2px(this, 160); // ¸ß¶È
-        lp.alpha = 0.7f; // Í¸Ã÷¶È
+        lp.width = dip2px(this, 290); // å®½åº¦
+        lp.height = dip2px(this, 160); // é«˜åº¦
+        lp.alpha = 0.7f; // é€æ˜åº¦
         window.setAttributes(lp);
         window.setContentView(v);
         TextView bigtext = (TextView) v.findViewById(R.id.bigtext_tv);

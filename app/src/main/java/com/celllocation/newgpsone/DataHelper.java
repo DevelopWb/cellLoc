@@ -34,7 +34,7 @@ public class DataHelper {
         dbHelper.close();
     }
 
-    //»ùÕ¾¶¨Î»ÖĞ cellÀúÊ·Êı¾İ±£´æ
+    //åŸºç«™å®šä½ä¸­ cellå†å²æ•°æ®ä¿å­˜
 
     public Long SaveCellHisData(CellHisData user) {
         ContentValues values = new ContentValues();
@@ -51,7 +51,7 @@ public class DataHelper {
         return uid;
     }
 
-    //cellÀúÊ·Êı¾İÌáÈ¡
+    //cellå†å²æ•°æ®æå–
     public List<CellHisData> GetCellHisDatas(String phone_) {
         String phone = phone_.trim();
         List<CellHisData> userList = new ArrayList<CellHisData>();
@@ -78,7 +78,7 @@ public class DataHelper {
         return userList;
 
     }
-    //cellÀúÊ·Êı¾İ²éÑ¯
+    //cellå†å²æ•°æ®æŸ¥è¯¢
     public CellHisData GetCellHisData(String time_) {
         String time = time_.trim();
         Cursor cursor = db
@@ -105,7 +105,7 @@ public class DataHelper {
     }
 
 
-    //»ùÕ¾¶¨Î»ÖĞ ÒÆ¶¯ÁªÍ¨»°µ¥Êı¾İ´æ´¢
+    //åŸºç«™å®šä½ä¸­ ç§»åŠ¨è”é€šè¯å•æ•°æ®å­˜å‚¨
 
     public Long SavePhoneNo(PhoneNO user) {
         ContentValues values = new ContentValues();
@@ -145,7 +145,7 @@ public class DataHelper {
     }
 
 
-    //»ùÕ¾¶¨Î»ÖĞ ±£´æ»°µ¥ÈËĞÅÏ¢
+    //åŸºç«™å®šä½ä¸­ ä¿å­˜è¯å•äººä¿¡æ¯
     public Long SaveFormInfo(FormInfo user) {
         ContentValues values = new ContentValues();
         values.put(FormInfo.NAME, user.getName());
@@ -160,7 +160,7 @@ public class DataHelper {
 
     public List<FormInfo> GetFormInfos() {
         List<FormInfo> userList = new ArrayList<FormInfo>();
-        Cursor cursor = db.query(FORM_INFO, null, null, null, null, null, FormInfo.IMPORT_TIME + " DESC"); // DESCÓÉ´óµ½Ğ¡/ASCÊÇÓÉĞ¡µ½´ó
+        Cursor cursor = db.query(FORM_INFO, null, null, null, null, null, FormInfo.IMPORT_TIME + " DESC"); // DESCç”±å¤§åˆ°å°/ASCæ˜¯ç”±å°åˆ°å¤§
         cursor.moveToFirst();
         while (!cursor.isAfterLast() && (cursor.getString(1) != null)) {
 
@@ -201,7 +201,7 @@ public class DataHelper {
     }
 
 
-    //»ùÕ¾¶¨Î»ÖĞ£¬»°µ¥ÈËÎ»ÖÃĞÅÏ¢
+    //åŸºç«™å®šä½ä¸­ï¼Œè¯å•äººä½ç½®ä¿¡æ¯
     public Long SavePeopleLocation(PeopleLocation user) {
         ContentValues values = new ContentValues();
         values.put(PeopleLocation.LAT, user.getLat());

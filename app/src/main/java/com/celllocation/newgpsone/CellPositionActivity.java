@@ -63,7 +63,7 @@ public class CellPositionActivity extends TabActivity {
         final ImageView iv1 = (ImageView) view1.findViewById(R.id.image_iv);
         iv1.setBackgroundResource(R.drawable.cell_search_press);
         final TextView tv1 = (TextView) view1.findViewById(R.id.textview_iv);
-        tv1.setText("»ùÕ¾²éÑ¯");
+        tv1.setText("åŸºç«™æŸ¥è¯¢");
         tv1.setTextColor(getResources().getColor(R.color.blue_text));
         Intent intent1 = new Intent(this, CellSearchActivity.class);
         tab1.setIndicator(view1).setContent(intent1);
@@ -74,7 +74,7 @@ public class CellPositionActivity extends TabActivity {
         final ImageView iv2 = (ImageView) view2.findViewById(R.id.image_iv);
         iv2.setBackgroundResource(R.drawable.cell_location_normal);
         final TextView tv2 = (TextView) view2.findViewById(R.id.textview_iv);
-        tv2.setText("±¾»ú¶¨Î»");
+        tv2.setText("æœ¬æœºå®šä½");
         tv2.setTextColor(getResources().getColor(R.color.white));
         final Intent intent2 = new Intent(this, NewCellActivity.class);
         tab2.setIndicator(view2).setContent(intent2);
@@ -85,7 +85,7 @@ public class CellPositionActivity extends TabActivity {
         final ImageView iv3 = (ImageView) view3.findViewById(R.id.image_iv);
         iv3.setBackgroundResource(R.drawable.cell_his_search_normal);
         final TextView tv3 = (TextView) view3.findViewById(R.id.textview_iv);
-        tv3.setText("»ùÕ¾¼ÇÂ¼");
+        tv3.setText("åŸºç«™è®°å½•");
         tv3.setTextColor(getResources().getColor(R.color.white));
         Intent intent3 = new Intent(this, NewHistoryDataActivity.class);
         tab3.setIndicator(view3).setContent(intent3);
@@ -120,7 +120,7 @@ public class CellPositionActivity extends TabActivity {
                     }
 
                 } else {
-                    Toast.makeText(CellPositionActivity.this, "Äúµ±Ç°sim¿¨ÎŞĞ§,Çë¼ì²ésim¿¨ÊÇ·ñ°²×°",
+                    Toast.makeText(CellPositionActivity.this, "æ‚¨å½“å‰simå¡æ— æ•ˆ,è¯·æ£€æŸ¥simå¡æ˜¯å¦å®‰è£…",
                             Toast.LENGTH_LONG).show();
                 }
 
@@ -130,11 +130,11 @@ public class CellPositionActivity extends TabActivity {
     }
 
     /**
-     * ¼ì²âsim¿¨ÊÇ·ñ¿É¶Á
+     * æ£€æµ‹simå¡æ˜¯å¦å¯è¯»
      *
      * @return
      */
-    // sim¿¨ÊÇ·ñ¿É¶Á
+    // simå¡æ˜¯å¦å¯è¯»
     public static boolean isCanUseSim(Context context) {
         try {
             TelephonyManager mgr = (TelephonyManager) context
@@ -204,9 +204,9 @@ public class CellPositionActivity extends TabActivity {
         Window window = dialog_edit.getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
         window.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-        lp.width = dip2px(this, 220); // ¿í¶È
-        lp.height = dip2px(this, 170); // ¸ß¶È
-        //  lp.alpha = 0.7f; // Í¸Ã÷¶È
+        lp.width = dip2px(this, 220); // å®½åº¦
+        lp.height = dip2px(this, 170); // é«˜åº¦
+        //  lp.alpha = 0.7f; // é€æ˜åº¦
         window.setAttributes(lp);
         window.setContentView(v);
         ImageButton sure_ib = (ImageButton) v.findViewById(R.id.imagebuttonexitok);

@@ -83,7 +83,7 @@ public class SearchMapActivity extends Activity implements
                 finish();
             }
         });
-        mapView.onCreate(savedInstanceState);// ´Ë·½·¨±ØĞëÖØĞ´
+        mapView.onCreate(savedInstanceState);// æ­¤æ–¹æ³•å¿…é¡»é‡å†™
         init();
         Intent intent = getIntent();
         gpspos = (Position) intent.getSerializableExtra("gpspos");
@@ -103,7 +103,7 @@ public class SearchMapActivity extends Activity implements
     }
 
     /**
-     * ³õÊ¼»¯AMap¶ÔÏó
+     * åˆå§‹åŒ–AMapå¯¹è±¡
      */
     private void init() {
         if (aMap == null) {
@@ -117,7 +117,7 @@ public class SearchMapActivity extends Activity implements
             // @Override
             // public void onInfoWindowClick(Marker arg0) {
             // if (arg0.isInfoWindowShown()) {
-            // arg0.hideInfoWindow();// Õâ¸öÊÇÒş²Øinfowindow´°¿ÚµÄ·½·¨
+            // arg0.hideInfoWindow();// è¿™ä¸ªæ˜¯éšè—infowindowçª—å£çš„æ–¹æ³•
             // }
             // }
             // });
@@ -139,22 +139,22 @@ public class SearchMapActivity extends Activity implements
 
     private void setUpMap() {
 
-        aMap.setOnMarkerClickListener(this);// ÉèÖÃµã»÷markerÊÂ¼ş¼àÌıÆ÷
+        aMap.setOnMarkerClickListener(this);// è®¾ç½®ç‚¹å‡»markeräº‹ä»¶ç›‘å¬å™¨
         aMap.setInfoWindowAdapter(this);
 
     }
 
     /**
-     * ÏìÓ¦ÄæµØÀí±àÂë
+     * å“åº”é€†åœ°ç†ç¼–ç 
      */
     public void getAddress(final LatLonPoint latLonPoint) {
         RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200,
-                GeocodeSearch.AMAP);// µÚÒ»¸ö²ÎÊı±íÊ¾Ò»¸öLatlng£¬µÚ¶ş²ÎÊı±íÊ¾·¶Î§¶àÉÙÃ×£¬µÚÈı¸ö²ÎÊı±íÊ¾ÊÇ»ğÏµ×ø±êÏµ»¹ÊÇGPSÔ­Éú×ø±êÏµ
-        geocoderSearch.getFromLocationAsyn(query);// ÉèÖÃÍ¬²½ÄæµØÀí±àÂëÇëÇó
+                GeocodeSearch.AMAP);// ç¬¬ä¸€ä¸ªå‚æ•°è¡¨ç¤ºä¸€ä¸ªLatlngï¼Œç¬¬äºŒå‚æ•°è¡¨ç¤ºèŒƒå›´å¤šå°‘ç±³ï¼Œç¬¬ä¸‰ä¸ªå‚æ•°è¡¨ç¤ºæ˜¯ç«ç³»åæ ‡ç³»è¿˜æ˜¯GPSåŸç”Ÿåæ ‡ç³»
+        geocoderSearch.getFromLocationAsyn(query);// è®¾ç½®åŒæ­¥é€†åœ°ç†ç¼–ç è¯·æ±‚
     }
 
     /**
-     * ÄæµØÀí±àÂë»Øµ÷
+     * é€†åœ°ç†ç¼–ç å›è°ƒ
      */
     @Override
     public void onRegeocodeSearched(RegeocodeResult result, int rCode) {
@@ -162,12 +162,12 @@ public class SearchMapActivity extends Activity implements
             if (result != null && result.getRegeocodeAddress() != null
                     && result.getRegeocodeAddress().getFormatAddress() != null) {
                 addressName = result.getRegeocodeAddress().getFormatAddress()
-                        + "¸½½ü";
+                        + "é™„è¿‘";
                 aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                         com.celllocation.newgpsone.AMapUtil.convertToLatLng(latLonPoint), 16));
                 LatLng latlng1 = new LatLng(la, lo);
                 gpspos.address = addressName;
-                // ÔÚ¶¨Î»µã»­Ô²
+                // åœ¨å®šä½ç‚¹ç”»åœ†
                 Circle circle = aMap.addCircle(new CircleOptions()
                         .center(latlng1).radius(100)
                         .strokeColor(Color.BLUE)
@@ -190,25 +190,25 @@ public class SearchMapActivity extends Activity implements
                                         SearchMapActivity.this))).draggable(true)
                         .period(50);
                 regeoMarker = aMap.addMarker(markerOption1);
-                regeoMarker.setPosition(com.celllocation.newgpsone.AMapUtil.convertToLatLng(latLonPoint));
-                //¼õ´Î
+                regeoMarker.setPosition(AMapUtil.convertToLatLng(latLonPoint));
+                //å‡æ¬¡
                 if (RegOperateTool.isNumberLimit) {
                     rot.SetRegisCodeNumber(1);
                 }
             } else {
-                ToastUtil.show(SearchMapActivity.this, "¶Ô²»Æğ£¬Ã»ÓĞËÑË÷µ½Ïà¹ØÊı¾İ£¡");
+                ToastUtil.show(SearchMapActivity.this, "å¯¹ä¸èµ·ï¼Œæ²¡æœ‰æœç´¢åˆ°ç›¸å…³æ•°æ®ï¼");
             }
         } else if (rCode == 27) {
-            ToastUtil.show(SearchMapActivity.this, "ËÑË÷Ê§°Ü,Çë¼ì²éÍøÂçÁ¬½Ó£¡");
+            ToastUtil.show(SearchMapActivity.this, "æœç´¢å¤±è´¥,è¯·æ£€æŸ¥ç½‘ç»œè¿æ¥ï¼");
         } else if (rCode == 32) {
-            ToastUtil.show(SearchMapActivity.this, "keyÑéÖ¤ÎŞĞ§£¡");
+            ToastUtil.show(SearchMapActivity.this, "keyéªŒè¯æ— æ•ˆï¼");
         } else {
-            ToastUtil.show(SearchMapActivity.this, "Î´Öª´íÎó£¬ÇëÉÔºóÖØÊÔ!´íÎóÂëÎª " + rCode);
+            ToastUtil.show(SearchMapActivity.this, "æœªçŸ¥é”™è¯¯ï¼Œè¯·ç¨åé‡è¯•!é”™è¯¯ç ä¸º " + rCode);
         }
     }
 
     /**
-     * ·½·¨±ØĞëÖØĞ´
+     * æ–¹æ³•å¿…é¡»é‡å†™
      */
     @Override
     protected void onResume() {
@@ -217,7 +217,7 @@ public class SearchMapActivity extends Activity implements
     }
 
     /**
-     * ·½·¨±ØĞëÖØĞ´
+     * æ–¹æ³•å¿…é¡»é‡å†™
      */
     @Override
     protected void onPause() {
@@ -226,7 +226,7 @@ public class SearchMapActivity extends Activity implements
     }
 
     /**
-     * ·½·¨±ØĞëÖØĞ´
+     * æ–¹æ³•å¿…é¡»é‡å†™
      */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -235,7 +235,7 @@ public class SearchMapActivity extends Activity implements
     }
 
     /**
-     * ·½·¨±ØĞëÖØĞ´
+     * æ–¹æ³•å¿…é¡»é‡å†™
      */
     @Override
     protected void onDestroy() {
@@ -287,12 +287,12 @@ public class SearchMapActivity extends Activity implements
         String col4;
         int cellid = gpspos.cid;
         if (cellid == -1) {
-            col4 = "»ùÕ¾ºÅ£º Î´Öª";
+            col4 = "åŸºç«™å·ï¼š æœªçŸ¥";
         } else {
             if (PubUtill.dianxin_mar == 100) {
-                col4 = "»ùÕ¾ºÅ(BID)£º " + String.valueOf(cellid);
+                col4 = "åŸºç«™å·(BID)ï¼š " + String.valueOf(cellid);
             } else {
-                col4 = "»ùÕ¾ºÅ£º " + String.valueOf(cellid);
+                col4 = "åŸºç«™å·ï¼š " + String.valueOf(cellid);
             }
         }
 
@@ -301,11 +301,11 @@ public class SearchMapActivity extends Activity implements
         if (PubUtill.dianxin_mar == 100) {
 
             if (lac == -1) {
-                col5 = "ÍøÂçÊ¶±ğÂë£º Î´Öª";
+                col5 = "ç½‘ç»œè¯†åˆ«ç ï¼š æœªçŸ¥";
             } else {
-                col5 = "ÏµÍ³Ê¶±ğÂë(SID): " + String.valueOf(lac);
+                col5 = "ç³»ç»Ÿè¯†åˆ«ç (SID): " + String.valueOf(lac);
             }
-            String col6 = "ÍøÂçÊ¶±ğÂë(NID)£º" + gpspos.nid + "";
+            String col6 = "ç½‘ç»œè¯†åˆ«ç (NID)ï¼š" + gpspos.nid + "";
             if (col6 != null || !col6.equals("")) {
 
                 TextView nid_detail_tv = (TextView) view
@@ -315,9 +315,9 @@ public class SearchMapActivity extends Activity implements
             }
         } else {
             if (lac == -1) {
-                col5 = "ÉÈÇøºÅ£º Î´Öª";
+                col5 = "æ‰‡åŒºå·ï¼š æœªçŸ¥";
             } else {
-                col5 = "ÉÈÇøºÅ£º " + String.valueOf(lac);
+                col5 = "æ‰‡åŒºå·ï¼š " + String.valueOf(lac);
             }
         }
         String col3 = time;
@@ -336,10 +336,10 @@ public class SearchMapActivity extends Activity implements
         shanqu_tv.setText(col5);
 
         TextView lo_tv = (TextView) view.findViewById(R.id.new_lo_tv);
-        lo_tv.setText("¾­¶È£º" + lo_);
+        lo_tv.setText("ç»åº¦ï¼š" + lo_);
 
         TextView la_tv = (TextView) view.findViewById(R.id.new_la_tv);
-        la_tv.setText("Î³¶È£º" + la_);
+        la_tv.setText("çº¬åº¦ï¼š" + la_);
 
 //		String str = marker.getSnippet();
 //		String[] strs = str.split("\n");
@@ -350,18 +350,18 @@ public class SearchMapActivity extends Activity implements
 //		int cellid = Integer.parseInt(strs[3]);
 //
 //		if (cellid == -1) {
-//			col4 = "»ùÕ¾ºÅ£º Î´Öª";
+//			col4 = "åŸºç«™å·ï¼š æœªçŸ¥";
 //		} else {
-//			col4 = "»ùÕ¾ºÅ£º " + String.valueOf(cellid);
+//			col4 = "åŸºç«™å·ï¼š " + String.valueOf(cellid);
 //		}
 //		String col5;
 //		int lac = Integer.parseInt(strs[4]);
 //		if (PubUtill.dianxin_mar == 100) {
 //
 //			if (lac == -1) {
-//				col5 = "ÍøÂçÊ¶±ğÂë£º Î´Öª";
+//				col5 = "ç½‘ç»œè¯†åˆ«ç ï¼š æœªçŸ¥";
 //			} else {
-//				col5 = "ÏµÍ³Ê¶±ğÂë(SID): " + String.valueOf(lac);
+//				col5 = "ç³»ç»Ÿè¯†åˆ«ç (SID): " + String.valueOf(lac);
 //			}
 //			String col6 = strs[7];
 //			if (col6 != null || !col6.equals("")) {
@@ -375,9 +375,9 @@ public class SearchMapActivity extends Activity implements
 //			}
 //		} else {
 //			if (lac == -1) {
-//				col5 = "ÉÈÇøºÅ£º Î´Öª";
+//				col5 = "æ‰‡åŒºå·ï¼š æœªçŸ¥";
 //			} else {
-//				col5 = "ÉÈÇøºÅ£º " + String.valueOf(lac);
+//				col5 = "æ‰‡åŒºå·ï¼š " + String.valueOf(lac);
 //			}
 //		}
 //
@@ -399,10 +399,10 @@ public class SearchMapActivity extends Activity implements
 //		shanqu_tv.setText(col5);
 //
 //		TextView lo_tv = (TextView) view.findViewById(R.id.new_lo_tv);
-//		lo_tv.setText("¾­¶È£º" + strs[6]);
+//		lo_tv.setText("ç»åº¦ï¼š" + strs[6]);
 //
 //		TextView la_tv = (TextView) view.findViewById(R.id.new_la_tv);
-//		la_tv.setText("Î³¶È£º" + strs[5]);
+//		la_tv.setText("çº¬åº¦ï¼š" + strs[5]);
         ImageView selfpopupclose = (ImageView) view
                 .findViewById(R.id.new_selfpopupclose);
         selfpopupclose.setOnClickListener(new OnClickListener() {
@@ -439,9 +439,9 @@ public class SearchMapActivity extends Activity implements
         Window window = dialog_c.getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
         window.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-        lp.width = dip2px(this, 290); // ¿í¶È
-        lp.height = dip2px(this, 160); // ¸ß¶È
-        lp.alpha = 0.7f; // Í¸Ã÷¶È
+        lp.width = dip2px(this, 290); // å®½åº¦
+        lp.height = dip2px(this, 160); // é«˜åº¦
+        lp.alpha = 0.7f; // é€æ˜åº¦
         window.setAttributes(lp);
         window.setContentView(v);
         TextView bigtext = (TextView) v.findViewById(R.id.bigtext_tv);

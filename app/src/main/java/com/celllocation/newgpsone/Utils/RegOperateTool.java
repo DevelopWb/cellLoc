@@ -44,7 +44,6 @@ import com.celllocation.R;
 import com.celllocation.newgpsone.CommonProgressDialog;
 import com.celllocation.newgpsone.DialogAdapter;
 import com.celllocation.newgpsone.bean.GpsCorrect;
-import com.uploadbugs.utils.BugPublicUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,20 +69,20 @@ import java.util.Map;
 import static android.content.Context.MODE_PRIVATE;
 
 /**
- * ×¢²áÂë²Ù×÷¹¤¾ß
+ * æ³¨å†Œç æ“ä½œå·¥å…·
  * Created by Administrator on 2017/3/30.
  */
 
 public class RegOperateTool {
     private RequestQueue myRequestQueue;
     private SharedPreferences sp;
-    public static boolean istoolTip = false;//×¢²áÂë×´Ì¬¸Ä±äÊÇ·ñÌáĞÑ£¬ÀıÈç£º×¢²áÂëµ½ÆÚ£¬½ûÓÃµÈ
-    public static boolean isNumberLimit = false;//ÊÇ·ñÏŞÖÆ´ÎÊı
-    public static boolean isForbidden = false;//ÊÇ·ñ½ûÓÃ
+    public static boolean istoolTip = false;//æ³¨å†Œç çŠ¶æ€æ”¹å˜æ˜¯å¦æé†’ï¼Œä¾‹å¦‚ï¼šæ³¨å†Œç åˆ°æœŸï¼Œç¦ç”¨ç­‰
+    public static boolean isNumberLimit = false;//æ˜¯å¦é™åˆ¶æ¬¡æ•°
+    public static boolean isForbidden = false;//æ˜¯å¦ç¦ç”¨
     public static int REGSIZE = 0;
-    public static String URL_Reg_Center = "http://zc.xun365.net";//×¢²áÂëÖĞĞÄÏµÍ³
-    public static String URL_CELL_LOCATION = "http://218.246.35.74:5000";//»ùÕ¾¶¨Î»½Ó¿Ú
-    public static String APP_MARK = "JZDW";//Èí¼ş±êÊ¶
+    public static String URL_Reg_Center = "http://zc.xun365.net";//æ³¨å†Œç ä¸­å¿ƒç³»ç»Ÿ
+    public static String URL_CELL_LOCATION = "http://218.246.35.74:5000";//åŸºç«™å®šä½æ¥å£
+    public static String APP_MARK = "JZDW";//è½¯ä»¶æ ‡è¯†
     private CommonProgressDialog mProgressDialog;
     private String nearestVersion;
     private Context context;
@@ -115,9 +114,9 @@ public class RegOperateTool {
     }
 
     /**
-     * µ÷ÓÃ¼õ´Î½Ó¿Ú
+     * è°ƒç”¨å‡æ¬¡æ¥å£
      *
-     * @param size ĞèÒª¼õµÄ´ÎÊı
+     * @param size éœ€è¦å‡çš„æ¬¡æ•°
      */
     public void SetRegisCodeNumber(final int size) {
         getRequestQueue();
@@ -126,7 +125,7 @@ public class RegOperateTool {
             @Override
             public void onResponse(String str) {
                 if (str == null) {
-                    Toast.makeText(context, "·şÎñÆ÷·µ»ØÒì³££¬ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "æœåŠ¡å™¨è¿”å›å¼‚å¸¸ï¼Œè¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 sp.edit().putInt("MINUSTIMES", 0).commit();
@@ -134,36 +133,36 @@ public class RegOperateTool {
                 try {
                     JSONObject obj = new JSONObject(json);
                     String model = obj.getString("Model");
-                    //  "×¢²áÂëÒÑ¾­½ûÓÃ"
-                    if (model.equals("×¢²áÂëÒÑ¾­½ûÓÃ")) {
+                    //  "æ³¨å†Œç å·²ç»ç¦ç”¨"
+                    if (model.equals("æ³¨å†Œç å·²ç»ç¦ç”¨")) {
                         isForbidden = true;
-                        SaveRegStatus("×¢²áÂëÒÑ½ûÓÃ");
+                        SaveRegStatus("æ³¨å†Œç å·²ç¦ç”¨");
                         if (istoolTip) {
-                            Toast.makeText(context, "×¢²áÂëÎŞĞ§£¬ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "æ³¨å†Œç æ— æ•ˆï¼Œè¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
                         }
 
                         return;
-                    } else if (model.equals("×¢²áÂë´ÎÊıÒÑÓÃÍê")) {
-                        SaveRegStatus("×¢²áÂë´ÎÊıÒÑÓÃÍê");
+                    } else if (model.equals("æ³¨å†Œç æ¬¡æ•°å·²ç”¨å®Œ")) {
+                        SaveRegStatus("æ³¨å†Œç æ¬¡æ•°å·²ç”¨å®Œ");
                         REGSIZE++;
                         if (istoolTip) {
-                            Toast.makeText(context, "×¢²áÂë´ÎÊıÒÑÓÃÍê£¬ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "æ³¨å†Œç æ¬¡æ•°å·²ç”¨å®Œï¼Œè¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
                         }
                         return;
-                    } else if (model.equals("×¢²áÂëÊ¹ÓÃÊ±¼ä¹ıÆÚ")) {
-                        SaveRegStatus("×¢²áÂëÒÑ¹ıÆÚ");
+                    } else if (model.equals("æ³¨å†Œç ä½¿ç”¨æ—¶é—´è¿‡æœŸ")) {
+                        SaveRegStatus("æ³¨å†Œç å·²è¿‡æœŸ");
                         if (istoolTip) {
-                            Toast.makeText(context, "×¢²áÂëÊ¹ÓÃÊ±¼ä¹ıÆÚ£¬ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "æ³¨å†Œç ä½¿ç”¨æ—¶é—´è¿‡æœŸï¼Œè¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
                         }
                         return;
-                    } else if (model.equals("×¢²áÂë²»ÕıÈ·")) {
-                        SaveRegStatus("×¢²áÂë²»ÕıÈ·");
+                    } else if (model.equals("æ³¨å†Œç ä¸æ­£ç¡®")) {
+                        SaveRegStatus("æ³¨å†Œç ä¸æ­£ç¡®");
                         if (istoolTip) {
-                            Toast.makeText(context, "×¢²áÂë²»´æÔÚ£¬ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "æ³¨å†Œç ä¸å­˜åœ¨ï¼Œè¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
                         }
                         return;
                     } else {
-                        SaveRegStatus("×¢²áÂëÕı³£");
+                        SaveRegStatus("æ³¨å†Œç æ­£å¸¸");
                     }
 
 
@@ -209,9 +208,9 @@ public class RegOperateTool {
     }
 
     /**
-     * ±£´æ×¢²áÂë×´Ì¬
+     * ä¿å­˜æ³¨å†Œç çŠ¶æ€
      *
-     * @param str ×´Ì¬ÃèÊö
+     * @param str çŠ¶æ€æè¿°
      */
     private void SaveRegStatus(String str) {
         SharedPreferences.Editor editor = sp.edit();
@@ -220,7 +219,7 @@ public class RegOperateTool {
     }
 
     /**
-     * ¼ì²éÓĞÃ»ÓĞÎ´¼õµôµÄ×¢²áÂë´ÎÊı
+     * æ£€æŸ¥æœ‰æ²¡æœ‰æœªå‡æ‰çš„æ³¨å†Œç æ¬¡æ•°
      */
     public void CheckUnMinusedRegSizeToMinus() {
         if (isTheRegStatusOkNoToast(context)) {
@@ -235,7 +234,7 @@ public class RegOperateTool {
 
     }
 
-    //²é¿´×¢²áÂëÎ´¼õµÄ´ÎÊı
+    //æŸ¥çœ‹æ³¨å†Œç æœªå‡çš„æ¬¡æ•°
     public void UnMinusedRegSizeToCommit() {
         if (REGSIZE > 1) {
             SharedPreferences.Editor et = sp.edit();
@@ -245,26 +244,26 @@ public class RegOperateTool {
     }
 
     /**
-     * ÅĞ¶¨×¢²áÂë×´Ì¬ÊÇ·ñÕı³£
+     * åˆ¤å®šæ³¨å†Œç çŠ¶æ€æ˜¯å¦æ­£å¸¸
      *
      * @return
      */
     public boolean isTheRegStatusOk(Context context) {
         SharedPreferences sp = context.getSharedPreferences("REG", MODE_PRIVATE);
-        String reg_status = sp.getString("REGSTATUS", "×¢²áÂëÕı³£");
-        //  "×¢²áÂëÒÑ¾­½ûÓÃ"
-        if (reg_status.equals("×¢²áÂëÒÑ½ûÓÃ")) {
-            Toast.makeText(context, "×¢²áÂëÎŞĞ§£¬ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+        String reg_status = sp.getString("REGSTATUS", "æ³¨å†Œç æ­£å¸¸");
+        //  "æ³¨å†Œç å·²ç»ç¦ç”¨"
+        if (reg_status.equals("æ³¨å†Œç å·²ç¦ç”¨")) {
+            Toast.makeText(context, "æ³¨å†Œç æ— æ•ˆï¼Œè¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
             return false;
-        } else if (reg_status.equals("×¢²áÂë´ÎÊıÒÑÓÃÍê")) {
-            Toast.makeText(context, "×¢²áÂë´ÎÊıÒÑÓÃÍê£¬ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+        } else if (reg_status.equals("æ³¨å†Œç æ¬¡æ•°å·²ç”¨å®Œ")) {
+            Toast.makeText(context, "æ³¨å†Œç æ¬¡æ•°å·²ç”¨å®Œï¼Œè¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
 
             return false;
-        } else if (reg_status.equals("×¢²áÂëÒÑ¹ıÆÚ")) {
-            Toast.makeText(context, "×¢²áÂëÊ¹ÓÃÊ±¼ä¹ıÆÚ£¬ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+        } else if (reg_status.equals("æ³¨å†Œç å·²è¿‡æœŸ")) {
+            Toast.makeText(context, "æ³¨å†Œç ä½¿ç”¨æ—¶é—´è¿‡æœŸï¼Œè¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
             return false;
-        } else if (reg_status.equals("×¢²áÂë²»ÕıÈ·")) {
-            Toast.makeText(context, "×¢²áÂë²»´æÔÚ£¬ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+        } else if (reg_status.equals("æ³¨å†Œç ä¸æ­£ç¡®")) {
+            Toast.makeText(context, "æ³¨å†Œç ä¸å­˜åœ¨ï¼Œè¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
             return false;
         } else {
             return true;
@@ -273,27 +272,27 @@ public class RegOperateTool {
 
 
     /**
-     * ÅĞ¶¨×¢²áÂë×´Ì¬ÊÇ·ñÕı³£
+     * åˆ¤å®šæ³¨å†Œç çŠ¶æ€æ˜¯å¦æ­£å¸¸
      *
      * @return
      */
     public boolean isTheRegStatusOkNoToast(Context context) {
         SharedPreferences sp = context.getSharedPreferences("REG", MODE_PRIVATE);
-        String reg_status = sp.getString("REGSTATUS", "×¢²áÂëÕı³£");
-        //  "×¢²áÂëÒÑ¾­½ûÓÃ"
-        if (reg_status.equals("×¢²áÂëÒÑ½ûÓÃ")) {
+        String reg_status = sp.getString("REGSTATUS", "æ³¨å†Œç æ­£å¸¸");
+        //  "æ³¨å†Œç å·²ç»ç¦ç”¨"
+        if (reg_status.equals("æ³¨å†Œç å·²ç¦ç”¨")) {
             return false;
-        } else if (reg_status.equals("×¢²áÂë´ÎÊıÒÑÓÃÍê")) {
+        } else if (reg_status.equals("æ³¨å†Œç æ¬¡æ•°å·²ç”¨å®Œ")) {
             return false;
-        } else if (reg_status.equals("×¢²áÂëÒÑ¹ıÆÚ")) {
+        } else if (reg_status.equals("æ³¨å†Œç å·²è¿‡æœŸ")) {
             return false;
-        } else if (reg_status.equals("×¢²áÂë²»ÕıÈ·")) {
+        } else if (reg_status.equals("æ³¨å†Œç ä¸æ­£ç¡®")) {
             return false;
         } else {
             return true;
         }
     }
-// ÅĞ¶ÏÍøÂçÊÇ·ñÕı³£
+// åˆ¤æ–­ç½‘ç»œæ˜¯å¦æ­£å¸¸
 
     public static boolean isConnected(Context context) {
         boolean isOk = true;
@@ -324,11 +323,11 @@ public class RegOperateTool {
 
 
     /**
-     * ¼ì²é×¢²áÂëµÄ×´Ì¬
+     * æ£€æŸ¥æ³¨å†Œç çš„çŠ¶æ€
      */
     public void checkRegStatus() {
         if (!isConnected(context.getApplicationContext())) {
-            Toast.makeText(context, "ÍøÂçÒì³££¬Çë¼ì²éÊÖ»úÍøÂç", Toast.LENGTH_LONG)
+            Toast.makeText(context, "ç½‘ç»œå¼‚å¸¸ï¼Œè¯·æ£€æŸ¥æ‰‹æœºç½‘ç»œ", Toast.LENGTH_LONG)
                     .show();
             return;
         }
@@ -341,7 +340,7 @@ public class RegOperateTool {
 
             @Override
             public void onResponse(String response) {
-                //Èç¹û×¢²áÂëÒÑ¾­×¢²á
+                //å¦‚æœæ³¨å†Œç å·²ç»æ³¨å†Œ
                 if (!TextUtils.isEmpty(response)) {
                     String json = Getstr(response);
                     try {
@@ -350,10 +349,10 @@ public class RegOperateTool {
                         JSONArray mArray = obj.getJSONArray("Model");
                         if (!TextUtils.isEmpty(result) && result.equals("ok")) {
                             if (mArray.length() == 0) {
-                               boolean warn =  sp.getBoolean("ISTOOLTIP",false);//0´ú±í²»ÌáÊ¾
-                                if (warn) {//ÌáÊ¾
-                                    SaveRegStatus("×¢²áÂë²»ÕıÈ·");
-                                    WarnRegStatus("×¢²áÂëÎŞĞ§£¬ÇëÁªÏµ¹ÜÀíÔ±","");
+                               boolean warn =  sp.getBoolean("ISTOOLTIP",false);//0ä»£è¡¨ä¸æç¤º
+                                if (warn) {//æç¤º
+                                    SaveRegStatus("æ³¨å†Œç ä¸æ­£ç¡®");
+                                    WarnRegStatus("æ³¨å†Œç æ— æ•ˆï¼Œè¯·è”ç³»ç®¡ç†å‘˜","");
                                 }
                             } else {
                                 JSONObject obj_ = (JSONObject) mArray.get(0);
@@ -364,22 +363,22 @@ public class RegOperateTool {
                                 String isDisabled = obj_.getString("isDisabled");
                                 String isAutoUpdate = obj_.getString("isAutoUpdate");
                                 String isToolTip = obj_.getString("isToolTip").trim();
-//±£´æ×¢²áÂë×´Ì¬ĞÅÏ¢
+//ä¿å­˜æ³¨å†Œç çŠ¶æ€ä¿¡æ¯
                                 String RegisCodeState = obj_.getString("RegisCodeState");
                                 RegSuccess(null, null, isToolTip, isNumber);
-                                if (RegisCodeState.equals("Õı³£")) {
-                                    SaveRegStatus("×¢²áÂëÕı³£");
-                                } else if (RegisCodeState.equals("ÒÑ¹ıÆÚ")) {
-                                    SaveRegStatus("×¢²áÂëÒÑ¹ıÆÚ");
-                                } else if (RegisCodeState.equals("´ÎÊıÓÃ¾¡")) {
-                                    SaveRegStatus("×¢²áÂë´ÎÊıÒÑÓÃÍê");
-                                } else if (RegisCodeState.equals("ÒÑ½ûÓÃ")) {
-                                    SaveRegStatus("×¢²áÂëÒÑ½ûÓÃ");
+                                if (RegisCodeState.equals("æ­£å¸¸")) {
+                                    SaveRegStatus("æ³¨å†Œç æ­£å¸¸");
+                                } else if (RegisCodeState.equals("å·²è¿‡æœŸ")) {
+                                    SaveRegStatus("æ³¨å†Œç å·²è¿‡æœŸ");
+                                } else if (RegisCodeState.equals("æ¬¡æ•°ç”¨å°½")) {
+                                    SaveRegStatus("æ³¨å†Œç æ¬¡æ•°å·²ç”¨å®Œ");
+                                } else if (RegisCodeState.equals("å·²ç¦ç”¨")) {
+                                    SaveRegStatus("æ³¨å†Œç å·²ç¦ç”¨");
                                 }
                                 if (isDisabled != null && !TextUtils.isEmpty(isDisabled)) {
-                                    if (isDisabled.equals("0")) {//×¢²áÂëÒÑ½ûÓÃ
+                                    if (isDisabled.equals("0")) {//æ³¨å†Œç å·²ç¦ç”¨
                                         isForbidden = true;
-                                        WarnRegStatus("×¢²áÂëÎŞĞ§£¬ÇëÁªÏµ¹ÜÀíÔ±", "disable");
+                                        WarnRegStatus("æ³¨å†Œç æ— æ•ˆï¼Œè¯·è”ç³»ç®¡ç†å‘˜", "disable");
                                         return;
                                     } else {
                                         isForbidden = false;
@@ -387,60 +386,60 @@ public class RegOperateTool {
                                 }
 
                                 if (isAutoUpdate != null && !TextUtils.isEmpty(isAutoUpdate)) {
-                                    if (isAutoUpdate.equals("1")) {//ÔÊĞí×Ô¶¯Éı¼¶
+                                    if (isAutoUpdate.equals("1")) {//å…è®¸è‡ªåŠ¨å‡çº§
                                         GetNearestVersionFromService();
                                     }
                                 }
                                 if (istoolTip) {
                                     if (isValid != null && !TextUtils.isEmpty(isValid)) {
-                                        if (isValid.equals("0")) {//×¢²áÂëÏŞÖÆÊ±¼ä
+                                        if (isValid.equals("0")) {//æ³¨å†Œç é™åˆ¶æ—¶é—´
                                             String ValidEnd = obj_.getString("ValidEnd");
                                             String time = ValidEnd.split(" ")[0];
                                             if (TheDayToNextDay(time) > 0 && TheDayToNextDay(time) < 8) {
 
                                                 if (IsTheRegStatusTime("isValid")) {
-                                                    WarnRegStatus("×¢²áÂëÓĞĞ§ÆÚ»¹Ê£" + TheDayToNextDay(time) + "Ìì£¬ÇëÁªÏµ¹ÜÀíÔ±", "isValid");
+                                                    WarnRegStatus("æ³¨å†Œç æœ‰æ•ˆæœŸè¿˜å‰©" + TheDayToNextDay(time) + "å¤©ï¼Œè¯·è”ç³»ç®¡ç†å‘˜", "isValid");
                                                 }
 
                                             } else if (TheDayToNextDay(time) < 0) {
-                                                WarnRegStatus("×¢²áÂëÒÑ¹ıÆÚ£¬ÇëÁªÏµ¹ÜÀíÔ±", "isValid");
+                                                WarnRegStatus("æ³¨å†Œç å·²è¿‡æœŸï¼Œè¯·è”ç³»ç®¡ç†å‘˜", "isValid");
                                                 resetNextWarnTime("isValid");
                                                 return;
-                                            } else {//ÖØÖÃÏÂ´ÎÌáĞÑµÄÊ±¼ä
+                                            } else {//é‡ç½®ä¸‹æ¬¡æé†’çš„æ—¶é—´
                                                 resetNextWarnTime("isValid");
                                             }
                                         }
                                     }
                                     if (!TextUtils.isEmpty(MAC)) {
                                         if (!macAddress().equals(MAC)) {
-                                            //TOdo ¹Ø±Õ³ÌĞò
-                                            WarnRegStatus("×¢²áÂë°ó¶¨MAC²»Æ¥Åä£¬ÇëÁªÏµ¹ÜÀíÔ±", "disable");
+                                            //TOdo å…³é—­ç¨‹åº
+                                            WarnRegStatus("æ³¨å†Œç ç»‘å®šMACä¸åŒ¹é…ï¼Œè¯·è”ç³»ç®¡ç†å‘˜", "disable");
                                         }
 
                                     }
-                                    if (!TextUtils.isEmpty(Imei)) {//ËµÃ÷¸Ã×¢²áÂëÃ»ÓĞ°ó¶¨IMEI
+                                    if (!TextUtils.isEmpty(Imei)) {//è¯´æ˜è¯¥æ³¨å†Œç æ²¡æœ‰ç»‘å®šIMEI
                                         if (!GetImei().equals(Imei)) {
-                                            //todo ¹Ø±ÕÈí¼ş
-                                            WarnRegStatus("×¢²áÂë°ó¶¨IMEI²»Æ¥Åä£¬ÇëÁªÏµ¹ÜÀíÔ±", "disable");
+                                            //todo å…³é—­è½¯ä»¶
+                                            WarnRegStatus("æ³¨å†Œç ç»‘å®šIMEIä¸åŒ¹é…ï¼Œè¯·è”ç³»ç®¡ç†å‘˜", "disable");
                                         }
 
                                     }
                                     if (isNumber != null && !TextUtils.isEmpty(isNumber)) {
-                                        if (isNumber.equals("0")) {//×¢²áÂëÓĞ´ÎÊıÏŞÖÆ
+                                        if (isNumber.equals("0")) {//æ³¨å†Œç æœ‰æ¬¡æ•°é™åˆ¶
                                             String NumberTotal = obj_.getString("Number");
                                             String NumberUsed = obj_.getString("NumberNow");
                                             int NumberNow = Integer.parseInt(NumberTotal) - Integer.parseInt(NumberUsed);
                                             if (NumberNow >0&&NumberNow < 100) {
                                                 if (IsTheRegStatusTime("isNumber")) {
-                                                    WarnRegStatus("×¢²áÂë´ÎÊı»¹Ê£" + NumberNow + "´Î£¬ÇëÁªÏµ¹ÜÀíÔ±", "isNumber");
+                                                    WarnRegStatus("æ³¨å†Œç æ¬¡æ•°è¿˜å‰©" + NumberNow + "æ¬¡ï¼Œè¯·è”ç³»ç®¡ç†å‘˜", "isNumber");
                                                 }
 
                                             } else if (NumberNow < 0) {
-                                                WarnRegStatus("×¢²áÂë´ÎÊıÒÑÓÃ¾¡£¬ÇëÁªÏµ¹ÜÀíÔ±", "isNumber");
+                                                WarnRegStatus("æ³¨å†Œç æ¬¡æ•°å·²ç”¨å°½ï¼Œè¯·è”ç³»ç®¡ç†å‘˜", "isNumber");
 
                                                 resetNextWarnTime("isNumber");
                                                 return;
-                                            } else {//ÖØÖÃÏÂ´ÎÌáĞÑµÄÈÕÆÚ
+                                            } else {//é‡ç½®ä¸‹æ¬¡æé†’çš„æ—¥æœŸ
                                                 resetNextWarnTime("isNumber");
                                             }
                                         }
@@ -451,7 +450,7 @@ public class RegOperateTool {
                             }
                         } else {
                             if (IsTheRegStatusTime("isWrong")) {
-                                WarnRegStatus("·şÎñÆ÷Á¬½ÓÒì³£", "isWrong");
+                                WarnRegStatus("æœåŠ¡å™¨è¿æ¥å¼‚å¸¸", "isWrong");
                             }
 
                         }
@@ -472,7 +471,7 @@ public class RegOperateTool {
             @Override
             public void onErrorResponse(
                     VolleyError error) {
-                Toast.makeText(context, "·şÎñÆ÷Òì³££¬ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "æœåŠ¡å™¨å¼‚å¸¸ï¼Œè¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -506,7 +505,7 @@ public class RegOperateTool {
     }
 
     /**
-     * ÖØÖÃÏÂ´ÎÌáĞÑµÄÈÕÆÚ
+     * é‡ç½®ä¸‹æ¬¡æé†’çš„æ—¥æœŸ
      *
      * @param status
      */
@@ -518,7 +517,7 @@ public class RegOperateTool {
     }
 
     /**
-     * ÅĞ¶¨ÊÇ·ñÌáĞÑ×¢²áÂğ×´Ì¬
+     * åˆ¤å®šæ˜¯å¦æé†’æ³¨å†Œå—çŠ¶æ€
      */
     private boolean IsTheRegStatusTime(String status) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("NEXTWARNTIME", MODE_PRIVATE);
@@ -539,10 +538,10 @@ public class RegOperateTool {
     }
 
     /**
-     * ±È½ÏÁ½¸öÊ±¼ä´®µÄ´óĞ¡
+     * æ¯”è¾ƒä¸¤ä¸ªæ—¶é—´ä¸²çš„å¤§å°
      *
-     * @param startTime ¿ªÊ¼Ê±¼ä
-     * @param endTime   ½áÊøÊ±¼ä
+     * @param startTime å¼€å§‹æ—¶é—´
+     * @param endTime   ç»“æŸæ—¶é—´
      * @return
      */
     public static boolean compareTime(String startTime, String endTime) {
@@ -572,9 +571,9 @@ public class RegOperateTool {
         Window window = dialog_toWarn.getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
         window.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-//        lp.width = dip2px(this, 300); // ¿í¶È
-//        lp.height = dip2px(this, 160); // ¸ß¶È
-        // lp.alpha = 0.7f; // Í¸Ã÷¶È
+//        lp.width = dip2px(this, 300); // å®½åº¦
+//        lp.height = dip2px(this, 160); // é«˜åº¦
+        // lp.alpha = 0.7f; // é€æ˜åº¦
         window.setAttributes(lp);
         window.setContentView(v);
 //        dialog_toSet.setOnKeyListener(new DialogInterface.OnKeyListener() {
@@ -595,23 +594,23 @@ public class RegOperateTool {
             @Override
             public void onClick(View v) {
                 if (text != null && !TextUtils.isEmpty(text)) {
-                    if (text.equals("×¢²áÂëÎŞĞ§£¬ÇëÁªÏµ¹ÜÀíÔ±")) {
+                    if (text.equals("æ³¨å†Œç æ— æ•ˆï¼Œè¯·è”ç³»ç®¡ç†å‘˜")) {
                         if (cancelCallBack != null) {
                             cancelCallBack.toFinishActivity();
                         }
-                    } else if (text.equals("×¢²áÂë°ó¶¨MAC²»Æ¥Åä£¬ÇëÁªÏµ¹ÜÀíÔ±")) {
+                    } else if (text.equals("æ³¨å†Œç ç»‘å®šMACä¸åŒ¹é…ï¼Œè¯·è”ç³»ç®¡ç†å‘˜")) {
                         if (cancelCallBack != null) {
                             cancelCallBack.toFinishActivity();
                         }
-                    } else if (text.equals("×¢²áÂë°ó¶¨IMEI²»Æ¥Åä£¬ÇëÁªÏµ¹ÜÀíÔ±")) {
+                    } else if (text.equals("æ³¨å†Œç ç»‘å®šIMEIä¸åŒ¹é…ï¼Œè¯·è”ç³»ç®¡ç†å‘˜")) {
                         if (cancelCallBack != null) {
                             cancelCallBack.toFinishActivity();
                         }
-                    }  else if (text.equals("×¢²áÂëÒÑ¹ıÆÚ£¬ÇëÁªÏµ¹ÜÀíÔ±")) {
+                    }  else if (text.equals("æ³¨å†Œç å·²è¿‡æœŸï¼Œè¯·è”ç³»ç®¡ç†å‘˜")) {
                         if (cancelCallBack != null) {
                             cancelCallBack.toFinishActivity();
                         }
-                    } else if (text.equals("×¢²áÂë´ÎÊıÒÑÓÃ¾¡£¬ÇëÁªÏµ¹ÜÀíÔ±")) {
+                    } else if (text.equals("æ³¨å†Œç æ¬¡æ•°å·²ç”¨å°½ï¼Œè¯·è”ç³»ç®¡ç†å‘˜")) {
                         if (cancelCallBack != null) {
                             cancelCallBack.toFinishActivity();
                         }
@@ -633,7 +632,7 @@ public class RegOperateTool {
 
 
     /**
-     * »ñÈ¡ÏÂ´ÎÌáĞÑµÄÊ±¼ä,dayÌìºó
+     * è·å–ä¸‹æ¬¡æé†’çš„æ—¶é—´,dayå¤©å
      */
 
     private String GetNextWarnTime(int day) {
@@ -645,7 +644,7 @@ public class RegOperateTool {
     }
 
     /**
-     * ½ñÌì¾àÀëÄ³Ìì»¹Ê£¶àÉÙÌì
+     * ä»Šå¤©è·ç¦»æŸå¤©è¿˜å‰©å¤šå°‘å¤©
      *
      * @return
      */
@@ -666,7 +665,7 @@ public class RegOperateTool {
     }
 
     /**
-     * ´Ó·şÎñÆ÷»ñÈ¡×îĞÂµÄ°æ±¾
+     * ä»æœåŠ¡å™¨è·å–æœ€æ–°çš„ç‰ˆæœ¬
      */
     private void GetNearestVersionFromService() {
 
@@ -690,14 +689,14 @@ public class RegOperateTool {
                                         WarnUpgradeDialog(down_url, appDescription);
                                     }
 
-                                } else {//½«
+                                } else {//å°†
                                     SharedPreferences sharedPreferences = context.getSharedPreferences("NEXTWARNTIME", MODE_PRIVATE);
                                     SharedPreferences.Editor et = sharedPreferences.edit();
                                     et.putString("nextTime", "");
                                     et.commit();
                                 }
                             } else {
-                                Toast.makeText(context, "·şÎñÆ÷ÉÏ²é²»µ½¸ÃÈí¼ş", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "æœåŠ¡å™¨ä¸ŠæŸ¥ä¸åˆ°è¯¥è½¯ä»¶", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -724,10 +723,10 @@ public class RegOperateTool {
     }
 
     /**
-     * Í¨¹ıÈí¼şµÄ°æ±¾Ãû³ÆÅĞ¶¨ÊÇ·ñÉı¼¶
+     * é€šè¿‡è½¯ä»¶çš„ç‰ˆæœ¬åç§°åˆ¤å®šæ˜¯å¦å‡çº§
      *
-     * @param localVersionName  ±¾µØÈí¼şµÄ°æ±¾Ãû³Æ
-     * @param serverVersionName ·şÎñ¶ËÈí¼şµÄ°æ±¾Ãû³Æ
+     * @param localVersionName  æœ¬åœ°è½¯ä»¶çš„ç‰ˆæœ¬åç§°
+     * @param serverVersionName æœåŠ¡ç«¯è½¯ä»¶çš„ç‰ˆæœ¬åç§°
      * @return
      */
     private boolean updateableSoftVersion(String localVersionName, String serverVersionName) {
@@ -761,7 +760,7 @@ public class RegOperateTool {
     }
 
     /**
-     * ÅĞ¶¨ÊÇ·ñÌáĞÑÉı¼¶
+     * åˆ¤å®šæ˜¯å¦æé†’å‡çº§
      */
     private boolean IsTheTime() {
         SharedPreferences sharedPreferences = context.getSharedPreferences("NEXTWARNTIME", MODE_PRIVATE);
@@ -792,9 +791,9 @@ public class RegOperateTool {
         Window window = dialog_toSet.getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
         window.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-        lp.width = dip2px(context, 300); // ¿í¶È
-        lp.height = dip2px(context, 260); // ¸ß¶È
-        // lp.alpha = 0.7f; // Í¸Ã÷¶È
+        lp.width = dip2px(context, 300); // å®½åº¦
+        lp.height = dip2px(context, 260); // é«˜åº¦
+        // lp.alpha = 0.7f; // é€æ˜åº¦
         window.setAttributes(lp);
         window.setContentView(v);
         ListView feature_lv = (ListView) v.findViewById(R.id.feature_lv);
@@ -839,7 +838,7 @@ public class RegOperateTool {
 
         if (isConnected(context)) {
             mProgressDialog = new CommonProgressDialog(context);
-            mProgressDialog.setMessage("ÕıÔÚÏÂÔØ");
+            mProgressDialog.setMessage("æ­£åœ¨ä¸‹è½½");
             mProgressDialog.setIndeterminate(true);
             mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             mProgressDialog.setCancelable(true);
@@ -865,11 +864,11 @@ public class RegOperateTool {
             this.context = context;
         }
 
-        //Ö´ĞĞÒì²½ÈÎÎñ£¨doInBackground£©Ö®Ç°Ö´ĞĞ£¬²¢ÇÒÔÚuiÏß³ÌÖĞÖ´ĞĞ
+        //æ‰§è¡Œå¼‚æ­¥ä»»åŠ¡ï¼ˆdoInBackgroundï¼‰ä¹‹å‰æ‰§è¡Œï¼Œå¹¶ä¸”åœ¨uiçº¿ç¨‹ä¸­æ‰§è¡Œ
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //¿ªÊ¼ÏÂÔØ ¶Ô»°¿ò½ø¶ÈÌõÏÔÊ¾
+            //å¼€å§‹ä¸‹è½½ å¯¹è¯æ¡†è¿›åº¦æ¡æ˜¾ç¤º
             mProgressDialog.show();
             mProgressDialog.setProgress(0);
         }
@@ -935,27 +934,27 @@ public class RegOperateTool {
             return "right";
         }
 
-        //ÔÚuiÏß³ÌÖĞÖ´ĞĞ ¿ÉÒÔ²Ù×÷ui
+        //åœ¨uiçº¿ç¨‹ä¸­æ‰§è¡Œ å¯ä»¥æ“ä½œui
         @Override
         protected void onPostExecute(String string) {
             // TODO Auto-generated method stub
             super.onPostExecute(string);
-            //ÏÂÔØÍê³É ¶Ô»°¿ò½ø¶ÈÌõÒş²Ø
+            //ä¸‹è½½å®Œæˆ å¯¹è¯æ¡†è¿›åº¦æ¡éšè—
             if (string.equals("right")) {
                 mProgressDialog.cancel();
-                Toast.makeText(context, "ÏÂÔØÍê³É", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "ä¸‹è½½å®Œæˆ", Toast.LENGTH_SHORT).show();
                 installApk();
             } else {
                 mProgressDialog.cancel();
-                Toast.makeText(context, "ÏÂÔØÊ§°Ü", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "ä¸‹è½½å¤±è´¥", Toast.LENGTH_LONG).show();
             }
 
 
         }
 
         /*
-         * ÔÚdoInBackground·½·¨ÖĞÒÑ¾­µ÷ÓÃpublishProgress·½·¨ ¸üĞÂÈÎÎñµÄÖ´ĞĞ½ø¶Èºó
-         * µ÷ÓÃÕâ¸ö·½·¨ ÊµÏÖ½ø¶ÈÌõµÄ¸üĞÂ
+         * åœ¨doInBackgroundæ–¹æ³•ä¸­å·²ç»è°ƒç”¨publishProgressæ–¹æ³• æ›´æ–°ä»»åŠ¡çš„æ‰§è¡Œè¿›åº¦å
+         * è°ƒç”¨è¿™ä¸ªæ–¹æ³• å®ç°è¿›åº¦æ¡çš„æ›´æ–°
          * */
         @Override
         protected void onProgressUpdate(Integer... values) {
@@ -966,7 +965,7 @@ public class RegOperateTool {
     }
 
     /**
-     * °²×°APK
+     * å®‰è£…APK
      */
     private void installApk() {
         File file = new File(GetAPKPath());
@@ -976,7 +975,7 @@ public class RegOperateTool {
     }
 
     /**
-     * ¶¨ÒåÏÂÔØ°ü´æ´¢Â·¾¶
+     * å®šä¹‰ä¸‹è½½åŒ…å­˜å‚¨è·¯å¾„
      */
     private String GetAPKPath() {
         File file = new File("/mnt/sdcard/.toInstallPG");
@@ -993,11 +992,11 @@ public class RegOperateTool {
     }
 
     /**
-     * »ñÈ¡Èí¼şÃû³Æ
+     * è·å–è½¯ä»¶åç§°
      */
     public String getAPPName() {
         String appName = "";
-        PackageManager pm = context.getPackageManager();//µÃµ½PackageManager¶ÔÏó
+        PackageManager pm = context.getPackageManager();//å¾—åˆ°PackageManagerå¯¹è±¡
         try {
             ApplicationInfo applicationInfo = pm.getApplicationInfo(context.getPackageName(), 0);
             appName = (String) pm.getApplicationLabel(applicationInfo);
@@ -1007,7 +1006,7 @@ public class RegOperateTool {
         return appName;
     }
 
-    // ½«Ê±¼ä´Á×ª³É×Ö·û´®
+    // å°†æ—¶é—´æˆ³è½¬æˆå­—ç¬¦ä¸²
     public static String getDateToString(long time) {
         Date d = new Date(time);
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -1016,7 +1015,7 @@ public class RegOperateTool {
     }
 
     /**
-     * µ¯³ö×¢²á´°¿Ú
+     * å¼¹å‡ºæ³¨å†Œçª—å£
      */
     public void showRegDialog() {
 
@@ -1029,7 +1028,7 @@ public class RegOperateTool {
             @Override
             public void onCancel(DialogInterface dialog) {
                 dialog_Reg.dismiss();
-                //ÍË³ö³ÌĞò
+                //é€€å‡ºç¨‹åº
                 if (cancelCallBack != null) {
                     cancelCallBack.toFinishActivity();
                 }
@@ -1038,9 +1037,9 @@ public class RegOperateTool {
         Window window = dialog_Reg.getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
         window.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-        lp.width = dip2px(context, 290); // ¿í¶È
-        lp.height = dip2px(context, 200); // ¸ß¶È
-        lp.alpha = 0.7f; // Í¸Ã÷¶È
+        lp.width = dip2px(context, 290); // å®½åº¦
+        lp.height = dip2px(context, 200); // é«˜åº¦
+        lp.alpha = 0.7f; // é€æ˜åº¦
         window.setAttributes(lp);
         window.setContentView(v);
         final TextView reg = (TextView) v.findViewById(R.id.editTextReg);
@@ -1049,21 +1048,21 @@ public class RegOperateTool {
 
             public void onClick(View v) {
                 if (!RegOperateTool.isConnected(context.getApplicationContext())) {
-                    Toast.makeText(context, "ÍøÂçÒì³££¬Çë¼ì²éÊÖ»úÍøÂç", Toast.LENGTH_LONG)
+                    Toast.makeText(context, "ç½‘ç»œå¼‚å¸¸ï¼Œè¯·æ£€æŸ¥æ‰‹æœºç½‘ç»œ", Toast.LENGTH_LONG)
                             .show();
                     return;
                 }
 
                 final String input = reg.getText().toString().trim();
                 if (input == null || TextUtils.isEmpty(input)) {
-                    Toast.makeText(context, "ÇëÊäÈë×¢²áÂë",
+                    Toast.makeText(context, "è¯·è¾“å…¥æ³¨å†Œç ",
                             Toast.LENGTH_LONG).show();
                     return;
                 }
 
-                // ÍøÂçÑéÖ¤ÖĞ
-                progressDialog = ProgressDialog.show(context, "ÇëÉÔºò",
-                        "×¢²áÂëÑéÖ¤ÖĞÇë²»Òª½øĞĞÆäËû²Ù×÷", true);
+                // ç½‘ç»œéªŒè¯ä¸­
+                progressDialog = ProgressDialog.show(context, "è¯·ç¨å€™",
+                        "æ³¨å†Œç éªŒè¯ä¸­è¯·ä¸è¦è¿›è¡Œå…¶ä»–æ“ä½œ", true);
                 progressDialog.setCancelable(true);
 
                 getRequestQueue();
@@ -1074,7 +1073,7 @@ public class RegOperateTool {
 
                     @Override
                     public void onResponse(String response) {
-                        //Èç¹û×¢²áÂëÒÑ¾­×¢²á
+                        //å¦‚æœæ³¨å†Œç å·²ç»æ³¨å†Œ
                         if (!TextUtils.isEmpty(response)) {
                             String json = Getstr(response);
                             try {
@@ -1084,7 +1083,7 @@ public class RegOperateTool {
                                 if (!TextUtils.isEmpty(result) && result.equals("ok")) {
                                     if (mArray.length() == 0) {
                                         progressDialog.dismiss();
-                                        Toast.makeText(context, "×¢²áÂë²»´æÔÚ",
+                                        Toast.makeText(context, "æ³¨å†Œç ä¸å­˜åœ¨",
                                                 Toast.LENGTH_LONG).show();
                                     } else {
                                         JSONObject obj_ = (JSONObject) mArray.get(0);
@@ -1097,62 +1096,62 @@ public class RegOperateTool {
                                         String Version = obj_.getString("Version").trim();
                                         if (!getAPPVersion().equals(Version)) {
                                             progressDialog.dismiss();
-                                            Toast.makeText(context, "´Ë×¢²áÂëÒÑ°ó¶¨Èí¼ş°æ±¾£¬ÇëÁªÏµ¹ÜÀíÔ±",
+                                            Toast.makeText(context, "æ­¤æ³¨å†Œç å·²ç»‘å®šè½¯ä»¶ç‰ˆæœ¬ï¼Œè¯·è”ç³»ç®¡ç†å‘˜",
                                                     Toast.LENGTH_LONG).show();
                                             return;
                                         }
-                                        if (regStatus.equals("Õı³£")) {
-                                            if (TextUtils.isEmpty(Imei)) {//ËµÃ÷¸Ã×¢²áÂëÃ»ÓĞ°ó¶¨IMEI
-                                                if (TextUtils.isEmpty(MAC)) {//Ò²Ã»ÓĞ°ó¶¨MAC
+                                        if (regStatus.equals("æ­£å¸¸")) {
+                                            if (TextUtils.isEmpty(Imei)) {//è¯´æ˜è¯¥æ³¨å†Œç æ²¡æœ‰ç»‘å®šIMEI
+                                                if (TextUtils.isEmpty(MAC)) {//ä¹Ÿæ²¡æœ‰ç»‘å®šMAC
                                                     RegSuccess(input, guestName, isToolTip, isNumber);
                                                 } else {
-                                                    //TODO ¼ì²âMacÊÇ·ñÒ»ÖÂ
+                                                    //TODO æ£€æµ‹Macæ˜¯å¦ä¸€è‡´
                                                     if (macAddress().equals(MAC)) {
                                                         RegSuccess(input, guestName, isToolTip, isNumber);
                                                     } else {
                                                         progressDialog.dismiss();
-                                                        Toast.makeText(context, "ÇëÈ·¶¨×¢²áÂë°ó¶¨µÄÊÖ»ú(MAC)ÊÇ·ñÕıÈ·",
+                                                        Toast.makeText(context, "è¯·ç¡®å®šæ³¨å†Œç ç»‘å®šçš„æ‰‹æœº(MAC)æ˜¯å¦æ­£ç¡®",
                                                                 Toast.LENGTH_LONG).show();
                                                     }
 
                                                 }
 
-                                            } else {//ÑéÖ¤×¢²áÂëÊÇ·ñÆ¥Åä
+                                            } else {//éªŒè¯æ³¨å†Œç æ˜¯å¦åŒ¹é…
                                                 if (GetImei().equals(Imei)) {
                                                     if (TextUtils.isEmpty(MAC)) {
                                                         RegSuccess(input, guestName, isToolTip, isNumber);
                                                     } else {
-                                                        //TODO ¼ì²âMacÊÇ·ñÒ»ÖÂ
+                                                        //TODO æ£€æµ‹Macæ˜¯å¦ä¸€è‡´
                                                         if (macAddress().equals(MAC)) {
                                                             RegSuccess(input, guestName, isToolTip, isNumber);
                                                         } else {
                                                             progressDialog.dismiss();
-                                                            Toast.makeText(context, "ÇëÈ·¶¨×¢²áÂë°ó¶¨µÄÊÖ»ú(MAC)ÊÇ·ñÕıÈ·",
+                                                            Toast.makeText(context, "è¯·ç¡®å®šæ³¨å†Œç ç»‘å®šçš„æ‰‹æœº(MAC)æ˜¯å¦æ­£ç¡®",
                                                                     Toast.LENGTH_LONG).show();
                                                         }
                                                     }
 
                                                 } else {
                                                     progressDialog.dismiss();
-                                                    Toast.makeText(context, "ÇëÈ·¶¨×¢²áÂë°ó¶¨µÄÊÖ»ú(IMEI)ÊÇ·ñÕıÈ·",
+                                                    Toast.makeText(context, "è¯·ç¡®å®šæ³¨å†Œç ç»‘å®šçš„æ‰‹æœº(IMEI)æ˜¯å¦æ­£ç¡®",
                                                             Toast.LENGTH_LONG).show();
                                                 }
                                             }
-                                        } else if (regStatus.equals("ÒÑ¹ıÆÚ")) {
+                                        } else if (regStatus.equals("å·²è¿‡æœŸ")) {
                                             progressDialog.dismiss();
-                                            Toast.makeText(context, "×¢²áÂëÒÑ¹ıÆÚ£¬ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_LONG).show();
-                                        } else if (regStatus.equals("´ÎÊıÓÃ¾¡")) {
+                                            Toast.makeText(context, "æ³¨å†Œç å·²è¿‡æœŸï¼Œè¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_LONG).show();
+                                        } else if (regStatus.equals("æ¬¡æ•°ç”¨å°½")) {
                                             progressDialog.dismiss();
-                                            Toast.makeText(context, "×¢²áÂëµ÷ÓÃ´ÎÊıÒÑÓÃ¾¡£¬ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_LONG).show();
-                                        } else if (regStatus.equals("ÒÑ½ûÓÃ")) {
+                                            Toast.makeText(context, "æ³¨å†Œç è°ƒç”¨æ¬¡æ•°å·²ç”¨å°½ï¼Œè¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_LONG).show();
+                                        } else if (regStatus.equals("å·²ç¦ç”¨")) {
                                             progressDialog.dismiss();
-                                            Toast.makeText(context, "×¢²áÂëÎŞĞ§£¬ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(context, "æ³¨å†Œç æ— æ•ˆï¼Œè¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_LONG).show();
                                         }
                                     }
 
 
                                 } else {
-                                    Toast.makeText(context, "·şÎñÆ÷Á¬½ÓÒì³£", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(context, "æœåŠ¡å™¨è¿æ¥å¼‚å¸¸", Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
                                 // TODO Auto-generated catch block
@@ -1172,7 +1171,7 @@ public class RegOperateTool {
                     public void onErrorResponse(
                             VolleyError error) {
                         progressDialog.dismiss();
-                        Toast.makeText(context, "·şÎñÆ÷Òì³££¬ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "æœåŠ¡å™¨å¼‚å¸¸ï¼Œè¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
 
 
                     }
@@ -1203,67 +1202,67 @@ public class RegOperateTool {
 
 
     /**
-     * ³õÊ¼»¯¶¨Î»
+     * åˆå§‹åŒ–å®šä½
      *
      * @author hongming.wang
      * @since 2.8.0
      */
     private void initLocation() {
-        //³õÊ¼»¯client
+        //åˆå§‹åŒ–client
         locationClient = new AMapLocationClient(context.getApplicationContext());
-        // ÉèÖÃ¶¨Î»¼àÌı
+        // è®¾ç½®å®šä½ç›‘å¬
         locationClient.setLocationListener(locationListener);
         startLocation();
     }
 
     /**
-     * Ä¬ÈÏµÄ¶¨Î»²ÎÊı
+     * é»˜è®¤çš„å®šä½å‚æ•°
      *
      * @author hongming.wang
      * @since 2.8.0
      */
     private AMapLocationClientOption getDefaultOption() {
         AMapLocationClientOption mOption = new AMapLocationClientOption();
-        mOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);//¿ÉÑ¡£¬ÉèÖÃ¶¨Î»Ä£Ê½£¬¿ÉÑ¡µÄÄ£Ê½ÓĞ¸ß¾«¶È¡¢½öÉè±¸¡¢½öÍøÂç¡£Ä¬ÈÏÎª¸ß¾«¶ÈÄ£Ê½
-        mOption.setGpsFirst(false);//¿ÉÑ¡£¬ÉèÖÃÊÇ·ñgpsÓÅÏÈ£¬Ö»ÔÚ¸ß¾«¶ÈÄ£Ê½ÏÂÓĞĞ§¡£Ä¬ÈÏ¹Ø±Õ
-        mOption.setHttpTimeOut(30000);//¿ÉÑ¡£¬ÉèÖÃÍøÂçÇëÇó³¬Ê±Ê±¼ä¡£Ä¬ÈÏÎª30Ãë¡£ÔÚ½öÉè±¸Ä£Ê½ÏÂÎŞĞ§
-        mOption.setInterval(2000);//¿ÉÑ¡£¬ÉèÖÃ¶¨Î»¼ä¸ô¡£Ä¬ÈÏÎª2Ãë
-        mOption.setNeedAddress(true);//¿ÉÑ¡£¬ÉèÖÃÊÇ·ñ·µ»ØÄæµØÀíµØÖ·ĞÅÏ¢¡£Ä¬ÈÏÊÇtrue
-        mOption.setOnceLocation(true);//¿ÉÑ¡£¬ÉèÖÃÊÇ·ñµ¥´Î¶¨Î»¡£Ä¬ÈÏÊÇfalse
-//		mOption.setOnceLocationLatest(false);//¿ÉÑ¡£¬ÉèÖÃÊÇ·ñµÈ´ıwifiË¢ĞÂ£¬Ä¬ÈÏÎªfalse.Èç¹ûÉèÖÃÎªtrue,»á×Ô¶¯±äÎªµ¥´Î¶¨Î»£¬³ÖĞø¶¨Î»Ê±²»ÒªÊ¹ÓÃ
-//		AMapLocationClientOption.setLocationProtocol(AMapLocationProtocol.HTTP);//¿ÉÑ¡£¬ ÉèÖÃÍøÂçÇëÇóµÄĞ­Òé¡£¿ÉÑ¡HTTP»òÕßHTTPS¡£Ä¬ÈÏÎªHTTP
-//		mOption.setSensorEnable(false);//¿ÉÑ¡£¬ÉèÖÃÊÇ·ñÊ¹ÓÃ´«¸ĞÆ÷¡£Ä¬ÈÏÊÇfalse
+        mOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);//å¯é€‰ï¼Œè®¾ç½®å®šä½æ¨¡å¼ï¼Œå¯é€‰çš„æ¨¡å¼æœ‰é«˜ç²¾åº¦ã€ä»…è®¾å¤‡ã€ä»…ç½‘ç»œã€‚é»˜è®¤ä¸ºé«˜ç²¾åº¦æ¨¡å¼
+        mOption.setGpsFirst(false);//å¯é€‰ï¼Œè®¾ç½®æ˜¯å¦gpsä¼˜å…ˆï¼Œåªåœ¨é«˜ç²¾åº¦æ¨¡å¼ä¸‹æœ‰æ•ˆã€‚é»˜è®¤å…³é—­
+        mOption.setHttpTimeOut(30000);//å¯é€‰ï¼Œè®¾ç½®ç½‘ç»œè¯·æ±‚è¶…æ—¶æ—¶é—´ã€‚é»˜è®¤ä¸º30ç§’ã€‚åœ¨ä»…è®¾å¤‡æ¨¡å¼ä¸‹æ— æ•ˆ
+        mOption.setInterval(2000);//å¯é€‰ï¼Œè®¾ç½®å®šä½é—´éš”ã€‚é»˜è®¤ä¸º2ç§’
+        mOption.setNeedAddress(true);//å¯é€‰ï¼Œè®¾ç½®æ˜¯å¦è¿”å›é€†åœ°ç†åœ°å€ä¿¡æ¯ã€‚é»˜è®¤æ˜¯true
+        mOption.setOnceLocation(true);//å¯é€‰ï¼Œè®¾ç½®æ˜¯å¦å•æ¬¡å®šä½ã€‚é»˜è®¤æ˜¯false
+//		mOption.setOnceLocationLatest(false);//å¯é€‰ï¼Œè®¾ç½®æ˜¯å¦ç­‰å¾…wifiåˆ·æ–°ï¼Œé»˜è®¤ä¸ºfalse.å¦‚æœè®¾ç½®ä¸ºtrue,ä¼šè‡ªåŠ¨å˜ä¸ºå•æ¬¡å®šä½ï¼ŒæŒç»­å®šä½æ—¶ä¸è¦ä½¿ç”¨
+//		AMapLocationClientOption.setLocationProtocol(AMapLocationProtocol.HTTP);//å¯é€‰ï¼Œ è®¾ç½®ç½‘ç»œè¯·æ±‚çš„åè®®ã€‚å¯é€‰HTTPæˆ–è€…HTTPSã€‚é»˜è®¤ä¸ºHTTP
+//		mOption.setSensorEnable(false);//å¯é€‰ï¼Œè®¾ç½®æ˜¯å¦ä½¿ç”¨ä¼ æ„Ÿå™¨ã€‚é»˜è®¤æ˜¯false
         return mOption;
     }
 
     /**
-     * ¿ªÊ¼¶¨Î»
+     * å¼€å§‹å®šä½
      *
      * @author hongming.wang
      * @since 2.8.0
      */
     private void startLocation() {
-//		//¸ù¾İ¿Ø¼şµÄÑ¡Ôñ£¬ÖØĞÂÉèÖÃ¶¨Î»²ÎÊı
+//		//æ ¹æ®æ§ä»¶çš„é€‰æ‹©ï¼Œé‡æ–°è®¾ç½®å®šä½å‚æ•°
 //		resetOption();
-        // ÉèÖÃ¶¨Î»²ÎÊı
+        // è®¾ç½®å®šä½å‚æ•°
         locationClient.setLocationOption(getDefaultOption());
-        // Æô¶¯¶¨Î»
+        // å¯åŠ¨å®šä½
         locationClient.startLocation();
     }
 
     /**
-     * Í£Ö¹¶¨Î»
+     * åœæ­¢å®šä½
      *
      * @author hongming.wang
      * @since 2.8.0
      */
     private void stopLocation() {
-        // Í£Ö¹¶¨Î»
+        // åœæ­¢å®šä½
         locationClient.stopLocation();
     }
 
     /**
-     * Ïú»Ù¶¨Î»
+     * é”€æ¯å®šä½
      *
      * @author hongming.wang
      * @since 2.8.0
@@ -1271,8 +1270,8 @@ public class RegOperateTool {
     private void destroyLocation() {
         if (null != locationClient) {
             /**
-             * Èç¹ûAMapLocationClientÊÇÔÚµ±Ç°ActivityÊµÀı»¯µÄ£¬
-             * ÔÚActivityµÄonDestroyÖĞÒ»¶¨ÒªÖ´ĞĞAMapLocationClientµÄonDestroy
+             * å¦‚æœAMapLocationClientæ˜¯åœ¨å½“å‰Activityå®ä¾‹åŒ–çš„ï¼Œ
+             * åœ¨Activityçš„onDestroyä¸­ä¸€å®šè¦æ‰§è¡ŒAMapLocationClientçš„onDestroy
              */
             stopLocation();
             locationClient.onDestroy();
@@ -1281,13 +1280,13 @@ public class RegOperateTool {
     }
 
     /**
-     * ¶¨Î»¼àÌı
+     * å®šä½ç›‘å¬
      */
     AMapLocationListener locationListener = new AMapLocationListener() {
         @Override
         public void onLocationChanged(AMapLocation loc) {
             if (null != loc) {
-                //½âÎö¶¨Î»½á¹û
+                //è§£æå®šä½ç»“æœ
                 Lat = loc.getLatitude() + "";
                 Lng = loc.getLongitude() + "";
                 Addr = loc.getAddress();
@@ -1336,14 +1335,14 @@ public class RegOperateTool {
     }
 
     /**
-     * »ñÈ¡Èí¼ş°æ±¾ºÅ
+     * è·å–è½¯ä»¶ç‰ˆæœ¬å·
      */
     private String getAPPVersion() {
-        PackageManager pm = context.getPackageManager();//µÃµ½PackageManager¶ÔÏó
+        PackageManager pm = context.getPackageManager();//å¾—åˆ°PackageManagerå¯¹è±¡
         String version_app = "";
         try {
-            PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);//µÃµ½PackageInfo¶ÔÏó£¬·â×°ÁËÒ»Ğ©Èí¼ş°üµÄĞÅÏ¢ÔÚÀïÃæ
-            version_app = pi.versionName;//»ñÈ¡Çåµ¥ÎÄ¼şÖĞversionCode½ÚµãµÄÖµ
+            PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);//å¾—åˆ°PackageInfoå¯¹è±¡ï¼Œå°è£…äº†ä¸€äº›è½¯ä»¶åŒ…çš„ä¿¡æ¯åœ¨é‡Œé¢
+            version_app = pi.versionName;//è·å–æ¸…å•æ–‡ä»¶ä¸­versionCodeèŠ‚ç‚¹çš„å€¼
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -1354,11 +1353,11 @@ public class RegOperateTool {
     public String macAddress() {
         String address = null;
         try {
-            // °Ñµ±Ç°»úÆ÷ÉÏµÄ·ÃÎÊÍøÂç½Ó¿ÚµÄ´æÈë Enumeration¼¯ºÏÖĞ
+            // æŠŠå½“å‰æœºå™¨ä¸Šçš„è®¿é—®ç½‘ç»œæ¥å£çš„å­˜å…¥ Enumerationé›†åˆä¸­
             Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
             while (interfaces.hasMoreElements()) {
                 NetworkInterface netWork = interfaces.nextElement();
-                // Èç¹û´æÔÚÓ²¼şµØÖ·²¢¿ÉÒÔÊ¹ÓÃ¸ø¶¨µÄµ±Ç°È¨ÏŞ·ÃÎÊ£¬Ôò·µ»Ø¸ÃÓ²¼şµØÖ·£¨Í¨³£ÊÇ MAC£©¡£
+                // å¦‚æœå­˜åœ¨ç¡¬ä»¶åœ°å€å¹¶å¯ä»¥ä½¿ç”¨ç»™å®šçš„å½“å‰æƒé™è®¿é—®ï¼Œåˆ™è¿”å›è¯¥ç¡¬ä»¶åœ°å€ï¼ˆé€šå¸¸æ˜¯ MACï¼‰ã€‚
                 byte[] by = netWork.getHardwareAddress();
                 if (by == null || by.length == 0) {
                     continue;
@@ -1371,7 +1370,7 @@ public class RegOperateTool {
                     builder.deleteCharAt(builder.length() - 1);
                 }
                 String mac = builder.toString();
-                // ´ÓÂ·ÓÉÆ÷ÉÏÔÚÏßÉè±¸µÄMACµØÖ·ÁĞ±í£¬¿ÉÒÔÓ¡Ö¤Éè±¸WifiµÄ name ÊÇ wlan0
+                // ä»è·¯ç”±å™¨ä¸Šåœ¨çº¿è®¾å¤‡çš„MACåœ°å€åˆ—è¡¨ï¼Œå¯ä»¥å°è¯è®¾å¤‡Wifiçš„ name æ˜¯ wlan0
                 if (netWork.getName().equals("wlan0")) {
                     address = mac;
                 }
@@ -1384,26 +1383,26 @@ public class RegOperateTool {
 
 
     /**
-     * ×¢²áÂëÑéÖ¤³É¹¦ºó
+     * æ³¨å†Œç éªŒè¯æˆåŠŸå
      */
     private void RegSuccess(String input, String guestName, String isToolTip, String isNumber) {
         SharedPreferences.Editor editor = sp.edit();
         if (input != null && guestName != null) {
-            Toast.makeText(context, "×¢²áÂëÑéÖ¤³É¹¦",
+            Toast.makeText(context, "æ³¨å†Œç éªŒè¯æˆåŠŸ",
                     Toast.LENGTH_LONG).show();
             strreg = input;
             editor.putString("OBJREG", input);
             editor.putString("GUESTNAME", guestName);
         }
 
-        if (isToolTip.equals("0")) {//0´ú±í²»ÌáÊ¾
+        if (isToolTip.equals("0")) {//0ä»£è¡¨ä¸æç¤º
             istoolTip = false;
             editor.putBoolean("ISTOOLTIP", false);
         } else {
             istoolTip = true;
             editor.putBoolean("ISTOOLTIP", true);
         }
-        if (isNumber.equals("0")) {//0´ú±íÓĞ´ÎÊıÏŞÖÆ
+        if (isNumber.equals("0")) {//0ä»£è¡¨æœ‰æ¬¡æ•°é™åˆ¶
             isNumberLimit = true;
             editor.putBoolean("ISNUMBER", true);
         } else {
@@ -1417,7 +1416,7 @@ public class RegOperateTool {
         if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
-        BugPublicUtils.checkToUploadBugInfos(context,"JZDW_crash","http://zc.xun365.net/WebService/SoftWare.asmx/SetBugInfo",strreg,"JZDW");
+//        BugPublicUtils.checkToUploadBugInfos(context,"JZDW_crash","http://zc.xun365.net/WebService/SoftWare.asmx/SetBugInfo",strreg,"JZDW");
 
     }
 
@@ -1438,7 +1437,7 @@ public class RegOperateTool {
             et.commit();
         } else {
             if (updateableSoftVersion(savedVersion,nowVersion)) {
-                //ÉÏ´«°æ±¾ĞÅÏ¢
+                //ä¸Šä¼ ç‰ˆæœ¬ä¿¡æ¯
                 String info = GetInfoWhenVersionChanged(savedVersion, nowVersion);
                 UploadVersionInfo(info);
             }
@@ -1503,10 +1502,10 @@ public class RegOperateTool {
     }
 
     /**
-     * Gps¾ÀÆ«
+     * Gpsçº å
      *
-     * @param lat gpsÖĞµÄÎ³¶È
-     * @param lng gpsÖĞµÄ¾­¶È
+     * @param lat gpsä¸­çš„çº¬åº¦
+     * @param lng gpsä¸­çš„ç»åº¦
      * @return
      */
     public static LatLng GpsCorrectToLatLng(double lat, double lng) {

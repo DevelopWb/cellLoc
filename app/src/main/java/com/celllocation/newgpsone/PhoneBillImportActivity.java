@@ -35,8 +35,8 @@ public class PhoneBillImportActivity extends Activity implements View.OnClickLis
 
     private TextView num_path;
 
-    String[] title = {"PHONE", "LAC", "CID", "ÈÕÆÚ"};
-    String[] title_dianxin = {"PHONE", "SID", "BID", "NID", "ÈÕÆÚ"};
+    String[] title = {"PHONE", "LAC", "CID", "æ—¥æœŸ"};
+    String[] title_dianxin = {"PHONE", "SID", "BID", "NID", "æ—¥æœŸ"};
     private EditText phone_name;
     private EditText phone_num;
     private EditText phone_detail;
@@ -74,8 +74,8 @@ public class PhoneBillImportActivity extends Activity implements View.OnClickLis
         dianxin_form_ll.setOnClickListener(this);
         PopupWindow pop_import = new PopupWindow(view, dip2px(this, 90), dip2px(this, 110), false);
         pop_import.setBackgroundDrawable(new BitmapDrawable());
-        pop_import.setOutsideTouchable(true); // ÉèÖÃµã»÷´°¿ÚÍâ±ß´°¿ÚÏûÊ§
-        pop_import.setFocusable(true);// ÉèÖÃ´Ë²ÎÊı»ñµÃ½¹µã£¬·ñÔòÎŞ·¨µã»÷
+        pop_import.setOutsideTouchable(true); // è®¾ç½®ç‚¹å‡»çª—å£å¤–è¾¹çª—å£æ¶ˆå¤±
+        pop_import.setFocusable(true);// è®¾ç½®æ­¤å‚æ•°è·å¾—ç„¦ç‚¹ï¼Œå¦åˆ™æ— æ³•ç‚¹å‡»
 
         return pop_import;
     }
@@ -94,8 +94,8 @@ public class PhoneBillImportActivity extends Activity implements View.OnClickLis
         dianxin_model_ll.setOnClickListener(this);
         PopupWindow pop_export = new PopupWindow(view, dip2px(this, 90), dip2px(this, 110), false);
         pop_export.setBackgroundDrawable(new BitmapDrawable());
-        pop_export.setOutsideTouchable(true); // ÉèÖÃµã»÷´°¿ÚÍâ±ß´°¿ÚÏûÊ§
-        pop_export.setFocusable(true);// ÉèÖÃ´Ë²ÎÊı»ñµÃ½¹µã£¬·ñÔòÎŞ·¨µã»÷
+        pop_export.setOutsideTouchable(true); // è®¾ç½®ç‚¹å‡»çª—å£å¤–è¾¹çª—å£æ¶ˆå¤±
+        pop_export.setFocusable(true);// è®¾ç½®æ­¤å‚æ•°è·å¾—ç„¦ç‚¹ï¼Œå¦åˆ™æ— æ³•ç‚¹å‡»
 
         return pop_export;
     }
@@ -107,15 +107,15 @@ public class PhoneBillImportActivity extends Activity implements View.OnClickLis
 
 
     /**
-     * ÑéÖ¤ÊÖ»ú¸ñÊ½
+     * éªŒè¯æ‰‹æœºæ ¼å¼
      */
     public boolean isMobileNO(String mobiles) {
         /*
-         * ÒÆ¶¯£º134¡¢135¡¢136¡¢137¡¢138¡¢139¡¢150¡¢151¡¢157(TD)¡¢158¡¢159¡¢187¡¢188
-		 * ÁªÍ¨£º130¡¢131¡¢132¡¢152¡¢155¡¢156¡¢185¡¢186 µçĞÅ£º133¡¢153¡¢180¡¢189¡¢£¨1349ÎÀÍ¨£©
-		 * ×Ü½áÆğÀ´¾ÍÊÇµÚÒ»Î»±Ø¶¨Îª1£¬µÚ¶şÎ»±Ø¶¨Îª3»ò5»ò8£¬ÆäËûÎ»ÖÃµÄ¿ÉÒÔÎª0-9
+         * ç§»åŠ¨ï¼š134ã€135ã€136ã€137ã€138ã€139ã€150ã€151ã€157(TD)ã€158ã€159ã€187ã€188
+		 * è”é€šï¼š130ã€131ã€132ã€152ã€155ã€156ã€185ã€186 ç”µä¿¡ï¼š133ã€153ã€180ã€189ã€ï¼ˆ1349å«é€šï¼‰
+		 * æ€»ç»“èµ·æ¥å°±æ˜¯ç¬¬ä¸€ä½å¿…å®šä¸º1ï¼Œç¬¬äºŒä½å¿…å®šä¸º3æˆ–5æˆ–8ï¼Œå…¶ä»–ä½ç½®çš„å¯ä»¥ä¸º0-9
 		 */
-        String telRegex = "[1][3758]\\d{9}";// "[1]"´ú±íµÚ1Î»ÎªÊı×Ö1£¬"[358]"´ú±íµÚ¶şÎ»¿ÉÒÔÎª3¡¢5¡¢8ÖĞµÄÒ»¸ö£¬"\\d{9}"´ú±íºóÃæÊÇ¿ÉÒÔÊÇ0¡«9µÄÊı×Ö£¬ÓĞ9Î»¡£
+        String telRegex = "[1][3758]\\d{9}";// "[1]"ä»£è¡¨ç¬¬1ä½ä¸ºæ•°å­—1ï¼Œ"[358]"ä»£è¡¨ç¬¬äºŒä½å¯ä»¥ä¸º3ã€5ã€8ä¸­çš„ä¸€ä¸ªï¼Œ"\\d{9}"ä»£è¡¨åé¢æ˜¯å¯ä»¥æ˜¯0ï½9çš„æ•°å­—ï¼Œæœ‰9ä½ã€‚
         if (TextUtils.isEmpty(mobiles))
             return false;
         else
@@ -123,7 +123,7 @@ public class PhoneBillImportActivity extends Activity implements View.OnClickLis
     }
 
 
-// ½«×Ö·û´®×ªÎªÊ±¼ä´Á
+// å°†å­—ç¬¦ä¸²è½¬ä¸ºæ—¶é—´æˆ³
 
 
     public String getTime(String user_time) {
@@ -149,11 +149,11 @@ public class PhoneBillImportActivity extends Activity implements View.OnClickLis
                 Uri uri = data.getData();
                 if (!TextUtils.isEmpty(uri.toString())) {
                     String[] data_ = uri.toString().split(",");
-                    num_path.setText("»°µ¥Â·¾¶£º" + data_[0]);
+                    num_path.setText("è¯å•è·¯å¾„ï¼š" + data_[0]);
                     Long long1 = Long.parseLong(getTime(data_[1]));
                     Long long2 = Long.parseLong(getTime(data_[2]));
                     String importTime = data_[3];
-                    // ½«»°µ¥ÈËĞÅÏ¢´æÈë±¾µØÊı¾İ¿â
+                    // å°†è¯å•äººä¿¡æ¯å­˜å…¥æœ¬åœ°æ•°æ®åº“
                     String name = phone_name.getText().toString().trim();
                     String num = phone_num.getText().toString().trim();
                     String detail = phone_detail.getText().toString().trim();
@@ -180,48 +180,48 @@ public class PhoneBillImportActivity extends Activity implements View.OnClickLis
                     if (pop_import.isShowing()) {
                         pop_import.dismiss();
                     }
-                    Toast.makeText(this, "µ¼ÈëÍê³É", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "å¯¼å…¥å®Œæˆ", Toast.LENGTH_SHORT).show();
                 }
 
 
             }
 
         }
-        if (requestCode == 81 || requestCode == 82) {//ÒÆ¶¯ÁªÍ¨»°µ¥Ä£°åµ¼³ö
+        if (requestCode == 81 || requestCode == 82) {//ç§»åŠ¨è”é€šè¯å•æ¨¡æ¿å¯¼å‡º
             if (data != null) {
                 File file;
                 Uri uri = data.getData();
                 String exportPath = uri.toString();
-                // µ¼³ö»°µ¥Ä£°å
+                // å¯¼å‡ºè¯å•æ¨¡æ¿
                 if (requestCode == 81) {
-                    file = new File(exportPath + "/ÒÆ¶¯»°µ¥Ä£°å");
+                    file = new File(exportPath + "/ç§»åŠ¨è¯å•æ¨¡æ¿");
                     makeDir(file);
-                    ExcelUtils.initExcel(file.toString() + "/ÒÆ¶¯»°µ¥Ä£°å.xls", title);
+                    ExcelUtils.initExcel(file.toString() + "/ç§»åŠ¨è¯å•æ¨¡æ¿.xls", title);
                 } else {
-                    file = new File(exportPath + "/ÁªÍ¨»°µ¥Ä£°å");
+                    file = new File(exportPath + "/è”é€šè¯å•æ¨¡æ¿");
                     makeDir(file);
-                    ExcelUtils.initExcel(file.toString() + "/ÁªÍ¨»°µ¥Ä£°å.xls", title);
+                    ExcelUtils.initExcel(file.toString() + "/è”é€šè¯å•æ¨¡æ¿.xls", title);
                 }
 
                 if (pop_export.isShowing()) {
                     pop_export.dismiss();
                 }
-                Toast.makeText(this, "Ä£°åÒÑµ¼³ö", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "æ¨¡æ¿å·²å¯¼å‡º", Toast.LENGTH_SHORT).show();
             }
 
         }
-        if (requestCode == 83) {//µçĞÅ»°µ¥Ä£°åµ¼³ö
+        if (requestCode == 83) {//ç”µä¿¡è¯å•æ¨¡æ¿å¯¼å‡º
             if (data != null) {
                 Uri uri = data.getData();
                 String exportPath = uri.toString();
-                // µ¼³ö»°µ¥Ä£°å
-                File file = new File(exportPath + "/µçĞÅ»°µ¥Ä£°å");
+                // å¯¼å‡ºè¯å•æ¨¡æ¿
+                File file = new File(exportPath + "/ç”µä¿¡è¯å•æ¨¡æ¿");
                 makeDir(file);
-                ExcelUtils.initExcel(file.toString() + "/µçĞÅ»°µ¥Ä£°å.xls", title_dianxin);
+                ExcelUtils.initExcel(file.toString() + "/ç”µä¿¡è¯å•æ¨¡æ¿.xls", title_dianxin);
                 if (pop_export.isShowing()) {
                     pop_export.dismiss();
                 }
-                Toast.makeText(this, "Ä£°åÒÑµ¼³ö", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "æ¨¡æ¿å·²å¯¼å‡º", Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -234,7 +234,7 @@ public class PhoneBillImportActivity extends Activity implements View.OnClickLis
         dir.mkdir();
     }
     /**
-     * µ¼Èë»°µ¥Êı¾İ
+     * å¯¼å…¥è¯å•æ•°æ®
      *
      * @param view
      */
@@ -243,15 +243,15 @@ public class PhoneBillImportActivity extends Activity implements View.OnClickLis
         String num = phone_num.getText().toString().trim();
         String detail = phone_detail.getText().toString().trim();
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(num) || TextUtils.isEmpty(detail)) {
-            Toast.makeText(this, "Çë½«ÉÏÃæµÄĞÅÏ¢ÌîĞ´ÍêÕû", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "è¯·å°†ä¸Šé¢çš„ä¿¡æ¯å¡«å†™å®Œæ•´", Toast.LENGTH_SHORT).show();
             return;
         } else {
             if (num.length() != 11) {
-                Toast.makeText(this, "ÊÖ»ú¸ñÊ½´íÎó", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "æ‰‹æœºæ ¼å¼é”™è¯¯", Toast.LENGTH_SHORT).show();
                 return;
             } else {
                 if (!isMobileNO(num)) {
-                    Toast.makeText(this, "ÊÖ»ú¸ñÊ½´íÎó", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "æ‰‹æœºæ ¼å¼é”™è¯¯", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -266,7 +266,7 @@ public class PhoneBillImportActivity extends Activity implements View.OnClickLis
     }
 
     /**
-     * µ¼³ö»°µ¥Ä£°å
+     * å¯¼å‡ºè¯å•æ¨¡æ¿
      *
      * @param view
      */
@@ -282,7 +282,7 @@ public class PhoneBillImportActivity extends Activity implements View.OnClickLis
 
         switch (v.getId()) {
             /**
-             * µ¼ÈëÒÆ¶¯±í¸ñ
+             * å¯¼å…¥ç§»åŠ¨è¡¨æ ¼
              */
             case R.id.yidong_form_ll:
                 PubUtill.isDianxin = false;
@@ -300,7 +300,7 @@ public class PhoneBillImportActivity extends Activity implements View.OnClickLis
                 startActivityForResult(intent_dianxin, 0);
                 break;
             /**
-             * µ¼³öÒÆ¶¯Ä£°å
+             * å¯¼å‡ºç§»åŠ¨æ¨¡æ¿
              */
             case R.id.yidong_model_ll:
                 Intent intent_yidong_m = new Intent(PhoneBillImportActivity.this, FileManagerExportActivity.class);

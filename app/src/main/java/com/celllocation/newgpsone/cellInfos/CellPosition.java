@@ -11,7 +11,7 @@ public class CellPosition {
     /**
      * Result : true
      * Desc :
-     * Model : {"Longitude":"116.324097","Latitude":"39.926544","o_Longitude":"116.33022976345","o_Latitude":"39.927855088976","Address":"±±¾©ÊĞº£µíÇøÔö¹âÂ·22ºÅ","Precision":"932"}
+     * Model : {"Longitude":"116.324097","Latitude":"39.926544","o_Longitude":"116.33022976345","o_Latitude":"39.927855088976","Address":"åŒ—äº¬å¸‚æµ·æ·€åŒºå¢å…‰è·¯22å·","Precision":"932"}
      */
 
     private String Result;
@@ -48,7 +48,7 @@ public class CellPosition {
          * Latitude : 39.926544
          * o_Longitude : 116.33022976345
          * o_Latitude : 39.927855088976
-         * Address : ±±¾©ÊĞº£µíÇøÔö¹âÂ·22ºÅ
+         * Address : åŒ—äº¬å¸‚æµ·æ·€åŒºå¢å…‰è·¯22å·
          * Precision : 932
          */
 

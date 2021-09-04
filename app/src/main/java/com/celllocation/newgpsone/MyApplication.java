@@ -2,7 +2,11 @@ package com.celllocation.newgpsone;
 
 import android.app.Application;
 
+import com.zhy.http.okhttp.OkHttpUtils;
+
 import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 
 /**
  * Created by Administrator on 2016/12/12.

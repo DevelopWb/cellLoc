@@ -17,7 +17,7 @@ import com.celllocation.newgpsone.bean.GpsCorrect;
  */
 public class CellInfoUtil {
 
-    public static String URL_CELL_LOCATION = "http://218.246.35.74:5000";//»ùÕ¾¶¨Î»½Ó¿Ú
+    public static String URL_CELL_LOCATION = "http://218.246.35.74:5000";//åŸºç«™å®šä½æ¥å£
 
     private Context context;
     private static CellInfoUtil cellInfoUtil;
@@ -43,7 +43,7 @@ public class CellInfoUtil {
             @Override
             public void onSuccessed(CellPosition cellPosition) {
                 String notice = cellPosition.getDesc();
-                if (!"Î´²éÑ¯µ½Êı¾İ!".equals(notice)) {
+                if (!"æœªæŸ¥è¯¢åˆ°æ•°æ®!".equals(notice)) {
 
                     Position p = resolveResponse( cellPosition, lac, cid, nid);
                     position.lac = p.lac;
@@ -66,7 +66,7 @@ public class CellInfoUtil {
 
 
     /**
-     * ½âÎöÊı¾İ
+     * è§£ææ•°æ®
      *
      * @param cellPosition
      * @param lac
@@ -80,15 +80,15 @@ public class CellInfoUtil {
 
 
         Object model = cellPosition.getModel();
-        //  "×¢²áÂëÒÑ¾­½ûÓÃ"
-        if (model.equals("×¢²áÂëÒÑ¾­½ûÓÃ")) {
-            Toast.makeText(context, "×¢²áÂëÒÑ¾­½ûÓÃ,ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+        //  "æ³¨å†Œç å·²ç»ç¦ç”¨"
+        if (model.equals("æ³¨å†Œç å·²ç»ç¦ç”¨")) {
+            Toast.makeText(context, "æ³¨å†Œç å·²ç»ç¦ç”¨,è¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
             return p;
-        } else if (model.equals("×¢²áÂë´ÎÊıÒÑÓÃÍê")) {
-            Toast.makeText(context, "×¢²áÂë´ÎÊıÒÑÓÃÍê,ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+        } else if (model.equals("æ³¨å†Œç æ¬¡æ•°å·²ç”¨å®Œ")) {
+            Toast.makeText(context, "æ³¨å†Œç æ¬¡æ•°å·²ç”¨å®Œ,è¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
             return p;
-        } else if (model.equals("×¢²áÂëÊ¹ÓÃÊ±¼ä¹ıÆÚ")) {
-            Toast.makeText(context, "×¢²áÂëÊ¹ÓÃÊ±¼ä¹ıÆÚ,ÇëÁªÏµ¹ÜÀíÔ±", Toast.LENGTH_SHORT).show();
+        } else if (model.equals("æ³¨å†Œç ä½¿ç”¨æ—¶é—´è¿‡æœŸ")) {
+            Toast.makeText(context, "æ³¨å†Œç ä½¿ç”¨æ—¶é—´è¿‡æœŸ,è¯·è”ç³»ç®¡ç†å‘˜", Toast.LENGTH_SHORT).show();
             return p;
         } else {
             p.lac = Integer.parseInt(lac);
@@ -121,9 +121,9 @@ public class CellInfoUtil {
         if (mTManager != null) {
             int phonetype = mTManager.getPhoneType();
             mnc = mTManager.getSubscriberId().substring(3, 5);
-            //ÒÆ¶¯00¡¢02¡¢04¡¢07
-            //ÁªÍ¨01¡¢06¡¢09
-            //µçĞÅ03¡¢05¡¢µçĞÅ4GÊ¹ÓÃ11
+            //ç§»åŠ¨00ã€02ã€04ã€07
+            //è”é€š01ã€06ã€09
+            //ç”µä¿¡03ã€05ã€ç”µä¿¡4Gä½¿ç”¨11
 
             if ("00".equals(mnc) || "02".equals(mnc) || "04".equals(mnc) || "07".equals(mnc)) {
                 mnc = "0";
@@ -155,10 +155,10 @@ public class CellInfoUtil {
         return nid;
     }
     /**
-     * Gps¾ÀÆ«
+     * Gpsçº å
      *
-     * @param lat gpsÖĞµÄÎ³¶È
-     * @param lng gpsÖĞµÄ¾­¶È
+     * @param lat gpsä¸­çš„çº¬åº¦
+     * @param lng gpsä¸­çš„ç»åº¦
      * @return
      */
     public static LatLng GpsCorrectToLatLng(double lat, double lng) {

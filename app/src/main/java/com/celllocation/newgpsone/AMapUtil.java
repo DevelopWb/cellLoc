@@ -1,5 +1,5 @@
 /**
- *
+ * 
  */
 package com.celllocation.newgpsone;
 
@@ -17,7 +17,7 @@ import java.util.List;
 
 public class AMapUtil {
 	/**
-	 * ÅĞ¶ÏedittextÊÇ·ñnull
+	 * åˆ¤æ–­edittextæ˜¯å¦null
 	 */
 	public static String checkEditText(EditText editText) {
 		if (editText != null && editText.getText() != null
@@ -59,21 +59,21 @@ public class AMapUtil {
 	}
 
 	/**
-	 * °ÑLatLng¶ÔÏó×ª»¯ÎªLatLonPoint¶ÔÏó
+	 * æŠŠLatLngå¯¹è±¡è½¬åŒ–ä¸ºLatLonPointå¯¹è±¡
 	 */
 	public static LatLonPoint convertToLatLonPoint(LatLng latlon) {
 		return new LatLonPoint(latlon.latitude, latlon.longitude);
 	}
 
 	/**
-	 * °ÑLatLonPoint¶ÔÏó×ª»¯ÎªLatLon¶ÔÏó
+	 * æŠŠLatLonPointå¯¹è±¡è½¬åŒ–ä¸ºLatLonå¯¹è±¡
 	 */
 	public static LatLng convertToLatLng(LatLonPoint latLonPoint) {
 		return new LatLng(latLonPoint.getLatitude(), latLonPoint.getLongitude());
 	}
 
 	/**
-	 * °Ñ¼¯ºÏÌåµÄLatLonPoint×ª»¯Îª¼¯ºÏÌåµÄLatLng
+	 * æŠŠé›†åˆä½“çš„LatLonPointè½¬åŒ–ä¸ºé›†åˆä½“çš„LatLng
 	 */
 	public static ArrayList<LatLng> convertArrList(List<LatLonPoint> shapes) {
 		ArrayList<LatLng> lineShapes = new ArrayList<LatLng>();
@@ -85,7 +85,7 @@ public class AMapUtil {
 	}
 
 	/**
-	 * longÀàĞÍÊ±¼ä¸ñÊ½»¯
+	 * longç±»å‹æ—¶é—´æ ¼å¼åŒ–
 	 */
 	public static String convertToTime(long time) {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

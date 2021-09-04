@@ -68,14 +68,14 @@ public class MyHistoryDataListAdapter extends BaseAdapter {
                 context.startActivity(intent);
             }
         });
-        holder.cell_his_jizhan.setText("»ùÕ¾ºÅ£º" + bean.getCid());
-        holder.cell_his_shanqu.setText("ÉÈÇøºÅ£º" + bean.getLac());
-        holder.cell_his_address.setText("µØÖ·£º" + bean.getAddress());
-        holder.cell_his_time.setText("¶¨Î»Ê±¼ä£º" + bean.getTime());
-        holder.cell_his_accuracy.setText("¾«È·¶È£º" + bean.getAccuracy());
+        holder.cell_his_jizhan.setText("åŸºç«™å·ï¼š" + bean.getCid());
+        holder.cell_his_shanqu.setText("æ‰‡åŒºå·ï¼š" + bean.getLac());
+        holder.cell_his_address.setText("åœ°å€ï¼š" + bean.getAddress());
+        holder.cell_his_time.setText("å®šä½æ—¶é—´ï¼š" + bean.getTime());
+        holder.cell_his_accuracy.setText("ç²¾ç¡®åº¦ï¼š" + bean.getAccuracy());
         if (bean.getNid() != null&& !TextUtils.isEmpty(bean.getNid())) {
             if (Integer.parseInt(bean.getNid()) > -1) {
-                holder.cell_his_nid.setText("ÍøÂçÊ¶±ğÂë(NID)£º" + bean.getNid());
+                holder.cell_his_nid.setText("ç½‘ç»œè¯†åˆ«ç (NID)ï¼š" + bean.getNid());
             }
         } else {
             holder.cell_his_nid.setVisibility(View.INVISIBLE);

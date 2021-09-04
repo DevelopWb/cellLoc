@@ -11,7 +11,7 @@ import com.celllocation.newgpsone.bean.PeopleLocation;
 
 public class SqliteHelper extends SQLiteOpenHelper {
 
-    //»ùÕ¾¶¨Î»ÖĞµÄ»°µ¥
+    //åŸºç«™å®šä½ä¸­çš„è¯å•
     public static final String PHONE_NO = "phone_no";
     public static final String FORM_INFO = "form_info";
     public static final String PEOPLE_LOCATION = "people_location";
@@ -29,24 +29,24 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
 
-        //»ùÕ¾¶¨Î»ÖĞ ÒÆ¶¯ÁªÍ¨µÄ»°µ¥
+        //åŸºç«™å®šä½ä¸­ ç§»åŠ¨è”é€šçš„è¯å•
         db.execSQL("CREATE TABLE IF NOT EXISTS " + PHONE_NO + "(" + PhoneNO.ID
                 + " integer primary key," + PhoneNO.PHONE + " varchar,"
                 + PhoneNO.LAC + " varchar," + PhoneNO.CID + " varchar," + PhoneNO.NID + " varchar,"
                 + PhoneNO.TIME + " varchar," + PhoneNO.IMPORT_TIME + " varchar" + ")");
 
-//»ùÕ¾¶¨Î»ÖĞ£¬»°µ¥ÈËĞÅÏ¢
+//åŸºç«™å®šä½ä¸­ï¼Œè¯å•äººä¿¡æ¯
         db.execSQL("CREATE TABLE IF NOT EXISTS " + FORM_INFO + "(" + FormInfo.ID
                 + " integer primary key," + FormInfo.NAME + " varchar," + FormInfo.PHONE + " varchar,"
                 + FormInfo.STARTTIME + " varchar," + FormInfo.ENDTIME + " varchar,"
                 + FormInfo.DETAIL + " varchar," + FormInfo.IMPORT_TIME + " varchar" + ")");
 
-        //»ùÕ¾¶¨Î»ÖĞ£¬»°µ¥ÈËÎ»ÖÃĞÅÏ¢
+        //åŸºç«™å®šä½ä¸­ï¼Œè¯å•äººä½ç½®ä¿¡æ¯
         db.execSQL("CREATE TABLE IF NOT EXISTS " + PEOPLE_LOCATION + "(" + PeopleLocation.ID
                 + " integer primary key," + PeopleLocation.LAT + " varchar," + PeopleLocation.LNG + " varchar," + PeopleLocation.ADDRESS + " varchar,"
                 + PeopleLocation.LAC + " varchar," + PeopleLocation.CID + " varchar," + PeopleLocation.NID + " varchar,"
                 + PeopleLocation.TIME + " varchar," + PeopleLocation.IMPORT_TIME + " varchar" + ")");
-//»ùÕ¾¶¨Î»ÖĞ£¬»ùÕ¾¼ÇÂ¼Êı¾İ
+//åŸºç«™å®šä½ä¸­ï¼ŒåŸºç«™è®°å½•æ•°æ®
         db.execSQL("CREATE TABLE IF NOT EXISTS " + CELL_HISDATA + "(" + CellHisData.ID
                 + " integer primary key," + CellHisData.PHONE + " varchar," + CellHisData.LNG + " varchar," + CellHisData.LAT + " varchar,"
                 + CellHisData.LAC + " varchar," + CellHisData.CID + " varchar," + CellHisData.NID + " varchar,"

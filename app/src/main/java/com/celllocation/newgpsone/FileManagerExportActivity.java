@@ -26,19 +26,19 @@ import java.util.List;
 public class FileManagerExportActivity extends ListActivity {
 
     /**
-     * ÎÄ¼ş£¨¼Ğ£©Ãû×Ö
+     * æ–‡ä»¶ï¼ˆå¤¹ï¼‰åå­—
      */
     private List<String> items = null;
     /**
-     * ÎÄ¼ş£¨¼Ğ£©Â·¾¶
+     * æ–‡ä»¶ï¼ˆå¤¹ï¼‰è·¯å¾„
      */
     private List<String> paths = null;
     /**
-     * ¸ùÄ¿Â¼
+     * æ ¹ç›®å½•
      **/
     private String rootPath = "/";
     /**
-     * ÏÔÊ¾µ±Ç°Ä¿Â¼
+     * æ˜¾ç¤ºå½“å‰ç›®å½•
      **/
     private TextView mPath;
     private File file;
@@ -75,7 +75,7 @@ public class FileManagerExportActivity extends ListActivity {
     }
 
     /**
-     * »ñÈ¡Ö¸¶¨Ä¿Â¼ÏÂµÄËùÓĞÎÄ¼ş(¼Ğ)
+     * è·å–æŒ‡å®šç›®å½•ä¸‹çš„æ‰€æœ‰æ–‡ä»¶(å¤¹)
      *
      * @param filePath
      */
@@ -86,7 +86,7 @@ public class FileManagerExportActivity extends ListActivity {
         File f = new File(filePath);
         File[] files = f.listFiles();
 
-        // ÓÃÀ´ÏÔÊ¾ ¡°·µ»Ø¸ùÄ¿Â¼¡±+"ÉÏ¼¶Ä¿Â¼"
+        // ç”¨æ¥æ˜¾ç¤º â€œè¿”å›æ ¹ç›®å½•â€+"ä¸Šçº§ç›®å½•"
         if (!filePath.equals(rootPath)) {
             items.add("rootPath");
             paths.add(rootPath);
@@ -95,7 +95,7 @@ public class FileManagerExportActivity extends ListActivity {
             paths.add(f.getParent());
         }
 
-        // ÏÈÅÅĞò
+        // å…ˆæ’åº
         List<File> resultList = null;
         if (files != null) {
             resultList = new ArrayList<File>();
@@ -122,7 +122,7 @@ public class FileManagerExportActivity extends ListActivity {
                 paths.add(file.getPath());
             }
         } else {
-            Log.i("hnyer", filePath + "ÎŞ×ÓÎÄ¼ş");
+            Log.i("hnyer", filePath + "æ— å­æ–‡ä»¶");
         }
 
         setListAdapter(new MyAdapter(this, items, paths));

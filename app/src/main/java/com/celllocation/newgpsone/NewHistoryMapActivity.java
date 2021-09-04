@@ -74,7 +74,7 @@ public class NewHistoryMapActivity extends Activity implements
         getNeedDatas();
         findView();
         df = new DecimalFormat("0.000000");
-        mapView.onCreate(savedInstanceState);// ´Ë·½·¨±ØĞëÖØĞ´
+        mapView.onCreate(savedInstanceState);// æ­¤æ–¹æ³•å¿…é¡»é‡å†™
         setListener();
         init();
         getpositions();
@@ -98,7 +98,7 @@ public class NewHistoryMapActivity extends Activity implements
     }
 
     private void getpositions() {
-        // »®Ïß
+        // åˆ’çº¿
         PolylineOptions mPolylineOptions = new PolylineOptions();
         mPolylineOptions.width(10).setDottedLine(true).geodesic(true)
                 .color(Color.argb(255, 1, 1, 1));
@@ -160,7 +160,7 @@ public class NewHistoryMapActivity extends Activity implements
                         .toRoundBitmap(getBitmap(), NewHistoryMapActivity.this)))
                 .draggable(true).period(50);
         Marker regeoMarker = aMap.addMarker(markerOption1);
-        regeoMarker.showInfoWindow();// ÉèÖÃÄ¬ÈÏÏÔÊ¾Ò»¸öinfowinfow
+        regeoMarker.showInfoWindow();// è®¾ç½®é»˜è®¤æ˜¾ç¤ºä¸€ä¸ªinfowinfow
         aMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(latlng1, 16, 0, 0)));
 
     }
@@ -204,7 +204,7 @@ public class NewHistoryMapActivity extends Activity implements
                                                                         NewHistoryMapActivity.this)))
                                                         .draggable(true).period(50);
                                                 Marker regeoMarker = aMap.addMarker(markerOption1);
-                                                regeoMarker.showInfoWindow();// ÉèÖÃÄ¬ÈÏÏÔÊ¾Ò»¸öinfowinfow
+                                                regeoMarker.showInfoWindow();// è®¾ç½®é»˜è®¤æ˜¾ç¤ºä¸€ä¸ªinfowinfow
                                                 aMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(latlng1, 16, 0, 0)));
                                                 if (position == 0) {
                                                     mbtnleft.setBackgroundResource(R.drawable.bt7);
@@ -256,7 +256,7 @@ public class NewHistoryMapActivity extends Activity implements
                                                                                  NewHistoryMapActivity.this)))
                                                                  .draggable(true).period(50);
                                                          Marker regeoMarker = aMap.addMarker(markerOption1);
-                                                         regeoMarker.showInfoWindow();// ÉèÖÃÄ¬ÈÏÏÔÊ¾Ò»¸öinfowinfow
+                                                         regeoMarker.showInfoWindow();// è®¾ç½®é»˜è®¤æ˜¾ç¤ºä¸€ä¸ªinfowinfow
                                                          aMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(latlng1, 16, 0, 0)));
                                                          if (position == arrs.length - 1) {
                                                              mbtnright.setBackgroundResource(R.drawable.bt4);
@@ -304,7 +304,7 @@ public class NewHistoryMapActivity extends Activity implements
 
     private void setUpMap() {
 
-        aMap.setOnMarkerClickListener(this);// ÉèÖÃµã»÷markerÊÂ¼ş¼àÌıÆ÷
+        aMap.setOnMarkerClickListener(this);// è®¾ç½®ç‚¹å‡»markeräº‹ä»¶ç›‘å¬å™¨
         aMap.setInfoWindowAdapter(this);
 
     }
@@ -321,7 +321,7 @@ public class NewHistoryMapActivity extends Activity implements
 
 
     /**
-     * ·½·¨±ØĞëÖØĞ´
+     * æ–¹æ³•å¿…é¡»é‡å†™
      */
     @Override
     protected void onResume() {
@@ -330,7 +330,7 @@ public class NewHistoryMapActivity extends Activity implements
     }
 
     /**
-     * ·½·¨±ØĞëÖØĞ´
+     * æ–¹æ³•å¿…é¡»é‡å†™
      */
     @Override
     protected void onPause() {
@@ -339,7 +339,7 @@ public class NewHistoryMapActivity extends Activity implements
     }
 
     /**
-     * ·½·¨±ØĞëÖØĞ´
+     * æ–¹æ³•å¿…é¡»é‡å†™
      */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -348,7 +348,7 @@ public class NewHistoryMapActivity extends Activity implements
     }
 
     /**
-     * ·½·¨±ØĞëÖØĞ´
+     * æ–¹æ³•å¿…é¡»é‡å†™
      */
     @Override
     protected void onDestroy() {
@@ -383,22 +383,22 @@ public class NewHistoryMapActivity extends Activity implements
 
         if (!nid.equals("")) {
             cell_his_nid_tv.setVisibility(View.VISIBLE);
-            lac.setText("ÏµÍ³Ê¶±ğÂë£º" + snippets[0]);
-            cell_his_nid_tv.setText("ÍøÂçÊ¶±ğÂë£º"+snippets[2]);
+            lac.setText("ç³»ç»Ÿè¯†åˆ«ç ï¼š" + snippets[0]);
+            cell_his_nid_tv.setText("ç½‘ç»œè¯†åˆ«ç ï¼š"+snippets[2]);
         }else{
-            lac.setText("ÉÈÇøºÅ£º" + snippets[0]);
+            lac.setText("æ‰‡åŒºå·ï¼š" + snippets[0]);
             cell_his_nid_tv.setVisibility(View.GONE);
         }
         TextView lng = (TextView) view.findViewById(R.id.cell_his_lng);
-        lng.setText("¾­¶È£º" + snippets[6]);
+        lng.setText("ç»åº¦ï¼š" + snippets[6]);
         TextView lat = (TextView) view.findViewById(R.id.cell_his_lat);
-        lat.setText("Î³¶È£º" + snippets[5]);
+        lat.setText("çº¬åº¦ï¼š" + snippets[5]);
 
         TextView cid = (TextView) view.findViewById(R.id.cell_his_jizhan_tv);
 
-        cid.setText("»ùÕ¾ºÅ£º" + snippets[1]);
+        cid.setText("åŸºç«™å·ï¼š" + snippets[1]);
         address_tv = (TextView) view.findViewById(R.id.cell_his_address_tv);
-        address_tv.setText("µØÖ·£º" + snippets[4]);
+        address_tv.setText("åœ°å€ï¼š" + snippets[4]);
 
         TextView time_tv = (TextView) view.findViewById(R.id.cell_his_time_tv);
         time_tv.setText(snippets[3]);
@@ -438,8 +438,8 @@ public class NewHistoryMapActivity extends Activity implements
         Window window = dialog_c.getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
         window.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-        lp.width = dip2px(this, 290); // ¿í¶È
-        lp.height = dip2px(this, 160); // ¸ß¶È
+        lp.width = dip2px(this, 290); // å®½åº¦
+        lp.height = dip2px(this, 160); // é«˜åº¦
         window.setAttributes(lp);
         window.setContentView(v);
         TextView bigtext = (TextView) v.findViewById(R.id.bigtext_tv);

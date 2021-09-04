@@ -66,7 +66,7 @@ public class ExcelUtils {
 				file.createNewFile();
 			}
 			workbook = Workbook.createWorkbook(file);
-			WritableSheet sheet = workbook.createSheet("»ùÕ¾ĞÅÏ¢", 0);
+			WritableSheet sheet = workbook.createSheet("åŸºç«™ä¿¡æ¯", 0);
 			sheet.addCell((WritableCell) new Label(0, 0, fileName, arial14format));
 			for (int col = 0; col < colName.length; col++) {
 				sheet.addCell(new Label(col, 0, colName[col], arial10format));
@@ -109,7 +109,7 @@ public class ExcelUtils {
 					}
 				}
 				writebook.write();
-				Toast.makeText(c, "µ¼³ö³É¹¦", Toast.LENGTH_SHORT).show();
+				Toast.makeText(c, "å¯¼å‡ºæˆåŠŸ", Toast.LENGTH_SHORT).show();
 			}
 			catch (Exception e) {
 				e.printStackTrace();
@@ -166,7 +166,7 @@ public class ExcelUtils {
 //
 //			for (int i = 0; i < sheetRows; ++i) {
 //				for (int j = 0; j < sheetColumns; ++j) {
-//					// getCell(Col,Row)»ñµÃµ¥Ôª¸ñµÄÖµ
+//					// getCell(Col,Row)è·å¾—å•å…ƒæ ¼çš„å€¼
 //					String  content = sheet.getCell(j,i).getContents();
 //					if (j==sheetColumns-1) {
 //						sb.append(content+";");
@@ -188,7 +188,7 @@ public class ExcelUtils {
 //				}
 //			}
 //			workbook.close();
-//			Toast.makeText(context, "µ¼Èë³É¹¦", Toast.LENGTH_SHORT).show();
+//			Toast.makeText(context, "å¯¼å…¥æˆåŠŸ", Toast.LENGTH_SHORT).show();
 //
 //		} catch (IOException e) {
 //			e.printStackTrace();

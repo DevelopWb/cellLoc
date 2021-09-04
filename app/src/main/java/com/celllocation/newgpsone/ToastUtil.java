@@ -82,13 +82,13 @@ public class ToastUtil {
 	        case 2001:
                 throw new AMapException(AMapException.AMAP_ID_NOT_EXIST);
 	        case 11:
-	            Toast.makeText(context, "Á½´Îµ¥´ÎÉÏ´«µÄ¼ä¸ôµÍÓÚ 5 Ãë", Toast.LENGTH_LONG).show();
+	            Toast.makeText(context, "ä¸¤æ¬¡å•æ¬¡ä¸Šä¼ çš„é—´éš”ä½äº 5 ç§’", Toast.LENGTH_LONG).show();
 	            break;
 	        case 12:
-	            Toast.makeText(context, "Uploadinfo ¶ÔÏóÎª¿Õ", Toast.LENGTH_LONG).show();
+	            Toast.makeText(context, "Uploadinfo å¯¹è±¡ä¸ºç©º", Toast.LENGTH_LONG).show();
                 break;
 	        case 14:
-	            Toast.makeText(context, "Point Îª¿Õ£¬»òÓëÇ°´ÎÉÏ´«µÄÏàÍ¬", Toast.LENGTH_LONG).show();
+	            Toast.makeText(context, "Point ä¸ºç©ºï¼Œæˆ–ä¸å‰æ¬¡ä¸Šä¼ çš„ç›¸åŒ", Toast.LENGTH_LONG).show();
                 break;    
 	        }
         } catch (Exception e) {

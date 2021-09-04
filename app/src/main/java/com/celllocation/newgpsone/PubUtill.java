@@ -11,9 +11,9 @@ public class PubUtill {
 
 	public static boolean isDrawable = true;
 	public static boolean DianxinClicked = false;
-	public static String URL_Reg_Center = "http://218.246.35.198:8082";//×¢²áÂëÖĞĞÄÏµÍ³
+	public static String URL_Reg_Center = "http://218.246.35.198:8082";//æ³¨å†Œç ä¸­å¿ƒç³»ç»Ÿ
 
-// ÅĞ¶ÏÍøÂçÊÇ·ñÕı³£
+// åˆ¤æ–­ç½‘ç»œæ˜¯å¦æ­£å¸¸
 
 	public static boolean isConnected(Context context) {
 		boolean isOk = true;

@@ -7,8 +7,8 @@ public class Position implements Serializable {
 
 	public String posStr = "";
 	public String httpsurl = "";
-	public String name = "Çë¸øÎÒÆğ¸öÃû°É...";
-	public String address = "Î´ÖªµØÃû";
+	public String name = "è¯·ç»™æˆ‘èµ·ä¸ªåå§...";
+	public String address = "æœªçŸ¥åœ°å";
 	public String number = "";
 
 	public double x = 0.0;

@@ -56,11 +56,11 @@ public class FormInfoAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         final FormInfo bean = arrays.get(position);
-        holder.phone_name.setText("ĞÕÃû£º" + bean.getName());
-        holder.phone_num.setText("µç»°£º" + bean.getPhone());
-        holder.startTime.setText("ÆğÊ¼£º" + bean.getStartTime());
-        holder.endTime.setText("½ØÖ¹£º" + bean.getEndTime());
-        holder.phone_detail.setText("±¸×¢£º" + bean.getDetail());
+        holder.phone_name.setText("å§“åï¼š" + bean.getName());
+        holder.phone_num.setText("ç”µè¯ï¼š" + bean.getPhone());
+        holder.startTime.setText("èµ·å§‹ï¼š" + bean.getStartTime());
+        holder.endTime.setText("æˆªæ­¢ï¼š" + bean.getEndTime());
+        holder.phone_detail.setText("å¤‡æ³¨ï¼š" + bean.getDetail());
         holder.display_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
