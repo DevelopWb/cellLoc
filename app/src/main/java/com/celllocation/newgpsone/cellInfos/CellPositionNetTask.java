@@ -3,7 +3,6 @@ package com.celllocation.newgpsone.cellInfos;
 import android.util.ArrayMap;
 
 import com.celllocation.newgpsone.Utils.RegOperateTool;
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.Map;
 
@@ -12,6 +11,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**

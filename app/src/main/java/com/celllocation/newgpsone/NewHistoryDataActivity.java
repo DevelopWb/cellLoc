@@ -14,7 +14,6 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ListView;
 
-import androidx.core.app.ActivityCompat;
 
 import com.celllocation.R;
 import com.celllocation.newgpsone.bean.CellHisData;
