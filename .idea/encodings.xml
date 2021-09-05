@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
-    <file url="file://$PROJECT_DIR$" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/celllocation/newgpsone/AMapUtil.java" charset="UTF-8" />
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/build.gradle" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/celllocation/newgpsone/CellPositionActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/celllocation/newgpsone/CellSearchActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/celllocation/newgpsone/CommonProgressDialog.java" charset="UTF-8" />
@@ -23,7 +23,6 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/celllocation/newgpsone/SearchMapActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/celllocation/newgpsone/SqliteHelper.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/celllocation/newgpsone/ToastUtil.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/celllocation/newgpsone/Utils/AMapUtil.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/celllocation/newgpsone/Utils/RegOperateTool.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/celllocation/newgpsone/bean/CellHisData.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/celllocation/newgpsone/bean/DataUtil.java" charset="UTF-8" />
