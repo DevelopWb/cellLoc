@@ -16,14 +16,12 @@
         android:id="@+id/main_tablayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/white"
+        android:background="@color/colorPrimary"
         android:elevation="10dp"
         app:tabGravity="fill"
         app:tabMaxWidth="0dp"
         app:tabMode="fixed"
-        app:tabBackground="@color/white"
+        app:tabBackground="@color/colorPrimary"
         app:tabIndicatorHeight="0dp"
-        app:tabRippleColor="@color/gray_ripple"/>
-    <!--app:tabBackground="@drawable/bg_main_tab"-->
-    <!--app:tabSelectedTextColor="@color/white"-->
+        app:tabRippleColor="@color/colorPrimary"/>
 </LinearLayout>

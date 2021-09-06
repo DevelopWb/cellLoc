@@ -1,4 +1,4 @@
-package com.celllocation.newgpsone.homepage.fragments;
+package com.celllocation.newgpsone.functions.celllocate;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -48,8 +48,8 @@ import com.celllocation.newgpsone.bean.DataUtil;
 import com.celllocation.newgpsone.cellInfos.CellPositionNetTask;
 import com.celllocation.newgpsone.cellInfos.PositionCallBack;
 import com.celllocation.newgpsone.database.DataHelper;
-import com.celllocation.newgpsone.homepage.MainPageContract;
-import com.celllocation.newgpsone.homepage.MainPagePresent;
+import com.celllocation.newgpsone.functions.MainPageContract;
+import com.celllocation.newgpsone.functions.MainPagePresent;
 import com.juntai.disabled.basecomponent.utils.DisplayUtil;
 
 import java.text.DecimalFormat;

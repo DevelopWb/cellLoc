@@ -1,4 +1,4 @@
-package com.celllocation.newgpsone.homepage.fragments;
+package com.celllocation.newgpsone.functions.celllocate;
 
 import android.app.Dialog;
 import android.widget.ListView;
@@ -8,8 +8,8 @@ import com.celllocation.newgpsone.Utils.PubUtill;
 import com.celllocation.newgpsone.base.BaseAppFragment;
 import com.celllocation.newgpsone.bean.CellHisData;
 import com.celllocation.newgpsone.database.DataHelper;
-import com.celllocation.newgpsone.homepage.MainPageContract;
-import com.celllocation.newgpsone.homepage.MainPagePresent;
+import com.celllocation.newgpsone.functions.MainPageContract;
+import com.celllocation.newgpsone.functions.MainPagePresent;
 import com.celllocation.newgpsone.older.MyHistoryDataListAdapter;
 
 import java.util.List;
@@ -34,6 +34,7 @@ public class CellLocateRecordFragment extends BaseAppFragment<MainPagePresent> i
 
     @Override
     public void lazyLoad() {
+        ((CellLocateActivity)getBaseActivity()).setTitleName("历史记录");
 
     }
 

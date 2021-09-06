@@ -1,4 +1,4 @@
-package com.celllocation.newgpsone.homepage;
+package com.celllocation.newgpsone.functions;
 
 
 import android.support.design.widget.TabLayout;
@@ -12,41 +12,34 @@ import com.celllocation.R;
 import com.celllocation.newgpsone.base.BaseAppActivity;
 import com.celllocation.newgpsone.base.customview.CustomViewPager;
 import com.celllocation.newgpsone.base.customview.MainPagerAdapter;
-import com.celllocation.newgpsone.homepage.fragments.CellLocateFragment;
-import com.celllocation.newgpsone.homepage.fragments.CellLocateRecordFragment;
-import com.celllocation.newgpsone.homepage.fragments.CellSearchFragment;
 
-public class MainActivity extends BaseAppActivity<MainPagePresent> implements ViewPager.OnPageChangeListener,
+/**
+ * @aouther tobato
+ * @description 描述  业务的基类
+ * @date  21:57
+ */
+public abstract class BaseFunctionActivity extends BaseAppActivity<MainPagePresent> implements ViewPager.OnPageChangeListener,
         View.OnClickListener, MainPageContract.IMainPageView {
     private MainPagerAdapter adapter;
     private LinearLayout mainLayout;
     private CustomViewPager mainViewpager;
-
     private TabLayout mainTablayout;
-    private String[] title = new String[]{"首页", "添加", "我的"};
-    private int[] tabDrawables = new int[]{R.drawable.home_index, R.drawable.home_index, R.drawable.home_index};
-    private SparseArray<Fragment> mFragments = new SparseArray<>();
+
     //
 
 
     @Override
     public int getLayoutView() {
-        return R.layout.activity_main;
+        return R.layout.activity_fuctions;
     }
 
     @Override
     public void initView() {
-        initToolbarAndStatusBar(false);
         mainViewpager = findViewById(R.id.main_viewpager);
         mainTablayout = findViewById(R.id.main_tablayout);
         mainLayout = findViewById(R.id.main_layout);
         mainViewpager.setScanScroll(false);
-        mFragments.append(0, new CellSearchFragment());//
-        mFragments.append(1, new CellLocateFragment());//
-        mFragments.append(2, new CellLocateRecordFragment());//
-        getToolbar().setVisibility(View.GONE);
-        mBaseRootCol.setFitsSystemWindows(false);
-        mainViewpager.setOffscreenPageLimit(3);
+        mainViewpager.setOffscreenPageLimit(2);
         initTab();
     }
 
@@ -56,16 +49,17 @@ public class MainActivity extends BaseAppActivity<MainPagePresent> implements Vi
 
 
     public void initTab() {
-        adapter = new MainPagerAdapter(getSupportFragmentManager(), getApplicationContext(), title, tabDrawables,
-                mFragments);
+        adapter = new MainPagerAdapter(getSupportFragmentManager(), getApplicationContext(), getTitleArrays(),
+                getTabDrawables(),
+                getFragments());
         mainViewpager.setAdapter(adapter);
-        mainViewpager.setOffscreenPageLimit(title.length);
+        mainViewpager.setOffscreenPageLimit(getTitleArrays().length);
         /*viewpager切换监听，包含滑动点击两种*/
         mainViewpager.addOnPageChangeListener(this);
-        for (int i = 0; i < title.length; i++) {
+        for (int i = 0; i < getTitleArrays().length; i++) {
             TabLayout.Tab tab = mainTablayout.newTab();
             if (tab != null) {
-                if (i == title.length - 1) {
+                if (i == getTitleArrays().length - 1) {
                     tab.setCustomView(adapter.getTabView(i, true));
                 } else {
                     tab.setCustomView(adapter.getTabView(i, false));
@@ -96,6 +90,12 @@ public class MainActivity extends BaseAppActivity<MainPagePresent> implements Vi
         mainViewpager.setCurrentItem(0);
     }
 
+    protected abstract SparseArray<Fragment> getFragments();
+
+    protected abstract int[] getTabDrawables();
+
+    protected abstract String[] getTitleArrays();
+
     @Override
     public void onPageScrolled(int i, float v, int i1) {
 
@@ -113,12 +113,6 @@ public class MainActivity extends BaseAppActivity<MainPagePresent> implements Vi
 
     @Override
     public void onSuccess(String tag, Object o) {
-        switch (tag) {
-            case MainPageContract.UPLOAD_HISTORY:
-                break;
-            default:
-                break;
-        }
     }
 
 

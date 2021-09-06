@@ -129,11 +129,11 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Toolba
         if (visible) {
             getToolbar().setVisibility(View.VISIBLE);
             getToolbar().setNavigationIcon(null);
-            getToolbar().setBackgroundResource(R.drawable.bg_white_only_bottom_gray_shape_1px);
+            getToolbar().setBackgroundResource(R.color.colorAccent);
             //状态栏配置
             mBaseRootCol.setFitsSystemWindows(true);
-            mImmersionBar.statusBarColor(R.color.white)
-                    .statusBarDarkFont(true)
+            mImmersionBar.statusBarColor(R.color.colorAccent)
+                    .statusBarDarkFont(false)
                     .init();
         }else{
             getToolbar().setVisibility(View.GONE);
@@ -219,7 +219,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Toolba
      */
     public void setTitleName(String title) {
         titleName.setText(title);
-        titleName.setTextColor(ContextCompat.getColor(this, R.color.black));
+        titleName.setTextColor(ContextCompat.getColor(this, R.color.white));
     }
 
     /**

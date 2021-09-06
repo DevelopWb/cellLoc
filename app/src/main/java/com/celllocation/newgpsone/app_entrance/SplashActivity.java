@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.celllocation.newgpsone.homepage.MainActivity;
-import com.celllocation.newgpsone.older.CellPositionActivity;
+import com.celllocation.newgpsone.functions.BaseFunctionActivity;
+import com.celllocation.newgpsone.functions.celllocate.CellLocateActivity;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
@@ -15,6 +15,7 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.functions.Consumer;
+import jxl.Cell;
 
 /**
  * @aouther Ma
@@ -45,7 +46,7 @@ public class SplashActivity extends RxAppCompatActivity {
                         } else {
                             //有一个权限没通过
                         }
-                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                        startActivity(new Intent(SplashActivity.this, CellLocateActivity.class));
                         finish();
                     }
                 }, new Consumer<Throwable>() {
