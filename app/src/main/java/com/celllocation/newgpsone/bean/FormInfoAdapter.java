@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.celllocation.R;
-import com.celllocation.newgpsone.FormDataLocationMapActivity;
+import com.celllocation.newgpsone.older.FormDataLocationMapActivity;
 
 import java.util.List;
 

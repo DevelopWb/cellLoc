@@ -41,8 +41,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.celllocation.R;
-import com.celllocation.newgpsone.CommonProgressDialog;
-import com.celllocation.newgpsone.DialogAdapter;
+import com.celllocation.newgpsone.older.CommonProgressDialog;
+import com.celllocation.newgpsone.older.DialogAdapter;
 import com.celllocation.newgpsone.bean.GpsCorrect;
 
 import org.json.JSONArray;

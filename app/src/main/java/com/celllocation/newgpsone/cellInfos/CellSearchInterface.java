@@ -1,5 +1,7 @@
 package com.celllocation.newgpsone.cellInfos;
 
+import com.celllocation.newgpsone.bean.CellPosition;
+
 import java.util.Map;
 
 import io.reactivex.Observable;

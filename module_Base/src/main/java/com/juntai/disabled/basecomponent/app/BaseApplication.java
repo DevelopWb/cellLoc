@@ -26,9 +26,6 @@ import com.squareup.leakcanary.RefWatcher;
 
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
-import java.util.Locale;
-
-import io.reactivex.annotations.Beta;
 
 
 public abstract class BaseApplication extends Application {
@@ -38,7 +35,6 @@ public abstract class BaseApplication extends Application {
     private RefWatcher mRefWatcher;
     ArrayList<Activity> activities = new ArrayList<>();
     public static boolean isReLoadWarn = true;//登录被顶，是否提示
-
     /*app处于后台true,前台false*/
     public abstract void appBackground(boolean isBackground, Activity activity);
 
