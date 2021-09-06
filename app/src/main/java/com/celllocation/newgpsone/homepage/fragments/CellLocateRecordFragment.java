@@ -1,9 +1,18 @@
 package com.celllocation.newgpsone.homepage.fragments;
 
+import android.app.Dialog;
+import android.widget.ListView;
+
 import com.celllocation.R;
+import com.celllocation.newgpsone.Utils.PubUtill;
 import com.celllocation.newgpsone.base.BaseAppFragment;
+import com.celllocation.newgpsone.bean.CellHisData;
+import com.celllocation.newgpsone.database.DataHelper;
 import com.celllocation.newgpsone.homepage.MainPageContract;
 import com.celllocation.newgpsone.homepage.MainPagePresent;
+import com.celllocation.newgpsone.older.MyHistoryDataListAdapter;
+
+import java.util.List;
 
 /**
  * @Author: tobato
@@ -13,33 +22,62 @@ import com.celllocation.newgpsone.homepage.MainPagePresent;
  * @UpdateDate: 2021-09-06 10:06
  */
 public class CellLocateRecordFragment extends BaseAppFragment<MainPagePresent> implements MainPageContract.IMainPageView {
+    MyHistoryDataListAdapter m_ListAdapter;
+    private ListView m_listHistoryData;
+    private Dialog dialog;
+    private DataHelper helper;
+    private String phone;
     @Override
-    protected MainPagePresent createPresenter() {
+    public MainPagePresent createPresenter() {
         return null;
     }
 
     @Override
-    protected void lazyLoad() {
+    public void lazyLoad() {
 
     }
 
     @Override
-    protected int getLayoutRes() {
+    public int getLayoutRes() {
         return R.layout.cell_historydata;
     }
 
     @Override
-    protected void initView() {
+    public void initView() {
+        helper = new DataHelper(mContext);
+        dialog = new Dialog(mContext, R.style.DialogStyle);
+        dialog.setContentView(R.layout.dialog);
+        dialog.show();
+        phone = PubUtill.getIMEIDeviceId(mContext);
+        m_listHistoryData = (ListView)getView(R.id.listHistoryData);
 
     }
 
     @Override
-    protected void initData() {
+    public void initData() {
 
     }
 
     @Override
     public void onSuccess(String tag, Object o) {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        List<CellHisData> arrays = helper.GetCellHisDatas(phone);
+        m_ListAdapter = new MyHistoryDataListAdapter(mContext,arrays);
+        m_listHistoryData.setAdapter(m_ListAdapter);
+        dialog.dismiss();
+    }
+
+    @Override
+    public void onDestroy() {
+        if (dialog!=null) {
+            dialog.dismiss();
+            dialog=null;
+        }
+        super.onDestroy();
     }
 }

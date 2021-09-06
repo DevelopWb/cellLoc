@@ -54,19 +54,11 @@
             android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name=".newgpsone.older.CellSearchActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.NoTitleBar" />
-        <activity
             android:name=".newgpsone.older.NewHistoryDataActivity"
             android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name=".newgpsone.older.NewHistoryMapActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.NoTitleBar" />
-        <activity
-            android:name=".newgpsone.older.NewCellActivity"
             android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.NoTitleBar" />
 

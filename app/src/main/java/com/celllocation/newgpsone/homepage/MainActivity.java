@@ -13,6 +13,7 @@ import com.celllocation.newgpsone.base.BaseAppActivity;
 import com.celllocation.newgpsone.base.customview.CustomViewPager;
 import com.celllocation.newgpsone.base.customview.MainPagerAdapter;
 import com.celllocation.newgpsone.homepage.fragments.CellLocateFragment;
+import com.celllocation.newgpsone.homepage.fragments.CellLocateRecordFragment;
 import com.celllocation.newgpsone.homepage.fragments.CellSearchFragment;
 
 public class MainActivity extends BaseAppActivity<MainPagePresent> implements ViewPager.OnPageChangeListener,
@@ -35,13 +36,14 @@ public class MainActivity extends BaseAppActivity<MainPagePresent> implements Vi
 
     @Override
     public void initView() {
+        initToolbarAndStatusBar(false);
         mainViewpager = findViewById(R.id.main_viewpager);
         mainTablayout = findViewById(R.id.main_tablayout);
         mainLayout = findViewById(R.id.main_layout);
         mainViewpager.setScanScroll(false);
         mFragments.append(0, new CellSearchFragment());//
         mFragments.append(1, new CellLocateFragment());//
-        mFragments.append(2, new CellLocateFragment());//
+        mFragments.append(2, new CellLocateRecordFragment());//
         getToolbar().setVisibility(View.GONE);
         mBaseRootCol.setFitsSystemWindows(false);
         mainViewpager.setOffscreenPageLimit(3);

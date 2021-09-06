@@ -66,8 +66,6 @@ public class CellPositionActivity extends TabActivity {
         final TextView tv1 = (TextView) view1.findViewById(R.id.textview_iv);
         tv1.setText("基站查询");
         tv1.setTextColor(getResources().getColor(R.color.blue_text));
-        Intent intent1 = new Intent(this, CellSearchActivity.class);
-        tab1.setIndicator(view1).setContent(intent1);
         host.addTab(tab1);
 
 
@@ -77,8 +75,6 @@ public class CellPositionActivity extends TabActivity {
         final TextView tv2 = (TextView) view2.findViewById(R.id.textview_iv);
         tv2.setText("本机定位");
         tv2.setTextColor(getResources().getColor(R.color.white));
-        final Intent intent2 = new Intent(this, NewCellActivity.class);
-        tab2.setIndicator(view2).setContent(intent2);
         host.addTab(tab2);
 
 
