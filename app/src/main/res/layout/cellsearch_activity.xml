@@ -10,24 +10,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#969696"
         android:gravity="center"
         android:orientation="horizontal" >
 
         <LinearLayout
             android:id="@+id/cmcc_ll"
             android:layout_width="0dp"
+            android:background="@color/white"
             android:layout_height="100dp"
             android:layout_weight="1"
-            android:background="#0A8FCC"
             android:orientation="vertical" >
 
             <ImageView
+                android:id="@+id/cmcc_logo_iv"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/cmcc_icon" />
+                android:src="@mipmap/cmcc_normal_icon" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="移动基站"
-                android:textColor="#ffffff" />
+               />
         </LinearLayout>
 
         <LinearLayout
@@ -44,15 +44,16 @@
             android:layout_height="100dp"
             android:layout_marginLeft="1dp"
             android:layout_weight="1"
-            android:background="#0A8FCC"
             android:orientation="vertical" >
 
             <ImageView
+                android:id="@+id/unicom_logo_iv"
+
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/unicom_icon" />
+                android:src="@mipmap/unicom_normal_icon" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -60,7 +61,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="联通基站"
-                android:textColor="#ffffff" />
+               />
         </LinearLayout>
 
         <LinearLayout
@@ -69,15 +70,15 @@
             android:layout_height="100dp"
             android:layout_marginLeft="1dp"
             android:layout_weight="1"
-            android:background="#0A8FCC"
             android:orientation="vertical" >
 
             <ImageView
+                android:id="@+id/telecom_logo_iv"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/telecom_icon" />
+                android:src="@mipmap/telecom_normal_icon" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -85,7 +86,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="电信基站"
-                android:textColor="#ffffff" />
+               />
         </LinearLayout>
     </LinearLayout>
 

@@ -2,6 +2,7 @@ package com.celllocation.newgpsone;
 
 import android.app.Application;
 
+import com.juntai.disabled.basecomponent.app.BaseApplication;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.util.concurrent.TimeUnit;
@@ -12,7 +13,7 @@ import okhttp3.OkHttpClient;
  * Created by Administrator on 2016/12/12.
  */
 
-public class MyApplication extends Application {
+public class MyApplication extends BaseApplication {
 
     @Override
     public void onCreate() {

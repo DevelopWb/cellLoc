@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="@drawable/cmcc_icon" />
+            android:background="@mipmap/cmcc_normal_icon" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="@drawable/unicom_icon" />
+            android:background="@mipmap/unicom_normal_icon" />
 
         <TextView
             android:id="@+id/follow_pop_tv"
@@ -76,7 +76,7 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="@drawable/telecom_icon" />
+            android:background="@mipmap/telecom_normal_icon" />
 
         <TextView
             android:id="@+id/tv1"

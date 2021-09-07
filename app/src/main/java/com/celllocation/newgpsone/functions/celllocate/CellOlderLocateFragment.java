@@ -61,7 +61,8 @@ import java.text.DecimalFormat;
  * @UpdateUser: 更新者
  * @UpdateDate: 2021-09-06 10:06
  */
-public class CellLocateFragment extends BaseAppFragment<MainPagePresent> implements MainPageContract.IMainPageView, View.OnClickListener, AMap.OnMarkerClickListener,
+// TODO: 2021-09-07  暂时不用了 
+public class CellOlderLocateFragment extends BaseAppFragment<MainPagePresent> implements MainPageContract.IMainPageView, View.OnClickListener, AMap.OnMarkerClickListener,
         AMap.InfoWindowAdapter {
     private MapView mapView;
     private AMap aMap;

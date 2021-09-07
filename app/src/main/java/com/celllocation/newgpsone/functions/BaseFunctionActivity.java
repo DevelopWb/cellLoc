@@ -138,9 +138,6 @@ public abstract class BaseFunctionActivity extends BaseAppActivity<MainPagePrese
         super.onDestroy();
     }
 
-    @Override
-    public void onBackPressed() {
-    }
 
     @Override
     public void onPause() {

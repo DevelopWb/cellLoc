@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.celllocation.newgpsone.MainActivity;
 import com.celllocation.newgpsone.functions.BaseFunctionActivity;
 import com.celllocation.newgpsone.functions.celllocate.CellLocateActivity;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -46,7 +47,7 @@ public class SplashActivity extends RxAppCompatActivity {
                         } else {
                             //有一个权限没通过
                         }
-                        startActivity(new Intent(SplashActivity.this, CellLocateActivity.class));
+                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
                         finish();
                     }
                 }, new Consumer<Throwable>() {

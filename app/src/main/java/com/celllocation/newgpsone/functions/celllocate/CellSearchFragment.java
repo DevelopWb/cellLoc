@@ -4,12 +4,17 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +39,7 @@ import com.celllocation.newgpsone.older.SearchMapActivity;
  * @UpdateUser: 更新者
  * @UpdateDate: 2021-09-06 10:06
  */
-public class CellSearchFragment extends BaseAppFragment<MainPagePresent> implements MainPageContract.IMainPageView,View.OnClickListener {
+public class CellSearchFragment extends BaseAppFragment<MainPagePresent> implements MainPageContract.IMainPageView, View.OnClickListener {
 
 
     private TextView cell_search_tv, qita_tv, shanqu_tv, jizhan_tv;
@@ -56,6 +61,11 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
     AlertDialog.Builder posprogress = null;
 
     private RegOperateTool regOperateTool;
+    private View view;
+    private ImageView mCmccLogoIv;
+    private ImageView mUnicomLogoIv;
+    private ImageView mTelecomLogoIv;
+
     @Override
     protected MainPagePresent createPresenter() {
         return new MainPagePresent();
@@ -63,7 +73,7 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
 
     @Override
     protected void lazyLoad() {
-        ((CellLocateActivity)getBaseActivity()).setTitleName("基站定位");
+        ((CellLocateActivity) getBaseActivity()).setTitleName("基站定位");
     }
 
     @Override
@@ -85,11 +95,14 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
         shanqu_tv = (TextView) getView(R.id.shanqu_tv);
         jizhan_tv = (TextView) getView(R.id.jizhan_tv);
         qita_tv = (TextView) getView(R.id.qita_tv);
-        cmcc_ll.setBackgroundColor(android.graphics.Color.parseColor("#125E96"));
         cell_search_tv.setOnClickListener(this);
         cmcc_ll.setOnClickListener(this);
         unicom_ll.setOnClickListener(this);
         telecom_ll.setOnClickListener(this);
+        mCmccLogoIv = (ImageView) getView(R.id.cmcc_logo_iv);
+        mCmccLogoIv.setImageResource(R.mipmap.cmcc_press_icon);
+        mUnicomLogoIv = (ImageView) getView(R.id.unicom_logo_iv);
+        mTelecomLogoIv = (ImageView) getView(R.id.telecom_logo_iv);
     }
 
     @Override
@@ -164,15 +177,12 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
             case R.id.cmcc_ll://移动
 
                 PubUtill.DianxinClicked = false;
-                MNC="0";
+                MNC = "0";
                 LAC_et.setText("");
                 CELL_et.setText("");
-                cmcc_ll.setBackgroundColor(android.graphics.Color
-                        .parseColor("#125E96"));
-                unicom_ll.setBackgroundColor(android.graphics.Color
-                        .parseColor("#0A8FCC"));
-                telecom_ll.setBackgroundColor(android.graphics.Color
-                        .parseColor("#0A8FCC"));
+                mCmccLogoIv.setImageResource(R.mipmap.cmcc_press_icon);
+                mUnicomLogoIv.setImageResource(R.mipmap.unicom_normal_icon);
+                mTelecomLogoIv.setImageResource(R.mipmap.telecom_normal_icon);
                 telecomNID_ll.setVisibility(View.GONE);
                 shanqu_tv.setText("LAC(扇区号) ：");
                 jizhan_tv.setText("CID( 基站号 )：");
@@ -181,13 +191,10 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
                 LAC_et.setText("");
                 CELL_et.setText("");
                 PubUtill.DianxinClicked = false;
-                MNC="1";
-                unicom_ll.setBackgroundColor(android.graphics.Color
-                        .parseColor("#125E96"));
-                cmcc_ll.setBackgroundColor(android.graphics.Color
-                        .parseColor("#0A8FCC"));
-                telecom_ll.setBackgroundColor(android.graphics.Color
-                        .parseColor("#0A8FCC"));
+                MNC = "1";
+                mCmccLogoIv.setImageResource(R.mipmap.cmcc_normal_icon);
+                mUnicomLogoIv.setImageResource(R.mipmap.unicom_press_icon);
+                mTelecomLogoIv.setImageResource(R.mipmap.telecom_normal_icon);
                 telecomNID_ll.setVisibility(View.GONE);
                 shanqu_tv.setText("LAC(扇区号) ：");
                 jizhan_tv.setText("CID( 基站号 )：");
@@ -197,13 +204,10 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
                 CELL_et.setText("");
                 NID_et.setText("");
                 PubUtill.DianxinClicked = true;
-                MNC="3";
-                telecom_ll.setBackgroundColor(android.graphics.Color
-                        .parseColor("#125E96"));
-                cmcc_ll.setBackgroundColor(android.graphics.Color
-                        .parseColor("#0A8FCC"));
-                unicom_ll.setBackgroundColor(android.graphics.Color
-                        .parseColor("#0A8FCC"));
+                MNC = "3";
+                mCmccLogoIv.setImageResource(R.mipmap.cmcc_normal_icon);
+                mUnicomLogoIv.setImageResource(R.mipmap.unicom_normal_icon);
+                mTelecomLogoIv.setImageResource(R.mipmap.telecom_press_icon);
                 telecomNID_ll.setVisibility(View.VISIBLE);
                 shanqu_tv.setText("SID(系统识别码)：");
                 jizhan_tv.setText("BID(   基 站 号   )：");
@@ -222,11 +226,11 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
         dlgmsg = "正在进行基站查询...";
         ShowProgressDlg(dlgmsg);
         dlg.setMessage(dlgmsg);
-        GetJizhanPosBySelf(LAC, CID, NID,MNC);
+        GetJizhanPosBySelf(LAC, CID, NID, MNC);
 
     }
 
-    private void GetJizhanPosBySelf(final String lac, final String cid, final String nid,final String mnc) {
+    private void GetJizhanPosBySelf(final String lac, final String cid, final String nid, final String mnc) {
 
         CellPositionNetTask cellPositionNetTask = new CellPositionNetTask(new PositionCallBack() {
             @Override
@@ -234,7 +238,7 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
                 String notice = position.getDesc();
                 if ("未查询到数据!".equals(notice)) {
                     CellLocationFailed("未查询到位置信息，查询失败");
-                }else{
+                } else {
                     GpsPos = resolveResponse(mContext, position, lac, cid, nid);
                     myMessageHandler.sendEmptyMessage(6);
                 }
@@ -246,7 +250,7 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
                 CellLocationFailed("未查询到位置信息，查询失败");
             }
         });
-        cellPositionNetTask.getCellPosition(lac, cid, nid,mnc);
+        cellPositionNetTask.getCellPosition(lac, cid, nid, mnc);
     }
 
     /**
@@ -290,7 +294,7 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
 //                LatLng mLatLng = RegOperateTool.GpsCorrectToLatLng(Double.parseDouble(lat), Double.parseDouble(lng));
 //                p.x = mLatLng.latitude;
 //                p.y = mLatLng.longitude;
-                p.x= Double.parseDouble(lat);
+                p.x = Double.parseDouble(lat);
                 p.y = Double.parseDouble(lng);
             }
             p.address = cellPosition.getModel().getAddress();
@@ -387,4 +391,5 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
         dlg = posprogress.show();
 
     }
+
 }
