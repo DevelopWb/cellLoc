@@ -12,6 +12,7 @@ import com.celllocation.newgpsone.functions.celllocate.CellLocateActivity;
 import com.celllocation.newgpsone.functions.wifilocate.WifiLocateActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.juntai.disabled.basecomponent.mvp.BasePresenter;
+import com.juntai.disabled.basecomponent.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +21,10 @@ public class MainActivity extends BaseAppActivity {
 
     private RecyclerView mRecyclerview;
     private MenuAdapter menuAdapter;
-    public final static String HOMEPAGE_MENU_CELL_LOC = "消防检查";
-    public final static String HOMEPAGE_MENU_WIFI_LOC = "重点人员";
-    public final static String HOMEPAGE_MENU_PEOPLE_LOC = "治安巡检";
-    public final static String HOMEPAGE_MENU_LAT_LNG = "流动人口";
+    public final static String HOMEPAGE_MENU_CELL_LOC = "基站定位";
+    public final static String HOMEPAGE_MENU_WIFI_LOC = "WIFI定位";
+    public final static String HOMEPAGE_MENU_PEOPLE_LOC = "人员定位";
+    public final static String HOMEPAGE_MENU_LAT_LNG = "经纬度查询";
 
     @Override
     protected BasePresenter createPresenter() {
@@ -37,7 +38,7 @@ public class MainActivity extends BaseAppActivity {
 
     @Override
     public void initView() {
-
+        setTitleName("智能定位");
         mRecyclerview = (RecyclerView) findViewById(R.id.recyclerview);
         menuAdapter = new MenuAdapter(R.layout.homepage_menu_item);
         GridLayoutManager manager = new GridLayoutManager(mContext, 2);
@@ -57,16 +58,19 @@ public class MainActivity extends BaseAppActivity {
                         startActivity(intent);
                         break;
                     case HOMEPAGE_MENU_WIFI_LOC:
-                        intent.setClass(mContext, WifiLocateActivity.class);
-                        startActivity(intent);
+                        ToastUtils.toast(mContext,"暂未开放,敬请期待");
+//                        intent.setClass(mContext, WifiLocateActivity.class);
+//                        startActivity(intent);
                         break;
                     case HOMEPAGE_MENU_PEOPLE_LOC:
-                        intent.setClass(mContext, CellLocateActivity.class);
-                        startActivity(intent);
+                        ToastUtils.toast(mContext,"暂未开放,敬请期待");
+                        //                        intent.setClass(mContext, CellLocateActivity.class);
+//                        startActivity(intent);
                         break;
                     case HOMEPAGE_MENU_LAT_LNG:
-                        intent.setClass(mContext, CellLocateActivity.class);
-                        startActivity(intent);
+                        ToastUtils.toast(mContext,"暂未开放,敬请期待");
+                        //                        intent.setClass(mContext, CellLocateActivity.class);
+//                        startActivity(intent);
                         break;
                     default:
                         break;

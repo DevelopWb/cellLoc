@@ -10,7 +10,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@drawable/p31</item>
+        <item name="android:windowBackground">@mipmap/splash_bg</item>
     </style>
     <!--mainactivity - tab 文本-->
     <style name="tab_textview">

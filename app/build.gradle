@@ -20,11 +20,28 @@ android {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
-
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+    signingConfigs {
+        config {
+            keyAlias '基站定位'
+            keyPassword 'JZDW_Alpha_CN_MB_V1.0'
+            storeFile file('jzdw.keystore')
+            storePassword 'JZDW_Alpha_CN_MB_V1.0'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
 

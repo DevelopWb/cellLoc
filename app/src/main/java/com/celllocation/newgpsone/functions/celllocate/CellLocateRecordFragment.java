@@ -8,6 +8,7 @@ import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.base.BaseAppFragment;
 import com.celllocation.newgpsone.bean.CellHisData;
 import com.celllocation.newgpsone.database.DataHelper;
+import com.celllocation.newgpsone.functions.BaseFunctionActivity;
 import com.celllocation.newgpsone.functions.MainPageContract;
 import com.celllocation.newgpsone.functions.MainPagePresent;
 import com.celllocation.newgpsone.older.MyHistoryDataListAdapter;
@@ -34,7 +35,8 @@ public class CellLocateRecordFragment extends BaseAppFragment<MainPagePresent> i
 
     @Override
     public void lazyLoad() {
-        ((CellLocateActivity)getBaseActivity()).setTitleName("历史记录");
+        ((BaseFunctionActivity) getBaseActivity()).mTitleName.setText("历史记录");
+
 
     }
 

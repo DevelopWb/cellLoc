@@ -22,20 +22,23 @@ public class CellLocateActivity extends BaseFunctionActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        mBaseRootCol.setFitsSystemWindows(false);
-//        setMargin(getToolbar(),0,20,0,0);
+//        AppBarLayout.LayoutParams layoutParams = new AppBarLayout.LayoutParams(getToolbar().getLayoutParams());
+//        layoutParams.height = DisplayUtil.dp2px(mContext,80);
+//        getToolbar().setLayoutParams(layoutParams);
+//        getToolbar().setPadding(0,DisplayUtil.dp2px(mContext,20),0,DisplayUtil.dp2px(mContext,20));
     }
-    /**
-     * 配置view的margin属性
-     */
-    public void setMargin(View view, int left, int top, int right, int bottom) {
-        left = DisplayUtil.dp2px(this, left);
-        top = DisplayUtil.dp2px(this, top);
-        right = DisplayUtil.dp2px(this, right);
-        bottom = DisplayUtil.dp2px(this, bottom);
-        AppBarLayout.LayoutParams layoutParams = new AppBarLayout.LayoutParams(view.getLayoutParams());
-        layoutParams.setMargins(left, top, right, bottom);
-        view.setLayoutParams(layoutParams);
-    }
+//    /**
+//     * 配置view的margin属性
+//     */
+//    public void setMargin(View view, int left, int top, int right, int bottom) {
+//        left = DisplayUtil.dp2px(this, left);
+//        top = DisplayUtil.dp2px(this, top);
+//        right = DisplayUtil.dp2px(this, right);
+//        bottom = DisplayUtil.dp2px(this, bottom);
+//        AppBarLayout.LayoutParams layoutParams = new AppBarLayout.LayoutParams(view.getLayoutParams());
+//        layoutParams.setMargins(left, top, right, bottom);
+//        view.setLayoutParams(layoutParams);
+//    }
     @Override
     protected SparseArray<Fragment> getFragments() {
         SparseArray<Fragment> mFragments = new SparseArray<>();

@@ -25,6 +25,7 @@ import com.celllocation.newgpsone.bean.DataUtil;
 import com.celllocation.newgpsone.bean.Position;
 import com.celllocation.newgpsone.cellInfos.CellPositionNetTask;
 import com.celllocation.newgpsone.cellInfos.PositionCallBack;
+import com.celllocation.newgpsone.functions.BaseFunctionActivity;
 import com.celllocation.newgpsone.functions.MainPageContract;
 import com.celllocation.newgpsone.functions.MainPagePresent;
 import com.celllocation.newgpsone.older.SearchMapActivity;
@@ -71,7 +72,7 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
 
     @Override
     protected void lazyLoad() {
-        ((CellLocateActivity) getBaseActivity()).setTitleName("基站定位");
+        ((BaseFunctionActivity) getBaseActivity()).mTitleName.setText("基站定位");
     }
 
     @Override

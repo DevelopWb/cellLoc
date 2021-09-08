@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/menu_icon_iv"
-        android:layout_width="65dp"
-        android:layout_height="65dp"></ImageView>
+        android:layout_width="50dp"
+        android:layout_height="50dp"></ImageView>
 
     <TextView
         android:id="@+id/homepage_menu_title_tv"
@@ -20,6 +20,6 @@
         android:layout_height="wrap_content"
         android:text="消防巡检"
         android:textColor="@color/colorAccent"
-        android:textSize="22dp"></TextView>
+        android:textSize="16sp"></TextView>
 
 </LinearLayout>
