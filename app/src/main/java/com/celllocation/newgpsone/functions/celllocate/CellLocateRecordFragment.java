@@ -4,7 +4,7 @@ import android.app.Dialog;
 import android.widget.ListView;
 
 import com.celllocation.R;
-import com.celllocation.newgpsone.Utils.PubUtill;
+import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.base.BaseAppFragment;
 import com.celllocation.newgpsone.bean.CellHisData;
 import com.celllocation.newgpsone.database.DataHelper;
@@ -49,7 +49,7 @@ public class CellLocateRecordFragment extends BaseAppFragment<MainPagePresent> i
         dialog = new Dialog(mContext, R.style.DialogStyle);
         dialog.setContentView(R.layout.dialog);
         dialog.show();
-        phone = PubUtill.getIMEIDeviceId(mContext);
+        phone = PublicUtill.getIMEIDeviceId(mContext);
         m_listHistoryData = (ListView)getView(R.id.listHistoryData);
 
     }

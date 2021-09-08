@@ -19,7 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.celllocation.R;
-import com.celllocation.newgpsone.Utils.PubUtill;
+import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.Utils.RegOperateTool;
 
 import static com.celllocation.R.layout.tab;
@@ -108,8 +108,8 @@ public class CellPositionActivity extends TabActivity {
             @Override
             public void onClick(View v) {
                 if (isCanUseSim(CellPositionActivity.this)) {
-                    if (host.getCurrentTab() == 1 && PubUtill.isDrawable) {
-                        PubUtill.isDrawable = false;
+                    if (host.getCurrentTab() == 1 && PublicUtill.isDrawable) {
+                        PublicUtill.isDrawable = false;
                         Intent intent = new Intent("REFRESH");
                         sendBroadcast(intent);
                     } else {

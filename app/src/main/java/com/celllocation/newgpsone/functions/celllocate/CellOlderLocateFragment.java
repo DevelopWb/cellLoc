@@ -39,7 +39,7 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.services.core.LatLonPoint;
 import com.celllocation.R;
 import com.celllocation.newgpsone.Utils.AMapUtil;
-import com.celllocation.newgpsone.Utils.PubUtill;
+import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.Utils.RegOperateTool;
 import com.celllocation.newgpsone.base.BaseAppFragment;
 import com.celllocation.newgpsone.bean.CellHisData;
@@ -115,7 +115,7 @@ public class CellOlderLocateFragment extends BaseAppFragment<MainPagePresent> im
                                 .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
                                 .draggable(true).period(50);
                         aMap.addMarker(markerOption);
-                        PubUtill.isDrawable = true;
+                        PublicUtill.isDrawable = true;
                         Toast.makeText(mContext, "基站定位成功！",
                                 Toast.LENGTH_SHORT).show();
                         // 在定位点画圆
@@ -134,7 +134,7 @@ public class CellOlderLocateFragment extends BaseAppFragment<MainPagePresent> im
                 case 7:// JiZhan position failed,self pos failed
                     Toast.makeText(mContext, "基站定位失败！",
                             Toast.LENGTH_SHORT).show();
-                    PubUtill.isDrawable = true;
+                    PublicUtill.isDrawable = true;
                     break;
                 default:
                     break;
@@ -154,7 +154,7 @@ public class CellOlderLocateFragment extends BaseAppFragment<MainPagePresent> im
             if (regOperateTool.isTheRegStatusOk(mContext)) {
                 PositionByJiZhan();
             }else{
-                PubUtill.isDrawable = true;
+                PublicUtill.isDrawable = true;
             }
         }else{
             if (RegOperateTool.isForbidden) {
@@ -211,11 +211,11 @@ public class CellOlderLocateFragment extends BaseAppFragment<MainPagePresent> im
                     if (regOperateTool.isTheRegStatusOk(mContext)) {
                         PositionByJiZhan();
                     }else{
-                        PubUtill.isDrawable = true;
+                        PublicUtill.isDrawable = true;
                     }
                 }else{
                     if (RegOperateTool.isForbidden) {
-                        PubUtill.isDrawable = true;
+                        PublicUtill.isDrawable = true;
                         Toast.makeText(mContext, "注册码无效，请联系管理员", Toast.LENGTH_SHORT).show();
                         return;
                     }

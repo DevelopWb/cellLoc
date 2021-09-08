@@ -36,7 +36,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".newgpsone.functions.wifilocate.WifiLocateActivity"></activity>
         <activity android:name=".newgpsone.MainActivity" />
-        <activity android:name=".newgpsone.functions.celllocate.CellLocateActivity" />
+        <activity android:name=".newgpsone.functions.celllocate.CellLocateActivity"
+             />
 
         <meta-data
             android:name="com.amap.api.v2.apikey"

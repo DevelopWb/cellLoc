@@ -1,21 +1,7 @@
 package com.celllocation.newgpsone.functions.wifilocate;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.telephony.TelephonyManager;
-import android.telephony.cdma.CdmaCellLocation;
-import android.telephony.gsm.GsmCellLocation;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -24,35 +10,19 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.AMapOptions;
-import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.UiSettings;
-import com.amap.api.maps.model.BitmapDescriptorFactory;
-import com.amap.api.maps.model.CircleOptions;
-import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
-import com.amap.api.maps.model.MarkerOptions;
-import com.amap.api.services.core.LatLonPoint;
 import com.celllocation.R;
-import com.celllocation.newgpsone.Utils.AMapUtil;
-import com.celllocation.newgpsone.Utils.PubUtill;
 import com.celllocation.newgpsone.Utils.RegOperateTool;
 import com.celllocation.newgpsone.base.BaseAppFragment;
-import com.celllocation.newgpsone.bean.CellHisData;
-import com.celllocation.newgpsone.bean.CellPosition;
-import com.celllocation.newgpsone.bean.DataUtil;
-import com.celllocation.newgpsone.cellInfos.CellPositionNetTask;
-import com.celllocation.newgpsone.cellInfos.PositionCallBack;
 import com.celllocation.newgpsone.database.DataHelper;
 import com.celllocation.newgpsone.functions.MainPageContract;
 import com.celllocation.newgpsone.functions.MainPagePresent;
 import com.juntai.disabled.basecomponent.utils.DisplayUtil;
-
-import java.text.DecimalFormat;
 
 /**
  * @Author: tobato

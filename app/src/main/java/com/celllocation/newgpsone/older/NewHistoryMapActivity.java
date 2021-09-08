@@ -36,8 +36,8 @@ import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.geocoder.GeocodeAddress;
 import com.amap.api.services.geocoder.GeocodeSearch;
 import com.celllocation.R;
+import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.database.DataHelper;
-import com.celllocation.newgpsone.Utils.PubUtill;
 import com.celllocation.newgpsone.bean.CellHisData;
 import com.celllocation.newgpsone.bean.DataUtil;
 
@@ -87,7 +87,7 @@ public class NewHistoryMapActivity extends Activity implements
 //        TelephonyManager tm = (TelephonyManager) this
 //                .getSystemService(Context.TELEPHONY_SERVICE);
 //        phone = tm.getDeviceId();
-        phone = PubUtill.getIMEIDeviceId(this);
+        phone = PublicUtill.getIMEIDeviceId(this);
         arrays = helper.GetCellHisDatas(phone);
         arrs = new CellHisData[arrays.size()];
         for (int i = 0; i < arrays.size(); i++) {

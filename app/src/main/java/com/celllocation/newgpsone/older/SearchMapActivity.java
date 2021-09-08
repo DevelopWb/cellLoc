@@ -43,7 +43,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.celllocation.R;
 import com.celllocation.newgpsone.Utils.AMapUtil;
-import com.celllocation.newgpsone.Utils.PubUtill;
+import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.Utils.RegOperateTool;
 import com.celllocation.newgpsone.bean.DataUtil;
 import com.celllocation.newgpsone.bean.Position;
@@ -83,7 +83,7 @@ public class SearchMapActivity extends Activity implements
 
             @Override
             public void onClick(View arg0) {
-                PubUtill.dianxin_mar = 0;
+                PublicUtill.dianxin_mar = 0;
                 finish();
             }
         });
@@ -281,7 +281,7 @@ public class SearchMapActivity extends Activity implements
 
     @Override
     public void onBackPressed() {
-        PubUtill.dianxin_mar = 0;
+        PublicUtill.dianxin_mar = 0;
         super.onBackPressed();
     }
 
@@ -293,7 +293,7 @@ public class SearchMapActivity extends Activity implements
         if (cellid == -1) {
             col4 = "基站号： 未知";
         } else {
-            if (PubUtill.dianxin_mar == 100) {
+            if (PublicUtill.dianxin_mar == 100) {
                 col4 = "基站号(BID)： " + String.valueOf(cellid);
             } else {
                 col4 = "基站号： " + String.valueOf(cellid);
@@ -302,7 +302,7 @@ public class SearchMapActivity extends Activity implements
 
         String col5;
         int lac = gpspos.lac;
-        if (PubUtill.dianxin_mar == 100) {
+        if (PublicUtill.dianxin_mar == 100) {
 
             if (lac == -1) {
                 col5 = "网络识别码： 未知";
@@ -360,7 +360,7 @@ public class SearchMapActivity extends Activity implements
 //		}
 //		String col5;
 //		int lac = Integer.parseInt(strs[4]);
-//		if (PubUtill.dianxin_mar == 100) {
+//		if (PublicUtill.dianxin_mar == 100) {
 //
 //			if (lac == -1) {
 //				col5 = "网络识别码： 未知";

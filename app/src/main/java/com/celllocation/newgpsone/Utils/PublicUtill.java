@@ -10,13 +10,12 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-public class PubUtill {
+public class PublicUtill {
 	
 	public static int dianxin_mar = 0;
 	public static boolean isDianxin = false;
-
+	public static String CDMA_CELL_LOC_KEY ="6536fdab0b6ecb926485658af71f3a9d";//cdma  key
 	public static boolean isDrawable = true;
-	public static boolean DianxinClicked = false;
 	public static String URL_Reg_Center = "http://218.246.35.198:8082";//注册码中心系统
 	public static String getIMEIDeviceId(Context context) {
 

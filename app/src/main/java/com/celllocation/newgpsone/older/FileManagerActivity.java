@@ -16,9 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.celllocation.R;
+import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.database.DataHelper;
 import com.celllocation.newgpsone.bean.PhoneNO;
-import com.celllocation.newgpsone.Utils.PubUtill;
 import com.celllocation.newgpsone.bean.DataUtil;
 import com.celllocation.newgpsone.bean.MyAdapter;
 
@@ -181,7 +181,7 @@ public class FileManagerActivity extends ListActivity {
                 int sheetRows = sheet.getRows();
                 int sheetNum = workbook.getNumberOfSheets();
                 int sheetColumns = sheet.getColumns();
-                if (PubUtill.isDianxin) {
+                if (PublicUtill.isDianxin) {
                     if (sheetColumns != 5) {
                         return "";
                     }
@@ -214,7 +214,7 @@ public class FileManagerActivity extends ListActivity {
                     for (int i = 0; i < data.length; i++) {
                         if (i > 0) {
                             String[] data_ = data[i].split(",");
-                            if (PubUtill.isDianxin) {
+                            if (PublicUtill.isDianxin) {
 
                                 if (data_.length > 0) {
                                     if (!TextUtils.isEmpty(data_[0])) {
@@ -280,7 +280,7 @@ public class FileManagerActivity extends ListActivity {
                                     return "";
                                 }
                                 String[] titles = titlle.split(",");
-                                if (PubUtill.isDianxin) {
+                                if (PublicUtill.isDianxin) {
                                     if (!titles[0].equals("PHONE")||!titles[1].equals("SID")||!titles[2].equals("BID")||!titles[3].equals("NID")||!titles[4].equals("日期")) {
                                         return "";
                                     }
@@ -374,7 +374,7 @@ public class FileManagerActivity extends ListActivity {
     }
     @Override
     protected void onDestroy() {
-        PubUtill.isDianxin = false;
+        PublicUtill.isDianxin = false;
         super.onDestroy();
     }
 }

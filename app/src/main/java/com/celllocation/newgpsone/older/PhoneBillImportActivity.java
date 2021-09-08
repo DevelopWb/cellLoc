@@ -17,8 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.celllocation.R;
+import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.database.DataHelper;
-import com.celllocation.newgpsone.Utils.PubUtill;
 import com.celllocation.newgpsone.bean.ExcelUtils;
 import com.celllocation.newgpsone.bean.FormInfo;
 
@@ -287,17 +287,17 @@ public class PhoneBillImportActivity extends Activity implements View.OnClickLis
              * 导入移动表格
              */
             case R.id.yidong_form_ll:
-                PubUtill.isDianxin = false;
+                PublicUtill.isDianxin = false;
                 Intent intent_yidong = new Intent(PhoneBillImportActivity.this, FileManagerActivity.class);
                 startActivityForResult(intent_yidong, 0);
                 break;
             case R.id.liantong_form_ll:
-                PubUtill.isDianxin = false;
+                PublicUtill.isDianxin = false;
                 Intent intent_liantong = new Intent(PhoneBillImportActivity.this, FileManagerActivity.class);
                 startActivityForResult(intent_liantong, 0);
                 break;
             case R.id.dianxin_form_ll:
-                PubUtill.isDianxin = true;
+                PublicUtill.isDianxin = true;
                 Intent intent_dianxin = new Intent(PhoneBillImportActivity.this, FileManagerActivity.class);
                 startActivityForResult(intent_dianxin, 0);
                 break;

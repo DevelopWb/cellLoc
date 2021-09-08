@@ -4,15 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,9 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.celllocation.R;
-import com.celllocation.newgpsone.Utils.PubUtill;
+import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.Utils.RegOperateTool;
 import com.celllocation.newgpsone.base.BaseAppFragment;
+import com.celllocation.newgpsone.bean.CellLocCDMAResultBean;
 import com.celllocation.newgpsone.bean.CellPosition;
 import com.celllocation.newgpsone.bean.DataUtil;
 import com.celllocation.newgpsone.bean.Position;
@@ -31,6 +28,8 @@ import com.celllocation.newgpsone.cellInfos.PositionCallBack;
 import com.celllocation.newgpsone.functions.MainPageContract;
 import com.celllocation.newgpsone.functions.MainPagePresent;
 import com.celllocation.newgpsone.older.SearchMapActivity;
+import com.juntai.disabled.basecomponent.utils.PubUtil;
+import com.juntai.disabled.basecomponent.utils.ToastUtils;
 
 /**
  * @Author: tobato
@@ -56,8 +55,6 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
     private String MNC = "0";//0代表移动，1代表联通
 
     Position GpsPos;
-    private String dlgmsg;
-    AlertDialog dlg = null;
     AlertDialog.Builder posprogress = null;
 
     private RegOperateTool regOperateTool;
@@ -65,6 +62,7 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
     private ImageView mCmccLogoIv;
     private ImageView mUnicomLogoIv;
     private ImageView mTelecomLogoIv;
+    private boolean DianxinClicked = false;
 
     @Override
     protected MainPagePresent createPresenter() {
@@ -112,7 +110,30 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
 
     @Override
     public void onSuccess(String tag, Object o) {
+        switch (tag) {
+            case MainPageContract.CELL_CDMA:
+                CellLocCDMAResultBean cellLocCDMAResultBean = (CellLocCDMAResultBean) o;
+                if (cellLocCDMAResultBean != null) {
+                    if (!TextUtils.isEmpty(cellLocCDMAResultBean.getReason())) {
+                        if (cellLocCDMAResultBean.getReason().contains("Successed")) {
+                            GpsPos = resolveResponse(mContext, cellLocCDMAResultBean, LAC, CID, NID);
+                            if (GpsPos != null) {
+                                Intent intent = new Intent();
+                                intent.setClass(mContext, SearchMapActivity.class);
+                                intent.putExtra("gpspos", GpsPos);
+                                startActivity(intent);
+                            }
+                        }else {
+                            ToastUtils.toast(mContext,"定位失败");
+                        }
+                    }
 
+
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
@@ -124,7 +145,7 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
                 String lacstr = LAC_et.getText().toString();
                 String cellstr = CELL_et.getText().toString();
 
-                if (PubUtill.DianxinClicked) {
+                if (DianxinClicked) {
                     if (TextUtils.isEmpty(lacstr)) {
                         Toast.makeText(mContext, "请填系统识别码",
                                 Toast.LENGTH_SHORT).show();
@@ -162,21 +183,21 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
 
                 if (RegOperateTool.istoolTip) {
                     if (regOperateTool.isTheRegStatusOk(mContext)) {
-                        JizhanPos();
+                        startCellLocate();
                     }
                 } else {
                     if (RegOperateTool.isForbidden) {
                         Toast.makeText(mContext, "注册码无效，请联系管理员", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    JizhanPos();
+                    startCellLocate();
                 }
 
 
                 break;
             case R.id.cmcc_ll://移动
 
-                PubUtill.DianxinClicked = false;
+                DianxinClicked = false;
                 MNC = "0";
                 LAC_et.setText("");
                 CELL_et.setText("");
@@ -190,7 +211,7 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
             case R.id.unicom_ll:
                 LAC_et.setText("");
                 CELL_et.setText("");
-                PubUtill.DianxinClicked = false;
+                DianxinClicked = false;
                 MNC = "1";
                 mCmccLogoIv.setImageResource(R.mipmap.cmcc_normal_icon);
                 mUnicomLogoIv.setImageResource(R.mipmap.unicom_press_icon);
@@ -203,7 +224,7 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
                 LAC_et.setText("");
                 CELL_et.setText("");
                 NID_et.setText("");
-                PubUtill.DianxinClicked = true;
+                DianxinClicked = true;
                 MNC = "3";
                 mCmccLogoIv.setImageResource(R.mipmap.cmcc_normal_icon);
                 mUnicomLogoIv.setImageResource(R.mipmap.unicom_normal_icon);
@@ -218,40 +239,40 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
         }
     }
 
-    public void JizhanPos() {
+    public void startCellLocate() {
         if (!DataUtil.isConnected(mContext)) {
             Toast.makeText(mContext, "网络异常，请检查手机网络", Toast.LENGTH_SHORT).show();
             return;
         }
-        dlgmsg = "正在进行基站查询...";
-        ShowProgressDlg(dlgmsg);
-        dlg.setMessage(dlgmsg);
-        GetJizhanPosBySelf(LAC, CID, NID, MNC);
+        if (DianxinClicked) {
+            mPresenter.cellLocateCDMA(LAC,CID,NID,PublicUtill.CDMA_CELL_LOC_KEY, MainPageContract.CELL_CDMA);
+        }
+
+//        GetJizhanPosBySelf(LAC, CID, NID, MNC);
 
     }
 
-    private void GetJizhanPosBySelf(final String lac, final String cid, final String nid, final String mnc) {
-
-        CellPositionNetTask cellPositionNetTask = new CellPositionNetTask(new PositionCallBack() {
-            @Override
-            public void onSuccessed(CellPosition position) {
-                String notice = position.getDesc();
-                if ("未查询到数据!".equals(notice)) {
-                    CellLocationFailed("未查询到位置信息，查询失败");
-                } else {
-                    GpsPos = resolveResponse(mContext, position, lac, cid, nid);
-                    myMessageHandler.sendEmptyMessage(6);
-                }
-
-            }
-
-            @Override
-            public void onErro() {
-                CellLocationFailed("未查询到位置信息，查询失败");
-            }
-        });
-        cellPositionNetTask.getCellPosition(lac, cid, nid, mnc);
-    }
+//    private void GetJizhanPosBySelf(final String lac, final String cid, final String nid, final String mnc) {
+//
+//        CellPositionNetTask cellPositionNetTask = new CellPositionNetTask(new PositionCallBack() {
+//            @Override
+//            public void onSuccessed(CellPosition position) {
+//                String notice = position.getDesc();
+//                if ("未查询到数据!".equals(notice)) {
+//                    CellLocationFailed("未查询到位置信息，查询失败");
+//                } else {
+//                    GpsPos = resolveResponse(mContext, position, lac, cid, nid);
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onErro() {
+//                CellLocationFailed("未查询到位置信息，查询失败");
+//            }
+//        });
+//        cellPositionNetTask.getCellPosition(lac, cid, nid, mnc);
+//    }
 
     /**
      * 解析数据
@@ -263,133 +284,41 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
      * @param nid
      * @return
      */
-    private Position resolveResponse(Context context, CellPosition cellPosition, String lac, String cid, String nid) {
+    private Position resolveResponse(Context context, CellLocCDMAResultBean cellPosition, String lac, String cid, String nid) {
 
         Position p = new Position();
-
-
-        Object model = cellPosition.getModel();
+//        Object model = cellPosition.getModel();
         //  "注册码已经禁用"
-        if (model.equals("注册码已经禁用")) {
-            Toast.makeText(context, "注册码已经禁用,请联系管理员", Toast.LENGTH_SHORT).show();
-            return p;
-        } else if (model.equals("注册码次数已用完")) {
-            Toast.makeText(context, "注册码次数已用完,请联系管理员", Toast.LENGTH_SHORT).show();
-            return p;
-        } else if (model.equals("注册码使用时间过期")) {
-            Toast.makeText(context, "注册码使用时间过期,请联系管理员", Toast.LENGTH_SHORT).show();
-            return p;
-        } else {
+//        if (model.equals("注册码已经禁用")) {
+//            Toast.makeText(context, "注册码已经禁用,请联系管理员", Toast.LENGTH_SHORT).show();
+//            return p;
+//        } else if (model.equals("注册码次数已用完")) {
+//            Toast.makeText(context, "注册码次数已用完,请联系管理员", Toast.LENGTH_SHORT).show();
+//            return p;
+//        } else if (model.equals("注册码使用时间过期")) {
+//            Toast.makeText(context, "注册码使用时间过期,请联系管理员", Toast.LENGTH_SHORT).show();
+//            return p;
+//        } else {
             p.lac = Integer.parseInt(lac);
             p.cid = Integer.parseInt(cid);
             if (!TextUtils.isEmpty(nid)) {
                 p.nid = Integer.parseInt(nid);
             }
-            String lat = cellPosition.getModel().getLatitude();
-            String lng = cellPosition.getModel().getLongitude();
+            String lat = cellPosition.getResult().getLat();
+            String lng = cellPosition.getResult().getLon();
             if (lat.isEmpty() || lng.isEmpty()) {
                 p.x = 0.0;
                 p.y = 0.0;
             } else {
-//                LatLng mLatLng = RegOperateTool.GpsCorrectToLatLng(Double.parseDouble(lat), Double.parseDouble(lng));
-//                p.x = mLatLng.latitude;
-//                p.y = mLatLng.longitude;
                 p.x = Double.parseDouble(lat);
                 p.y = Double.parseDouble(lng);
             }
-            p.address = cellPosition.getModel().getAddress();
+            p.address = cellPosition.getResult().getAddress();
             return p;
-        }
-    }
-
-    private void CellLocationFailed(String notice) {
-        dlg.setMessage(notice);
-        dlg.getButton(AlertDialog.BUTTON_POSITIVE).setText("返回");
+//        }
     }
 
 
-    Handler myMessageHandler = new Handler() {
 
-        public void handleMessage(Message msg) {
-
-            switch (msg.what) {
-
-                case 6:// JiZhan position success
-
-                    Log.d("debug", "jizhan pos succeed");
-
-                    if (posprogress != null) {
-                        dlg.dismiss();
-                    }
-
-//				Toast.makeText(mContext, "基站查询成功！",
-//						Toast.LENGTH_SHORT).show();
-                    if (GpsPos != null) {
-                        Intent intent = new Intent();
-                        intent.setClass(mContext, SearchMapActivity.class);
-                        intent.putExtra("gpspos", GpsPos);
-                        startActivity(intent);
-                    }
-                    // SetCenterPos(GpsPos);
-
-                    break;
-
-                case 7:// JiZhan position failed,self pos failed
-
-                    Log.d("debug", "jizhan pos failed");
-
-                    dlgmsg = dlgmsg + "\n" + "基站定位失败 ";
-                    dlg.setMessage(dlgmsg);
-                    dlg.getButton(AlertDialog.BUTTON_POSITIVE).setText("返回");
-
-                    break;
-
-                default:
-                    break;
-            }
-            super.handleMessage(msg);
-        }
-    };
-
-    public void ShowProgressDlg(String info) {
-        // 创建ProgressDialog对象
-        posprogress = new AlertDialog.Builder(mContext);
-
-        // 设置进度条风格，风格为圆形，旋转的
-        // posprogress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-
-        // 设置ProgressDialog 标题
-        posprogress.setTitle("请稍候");
-
-        posprogress.setMessage(info);
-
-        posprogress.setCancelable(false);
-
-        // 设置ProgressDialog 的一个Button
-        posprogress.setPositiveButton("放弃定位",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int i) {
-
-                        if (dlg != null
-                                && dlg.getButton(AlertDialog.BUTTON_POSITIVE)
-                                .getText().toString()
-                                .equalsIgnoreCase("返回")) {
-                            dialog.dismiss();
-                            // finish();
-
-                            return;
-                        }
-
-                        dialog.dismiss();
-                        // android.os.Process.killProcess(android.os.Process.myPid());
-
-
-                    }
-                });
-
-        // 让ProgressDialog显示
-        dlg = posprogress.show();
-
-    }
 
 }

@@ -21,7 +21,6 @@ import com.celllocation.newgpsone.base.customview.MainPagerAdapter;
 public abstract class BaseFunctionActivity extends BaseAppActivity<MainPagePresent> implements ViewPager.OnPageChangeListener,
         View.OnClickListener, MainPageContract.IMainPageView {
     private MainPagerAdapter adapter;
-    private LinearLayout mainLayout;
     private CustomViewPager mainViewpager;
     private TabLayout mainTablayout;
 
@@ -37,7 +36,6 @@ public abstract class BaseFunctionActivity extends BaseAppActivity<MainPagePrese
     public void initView() {
         mainViewpager = findViewById(R.id.main_viewpager);
         mainTablayout = findViewById(R.id.main_tablayout);
-        mainLayout = findViewById(R.id.main_layout);
         mainViewpager.setScanScroll(false);
         mainViewpager.setOffscreenPageLimit(2);
         initTab();
