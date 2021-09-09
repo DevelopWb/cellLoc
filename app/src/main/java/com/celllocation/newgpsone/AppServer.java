@@ -1,18 +1,14 @@
 package com.celllocation.newgpsone;
 
 
-import com.celllocation.newgpsone.bean.CellLocCDMAResultBean;
+import com.celllocation.newgpsone.bean.CellLocResultBean;
 import com.juntai.disabled.basecomponent.base.BaseResult;
-import com.juntai.disabled.basecomponent.bean.BaseStreamBean;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -29,10 +25,10 @@ public interface AppServer {
 
 
     @GET(AppHttpPath.CELL_LOCATE_CDMA)
-    Observable<CellLocCDMAResultBean> cellLocateCDMA(@Query("sid") String sid, @Query("cellid") String cellid, @Query("nid") String nid, @Query("key") String key);
+    Observable<CellLocResultBean> cellLocateCDMA(@Query("sid") String sid, @Query("bid") String cellid, @Query("nid") String nid, @Query("type") int type, @Query("key") String key);
 
     @GET(AppHttpPath.CELL_LOCATE_OTHER)
-    Observable<BaseResult> cellLocateOther(@Body RequestBody requestBody);
+    Observable<CellLocResultBean> cellLocateOther(@Query("mcc") int mcc, @Query("lac") String lac, @Query("cell_id") String cellid, @Query("mnc") String mnc, @Query("type") int type, @Query("key") String key);
 
 
     /**

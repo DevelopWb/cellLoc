@@ -2,12 +2,8 @@ package com.celllocation.newgpsone.functions.celllocate;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,17 +15,13 @@ import com.celllocation.R;
 import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.Utils.RegOperateTool;
 import com.celllocation.newgpsone.base.BaseAppFragment;
-import com.celllocation.newgpsone.bean.CellLocCDMAResultBean;
-import com.celllocation.newgpsone.bean.CellPosition;
+import com.celllocation.newgpsone.bean.CellLocResultBean;
 import com.celllocation.newgpsone.bean.DataUtil;
 import com.celllocation.newgpsone.bean.Position;
-import com.celllocation.newgpsone.cellInfos.CellPositionNetTask;
-import com.celllocation.newgpsone.cellInfos.PositionCallBack;
 import com.celllocation.newgpsone.functions.BaseFunctionActivity;
 import com.celllocation.newgpsone.functions.MainPageContract;
 import com.celllocation.newgpsone.functions.MainPagePresent;
 import com.celllocation.newgpsone.older.SearchMapActivity;
-import com.juntai.disabled.basecomponent.utils.PubUtil;
 import com.juntai.disabled.basecomponent.utils.ToastUtils;
 
 /**
@@ -113,20 +105,18 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
     public void onSuccess(String tag, Object o) {
         switch (tag) {
             case MainPageContract.CELL_CDMA:
-                CellLocCDMAResultBean cellLocCDMAResultBean = (CellLocCDMAResultBean) o;
-                if (cellLocCDMAResultBean != null) {
-                    if (!TextUtils.isEmpty(cellLocCDMAResultBean.getReason())) {
-                        if (cellLocCDMAResultBean.getReason().contains("Successed")) {
-                            GpsPos = resolveResponse(mContext, cellLocCDMAResultBean, LAC, CID, NID);
-                            if (GpsPos != null) {
-                                Intent intent = new Intent();
-                                intent.setClass(mContext, SearchMapActivity.class);
-                                intent.putExtra("gpspos", GpsPos);
-                                startActivity(intent);
-                            }
-                        }else {
-                            ToastUtils.toast(mContext,"定位失败");
+                CellLocResultBean cellLocResultBean = (CellLocResultBean) o;
+                if (cellLocResultBean != null) {
+                    if (0==cellLocResultBean.getErrCode()) {
+                        GpsPos = resolveResponse(mContext, cellLocResultBean, LAC, CID, NID);
+                        if (GpsPos != null) {
+                            Intent intent = new Intent();
+                            intent.setClass(mContext, SearchMapActivity.class);
+                            intent.putExtra("gpspos", GpsPos);
+                            startActivity(intent);
                         }
+                    }else {
+                        ToastUtils.toast(mContext,"无法获取基站信息位置,请确保基站信息输入正确");
                     }
 
 
@@ -247,6 +237,10 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
         }
         if (DianxinClicked) {
             mPresenter.cellLocateCDMA(LAC,CID,NID,PublicUtill.CDMA_CELL_LOC_KEY, MainPageContract.CELL_CDMA);
+        }else {
+            NID = "";
+            mPresenter.cellLocateOther(LAC,CID,"0",PublicUtill.OTHER_CELL_LOC_KEY, MainPageContract.CELL_CDMA);
+
         }
 
 //        GetJizhanPosBySelf(LAC, CID, NID, MNC);
@@ -285,7 +279,7 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
      * @param nid
      * @return
      */
-    private Position resolveResponse(Context context, CellLocCDMAResultBean cellPosition, String lac, String cid, String nid) {
+    private Position resolveResponse(Context context, CellLocResultBean cellPosition, String lac, String cid, String nid) {
 
         Position p = new Position();
 //        Object model = cellPosition.getModel();
@@ -305,8 +299,8 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
             if (!TextUtils.isEmpty(nid)) {
                 p.nid = Integer.parseInt(nid);
             }
-            String lat = cellPosition.getResult().getLat();
-            String lng = cellPosition.getResult().getLon();
+            String lat = String.valueOf(cellPosition.getLocation().getLatitude());
+            String lng = String.valueOf(cellPosition.getLocation().getLongitude());
             if (lat.isEmpty() || lng.isEmpty()) {
                 p.x = 0.0;
                 p.y = 0.0;
@@ -314,7 +308,7 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
                 p.x = Double.parseDouble(lat);
                 p.y = Double.parseDouble(lng);
             }
-            p.address = cellPosition.getResult().getAddress();
+            p.address = cellPosition.getLocation().getAddressDescription();
             return p;
 //        }
     }

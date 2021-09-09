@@ -2,15 +2,12 @@ package com.celllocation.newgpsone.functions;
 
 
 import com.celllocation.newgpsone.AppNetModule;
+import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.base.BaseAppPresent;
-import com.celllocation.newgpsone.bean.CellLocCDMAResultBean;
+import com.celllocation.newgpsone.bean.CellLocResultBean;
 import com.juntai.disabled.basecomponent.base.BaseObserver;
-import com.juntai.disabled.basecomponent.base.BaseResult;
-import com.juntai.disabled.basecomponent.mvp.BasePresenter;
 import com.juntai.disabled.basecomponent.mvp.IModel;
 import com.juntai.disabled.basecomponent.utils.RxScheduler;
-
-import okhttp3.RequestBody;
 
 /**
  * Describe:首页present
@@ -30,11 +27,11 @@ public class MainPagePresent extends BaseAppPresent<IModel, MainPageContract.IMa
 
     public void cellLocateCDMA(String lac,String cid,String nid,String key, String tag) {
         AppNetModule.createrRetrofit()
-                .cellLocateCDMA(lac,cid,nid,key)
+                .cellLocateCDMA(lac,cid,nid, PublicUtill.LOC_TYPE,key)
                 .compose(RxScheduler.ObsIoMain(getView()))
-                .subscribe(new BaseObserver<CellLocCDMAResultBean>(null) {
+                .subscribe(new BaseObserver<CellLocResultBean>(null) {
                     @Override
-                    public void onSuccess(CellLocCDMAResultBean o) {
+                    public void onSuccess(CellLocResultBean o) {
                         if (getView() != null) {
                             getView().onSuccess(tag, o);
                         }
@@ -49,13 +46,21 @@ public class MainPagePresent extends BaseAppPresent<IModel, MainPageContract.IMa
                 });
     }
 
-    public void cellLocateOther(RequestBody requestBody, String tag) {
+    /**
+     *
+     * @param lac
+     * @param cid
+     * @param mnc  mnc网络类型0移动1联通(电信对应sid)
+     * @param key
+     * @param tag
+     */
+    public void cellLocateOther(String lac,String cid,String mnc,String key, String tag) {
         AppNetModule.createrRetrofit()
-                .cellLocateOther(requestBody)
+                .cellLocateOther(PublicUtill.MCC,lac,cid,mnc,PublicUtill.LOC_TYPE,key)
                 .compose(RxScheduler.ObsIoMain(getView()))
-                .subscribe(new BaseObserver<BaseResult>(null) {
+                .subscribe(new BaseObserver<CellLocResultBean>(null) {
                     @Override
-                    public void onSuccess(BaseResult o) {
+                    public void onSuccess(CellLocResultBean o) {
                         if (getView() != null) {
                             getView().onSuccess(tag, o);
                         }

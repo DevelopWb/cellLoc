@@ -13,8 +13,11 @@ import android.util.Log;
 public class PublicUtill {
 	
 	public static int dianxin_mar = 0;
+	public static int MCC = 460;//国家标识
 	public static boolean isDianxin = false;
-	public static String CDMA_CELL_LOC_KEY ="6536fdab0b6ecb926485658af71f3a9d";//cdma  key
+	public static String CDMA_CELL_LOC_KEY ="68e19fece33d40808befd223985b2f03";//cdma  key
+	public static String OTHER_CELL_LOC_KEY ="a3c2561c497146fda61ac311be810826";//  key
+	public static int LOC_TYPE =0;//   0(google坐标),1( 百度坐标),2(gps坐标)
 	public static boolean isDrawable = true;
 	public static String URL_Reg_Center = "http://218.246.35.198:8082";//注册码中心系统
 	public static String getIMEIDeviceId(Context context) {
