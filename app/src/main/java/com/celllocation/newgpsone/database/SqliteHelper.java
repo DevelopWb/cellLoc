@@ -51,7 +51,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + CELL_HISDATA + "(" + CellHisData.ID
                 + " integer primary key," + CellHisData.PHONE + " varchar," + CellHisData.LNG + " varchar," + CellHisData.LAT + " varchar,"
                 + CellHisData.LAC + " varchar," + CellHisData.CID + " varchar," + CellHisData.NID + " varchar,"
-                + CellHisData.ADDRESS + " varchar," + CellHisData.ACCURACY + " varchar," + CellHisData.TIME + " varchar" + ")");
+                + CellHisData.ADDRESS + " varchar," + CellHisData.ACCURACY + " varchar," + CellHisData.TIME + " varchar,"  + CellHisData.TYPE + " varchar"+ ")");
 
 
     }

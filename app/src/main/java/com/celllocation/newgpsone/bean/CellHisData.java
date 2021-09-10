@@ -14,6 +14,7 @@ public class CellHisData {
     public static String  LAC = "lac";
     public static String  CID = "cid";
     public static String  NID = "nid";
+    public static String  TYPE = "type";//0移动1联通3电信
     public static String  ADDRESS = "address";
     public static String  ACCURACY = "accuracy";
     public static String  TIME = "time";
@@ -24,6 +25,7 @@ public class CellHisData {
     private String lac;
     private String cid;
     private String nid;
+    private String type;
     private String address;
     private String accuracy;
     private String time;
@@ -94,6 +96,14 @@ public class CellHisData {
 
     public String getTime() {
         return time;
+    }
+
+    public String getType() {
+        return type == null ? "" : type;
+    }
+
+    public void setType(String type) {
+        this.type = type == null ? "" : type;
     }
 
     public void setTime(String time) {

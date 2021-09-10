@@ -25,9 +25,7 @@ import java.util.List;
 public class CellLocateRecordFragment extends BaseAppFragment<MainPagePresent> implements MainPageContract.IMainPageView {
     MyHistoryDataListAdapter m_ListAdapter;
     private ListView m_listHistoryData;
-    private Dialog dialog;
     private DataHelper helper;
-    private String phone;
     @Override
     public MainPagePresent createPresenter() {
         return null;
@@ -36,7 +34,9 @@ public class CellLocateRecordFragment extends BaseAppFragment<MainPagePresent> i
     @Override
     public void lazyLoad() {
         ((BaseFunctionActivity) getBaseActivity()).mTitleName.setText("历史记录");
-
+        List<CellHisData> arrays = helper.getCellHisDatas();
+        m_ListAdapter = new MyHistoryDataListAdapter(mContext,arrays);
+        m_listHistoryData.setAdapter(m_ListAdapter);
 
     }
 
@@ -48,10 +48,6 @@ public class CellLocateRecordFragment extends BaseAppFragment<MainPagePresent> i
     @Override
     public void initView() {
         helper = new DataHelper(mContext);
-        dialog = new Dialog(mContext, R.style.DialogStyle);
-        dialog.setContentView(R.layout.dialog);
-        dialog.show();
-        phone = PublicUtill.getIMEIDeviceId(mContext);
         m_listHistoryData = (ListView)getView(R.id.listHistoryData);
 
     }
@@ -69,18 +65,11 @@ public class CellLocateRecordFragment extends BaseAppFragment<MainPagePresent> i
     @Override
     public void onResume() {
         super.onResume();
-        List<CellHisData> arrays = helper.GetCellHisDatas(phone);
-        m_ListAdapter = new MyHistoryDataListAdapter(mContext,arrays);
-        m_listHistoryData.setAdapter(m_ListAdapter);
-        dialog.dismiss();
+
     }
 
     @Override
     public void onDestroy() {
-        if (dialog!=null) {
-            dialog.dismiss();
-            dialog=null;
-        }
         super.onDestroy();
     }
 }

@@ -43,7 +43,11 @@ import com.celllocation.newgpsone.bean.DataUtil;
 
 import java.text.DecimalFormat;
 import java.util.List;
-
+/**
+ * @aouther tobato
+ * @description 描述  update 更新  基站查询历史记录
+ * @date 2021-09-10 16:45
+ */
 
 public class NewHistoryMapActivity extends Activity implements
         AMap.OnMarkerClickListener, AMap.OnInfoWindowClickListener, AMap.InfoWindowAdapter {
@@ -59,7 +63,6 @@ public class NewHistoryMapActivity extends Activity implements
     private GeocodeSearch geocoderSearch;
     private double x, y;
     private DataHelper helper;
-    private String phone;
     private List<CellHisData> arrays;
     private CellHisData bean;
     private DecimalFormat df;
@@ -87,8 +90,7 @@ public class NewHistoryMapActivity extends Activity implements
 //        TelephonyManager tm = (TelephonyManager) this
 //                .getSystemService(Context.TELEPHONY_SERVICE);
 //        phone = tm.getDeviceId();
-        phone = PublicUtill.getIMEIDeviceId(this);
-        arrays = helper.GetCellHisDatas(phone);
+        arrays = helper.getCellHisDatas();
         arrs = new CellHisData[arrays.size()];
         for (int i = 0; i < arrays.size(); i++) {
             arrs[i] = arrays.get(i);

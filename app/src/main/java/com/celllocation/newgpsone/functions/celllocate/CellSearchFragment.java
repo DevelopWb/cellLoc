@@ -15,13 +15,16 @@ import com.celllocation.R;
 import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.Utils.RegOperateTool;
 import com.celllocation.newgpsone.base.BaseAppFragment;
+import com.celllocation.newgpsone.bean.CellHisData;
 import com.celllocation.newgpsone.bean.CellLocResultBean;
 import com.celllocation.newgpsone.bean.DataUtil;
 import com.celllocation.newgpsone.bean.Position;
+import com.celllocation.newgpsone.database.DataHelper;
 import com.celllocation.newgpsone.functions.BaseFunctionActivity;
 import com.celllocation.newgpsone.functions.MainPageContract;
 import com.celllocation.newgpsone.functions.MainPagePresent;
 import com.celllocation.newgpsone.older.SearchMapActivity;
+import com.juntai.disabled.basecomponent.utils.CalendarUtil;
 import com.juntai.disabled.basecomponent.utils.ToastUtils;
 
 /**
@@ -47,7 +50,7 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
     private String NID = "";
     private String MNC = "0";//0代表移动，1代表联通
 
-    Position GpsPos;
+    Position mGpsPos;
     AlertDialog.Builder posprogress = null;
 
     private RegOperateTool regOperateTool;
@@ -56,6 +59,7 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
     private ImageView mUnicomLogoIv;
     private ImageView mTelecomLogoIv;
     private boolean DianxinClicked = false;
+    private DataHelper helper;
 
     @Override
     protected MainPagePresent createPresenter() {
@@ -74,6 +78,7 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
 
     @Override
     protected void initView() {
+        helper = new DataHelper(mContext);
         regOperateTool = new RegOperateTool(mContext);
         cell_search_tv = (TextView) getView(R.id.cell_search_tv);
         cmcc_ll = (LinearLayout) getView(R.id.cmcc_ll);
@@ -108,11 +113,21 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
                 CellLocResultBean cellLocResultBean = (CellLocResultBean) o;
                 if (cellLocResultBean != null) {
                     if (0==cellLocResultBean.getErrCode()) {
-                        GpsPos = resolveResponse(mContext, cellLocResultBean, LAC, CID, NID);
-                        if (GpsPos != null) {
+                        mGpsPos = resolveResponse(mContext, cellLocResultBean, LAC, CID, NID);
+                        if (mGpsPos != null) {
+                            CellHisData cellHisData = new CellHisData();
+                            cellHisData.setAddress(mGpsPos.address);
+                            cellHisData.setLac(String.valueOf(mGpsPos.lac));
+                            cellHisData.setCid(String.valueOf(mGpsPos.cid));
+                            cellHisData.setNid(String.valueOf(mGpsPos.nid));
+                            cellHisData.setLat(String.valueOf(cellLocResultBean.getLocation().getLatitude()));
+                            cellHisData.setLng(String.valueOf(cellLocResultBean.getLocation().getLongitude()));
+                            cellHisData.setTime(CalendarUtil.getCurrentTime());
+                            cellHisData.setType(MNC);
+                            helper.saveCellHisData(cellHisData);
                             Intent intent = new Intent();
                             intent.setClass(mContext, SearchMapActivity.class);
-                            intent.putExtra("gpspos", GpsPos);
+                            intent.putExtra("gpspos", mGpsPos);
                             startActivity(intent);
                         }
                     }else {

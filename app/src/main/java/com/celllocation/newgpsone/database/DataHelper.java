@@ -37,7 +37,7 @@ public class DataHelper {
 
     //基站定位中 cell历史数据保存
 
-    public Long SaveCellHisData(CellHisData user) {
+    public Long saveCellHisData(CellHisData user) {
         ContentValues values = new ContentValues();
         values.put(CellHisData.PHONE, user.getPhone());
         values.put(CellHisData.LNG, user.getLng());
@@ -45,6 +45,7 @@ public class DataHelper {
         values.put(CellHisData.LAC, user.getLac());
         values.put(CellHisData.CID, user.getCid());
         values.put(CellHisData.NID, user.getNid());
+        values.put(CellHisData.TYPE, user.getType());
         values.put(CellHisData.ADDRESS, user.getAddress());
         values.put(CellHisData.ACCURACY, user.getAccuracy());
         values.put(CellHisData.TIME, user.getTime());
@@ -53,12 +54,11 @@ public class DataHelper {
     }
 
     //cell历史数据提取
-    public List<CellHisData> GetCellHisDatas(String phone_) {
-        String phone = phone_.trim();
+    public List<CellHisData> getCellHisDatas() {
         List<CellHisData> userList = new ArrayList<CellHisData>();
         Cursor cursor = db
-                .query(CELL_HISDATA, null, CellHisData.PHONE + "=?",
-                        new String[]{phone}, null, null, CellHisData.TIME + " DESC"); // DESC
+                .query(CELL_HISDATA, null, null,
+                        null, null, null, CellHisData.TIME + " DESC"); // DESC
         cursor.moveToFirst();
         while (!cursor.isAfterLast() && (cursor.getString(1) != null)) {
             CellHisData user = new CellHisData();
@@ -71,6 +71,7 @@ public class DataHelper {
             user.setAddress(cursor.getString(7));
             user.setAccuracy(cursor.getString(8));
             user.setTime(cursor.getString(9));
+            user.setType(cursor.getString(10));
             userList.add(user);
             cursor.moveToNext();
 
