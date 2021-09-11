@@ -1,31 +1,23 @@
 package com.celllocation.newgpsone.bean;
 
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
+
 /**
  * Created by Administrator on 2016/12/13.
  */
-
+@Entity
 public class CellHisData {
 
-
-    public static String  ID = "_id";
-    public static String  PHONE = "phone";
-    public static String  LNG = "lng";
-    public static String  LAT = "lat";
-    public static String  LAC = "lac";
-    public static String  CID = "cid";
-    public static String  NID = "nid";
-    public static String  TYPE = "type";//0移动1联通3电信
-    public static String  ADDRESS = "address";
-    public static String  ACCURACY = "accuracy";
-    public static String  TIME = "time";
-
+    @Id
+    public long id;
     private String phone;
     private String lng;
     private String lat;
     private String lac;
     private String cid;
     private String nid;
-    private String type;
+    private String type;//0代表移动，1代表联通  3代表电信
     private String address;
     private String accuracy;
     private String time;

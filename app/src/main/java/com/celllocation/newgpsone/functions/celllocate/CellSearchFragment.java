@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.celllocation.R;
+import com.celllocation.newgpsone.Utils.ObjectBox;
 import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.Utils.RegOperateTool;
 import com.celllocation.newgpsone.base.BaseAppFragment;
@@ -124,7 +125,8 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
                             cellHisData.setLng(String.valueOf(cellLocResultBean.getLocation().getLongitude()));
                             cellHisData.setTime(CalendarUtil.getCurrentTime());
                             cellHisData.setType(MNC);
-                            helper.saveCellHisData(cellHisData);
+                            //  保存基站查询历史数据
+                            ObjectBox.get().boxFor(CellHisData.class).put(cellHisData);
                             Intent intent = new Intent();
                             intent.setClass(mContext, SearchMapActivity.class);
                             intent.putExtra("gpspos", mGpsPos);

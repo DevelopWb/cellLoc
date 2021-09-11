@@ -45,13 +45,15 @@ import com.celllocation.R;
 import com.celllocation.newgpsone.Utils.AMapUtil;
 import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.Utils.RegOperateTool;
+import com.celllocation.newgpsone.base.BaseAppActivity;
 import com.celllocation.newgpsone.bean.DataUtil;
 import com.celllocation.newgpsone.bean.Position;
+import com.juntai.disabled.basecomponent.mvp.BasePresenter;
 import com.juntai.disabled.basecomponent.utils.ToastUtils;
 
 import java.text.DecimalFormat;
 
-public class SearchMapActivity extends Activity implements
+public class SearchMapActivity extends BaseAppActivity implements
         OnGeocodeSearchListener, OnClickListener, OnMarkerClickListener,
         InfoWindowAdapter {
 
@@ -64,7 +66,6 @@ public class SearchMapActivity extends Activity implements
     private LatLonPoint latLonPoint;
     private View infoWindow;
     private Position gpspos;
-    TextView map_Back;
     String time;
     String la_, lo_;
     double la, lo;
@@ -72,27 +73,38 @@ public class SearchMapActivity extends Activity implements
     private RegOperateTool rot;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_map);
+    protected BasePresenter createPresenter() {
+        return null;
+    }
+
+    @Override
+    public int getLayoutView() {
+        return R.layout.search_map;
+    }
+
+    @Override
+    public void initView() {
+        setTitleName("基站位置");
         rot = new RegOperateTool(this);
         mapView = (MapView) findViewById(R.id.search_map);
-        map_Back = (TextView) findViewById(R.id.map_Back);
-        map_Back.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                PublicUtill.dianxin_mar = 0;
-                finish();
-            }
-        });
-        mapView.onCreate(savedInstanceState);// 此方法必须重写
         init();
         Intent intent = getIntent();
         gpspos = (Position) intent.getSerializableExtra("gpspos");
         getPosition();
     }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mapView.onCreate(savedInstanceState);// 此方法必须重写
+    }
+
+    @Override
+    public void initData() {
+
+    }
+
 
     private void getPosition() {
         DecimalFormat df = new DecimalFormat("0.000000");
@@ -263,19 +275,19 @@ public class SearchMapActivity extends Activity implements
 
     @Override
     public boolean onMarkerClick(Marker arg0) {
-        // TODO Auto-generated method stub
+        //  Auto-generated method stub
         return false;
     }
 
     @Override
     public void onClick(View arg0) {
-        // TODO Auto-generated method stub
+        //  Auto-generated method stub
 
     }
 
     @Override
     public void onGeocodeSearched(GeocodeResult arg0, int arg1) {
-        // TODO Auto-generated method stub
+        //  Auto-generated method stub
 
     }
 
@@ -465,5 +477,10 @@ public class SearchMapActivity extends Activity implements
                     .newRequestQueue(this.getApplicationContext());
         }
         return mRequestQueue;
+    }
+
+    @Override
+    public void onSuccess(String tag, Object o) {
+
     }
 }

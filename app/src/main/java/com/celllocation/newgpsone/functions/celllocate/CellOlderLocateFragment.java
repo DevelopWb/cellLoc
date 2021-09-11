@@ -85,7 +85,7 @@ public class CellOlderLocateFragment extends BaseAppFragment<MainPagePresent> im
                     if (cell != null) {
                         StringBuffer snippet_sb = new StringBuffer();
                         DecimalFormat df = new DecimalFormat("0.000000");
-                        helper.saveCellHisData(cell);
+//                        helper.saveCellHisData(cell);
                         String lac = cell.getLac();
                         String cid = cell.getCid();
                         String nid = cell.getNid();

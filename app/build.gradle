@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 def configs = rootProject.ext.android
+apply plugin: 'io.objectbox' // after applying Android plugin
 android {
     compileSdkVersion configs.compileSdkVersion
     useLibrary 'org.apache.http.legacy'
@@ -12,7 +13,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         ndk {
-            abiFilters "armeabi"//,"x86"//,"armeabi"////,"arm64-v8a","x86_64"
+            abiFilters 'armeabi','armeabi-v7a', 'x86_64'
         }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

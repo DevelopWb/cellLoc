@@ -73,19 +73,19 @@
         <activity
             android:name=".newgpsone.older.PhoneBillImportActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            />
         <activity
             android:name=".newgpsone.older.SearchMapActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.NoTitleBar" />
+             />
         <activity
             android:name=".newgpsone.older.NewHistoryDataActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.NoTitleBar" />
+             />
         <activity
             android:name=".newgpsone.older.NewHistoryMapActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.NoTitleBar" /> <!-- 定位需要的服务 -->
+            /> <!-- 定位需要的服务 -->
         <service android:name="com.amap.api.location.APSService" />
     </application>
 

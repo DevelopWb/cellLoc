@@ -47,11 +47,6 @@ public class SqliteHelper extends SQLiteOpenHelper {
                 + " integer primary key," + PeopleLocation.LAT + " varchar," + PeopleLocation.LNG + " varchar," + PeopleLocation.ADDRESS + " varchar,"
                 + PeopleLocation.LAC + " varchar," + PeopleLocation.CID + " varchar," + PeopleLocation.NID + " varchar,"
                 + PeopleLocation.TIME + " varchar," + PeopleLocation.IMPORT_TIME + " varchar" + ")");
-//基站定位中，基站记录数据
-        db.execSQL("CREATE TABLE IF NOT EXISTS " + CELL_HISDATA + "(" + CellHisData.ID
-                + " integer primary key," + CellHisData.PHONE + " varchar," + CellHisData.LNG + " varchar," + CellHisData.LAT + " varchar,"
-                + CellHisData.LAC + " varchar," + CellHisData.CID + " varchar," + CellHisData.NID + " varchar,"
-                + CellHisData.ADDRESS + " varchar," + CellHisData.ACCURACY + " varchar," + CellHisData.TIME + " varchar,"  + CellHisData.TYPE + " varchar"+ ")");
 
 
     }

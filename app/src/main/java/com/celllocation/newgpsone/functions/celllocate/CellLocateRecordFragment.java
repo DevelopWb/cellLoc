@@ -4,9 +4,11 @@ import android.app.Dialog;
 import android.widget.ListView;
 
 import com.celllocation.R;
+import com.celllocation.newgpsone.Utils.ObjectBox;
 import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.base.BaseAppFragment;
 import com.celllocation.newgpsone.bean.CellHisData;
+import com.celllocation.newgpsone.bean.CellHisData_;
 import com.celllocation.newgpsone.database.DataHelper;
 import com.celllocation.newgpsone.functions.BaseFunctionActivity;
 import com.celllocation.newgpsone.functions.MainPageContract;
@@ -14,6 +16,8 @@ import com.celllocation.newgpsone.functions.MainPagePresent;
 import com.celllocation.newgpsone.older.MyHistoryDataListAdapter;
 
 import java.util.List;
+
+import io.objectbox.query.QueryBuilder;
 
 /**
  * @Author: tobato
@@ -25,7 +29,6 @@ import java.util.List;
 public class CellLocateRecordFragment extends BaseAppFragment<MainPagePresent> implements MainPageContract.IMainPageView {
     MyHistoryDataListAdapter m_ListAdapter;
     private ListView m_listHistoryData;
-    private DataHelper helper;
     @Override
     public MainPagePresent createPresenter() {
         return null;
@@ -34,7 +37,8 @@ public class CellLocateRecordFragment extends BaseAppFragment<MainPagePresent> i
     @Override
     public void lazyLoad() {
         ((BaseFunctionActivity) getBaseActivity()).mTitleName.setText("历史记录");
-        List<CellHisData> arrays = helper.getCellHisDatas();
+        List<CellHisData> arrays = ObjectBox.get().boxFor(CellHisData.class).query().order(CellHisData_.time,
+                QueryBuilder.DESCENDING).build().find();
         m_ListAdapter = new MyHistoryDataListAdapter(mContext,arrays);
         m_listHistoryData.setAdapter(m_ListAdapter);
 
@@ -47,7 +51,6 @@ public class CellLocateRecordFragment extends BaseAppFragment<MainPagePresent> i
 
     @Override
     public void initView() {
-        helper = new DataHelper(mContext);
         m_listHistoryData = (ListView)getView(R.id.listHistoryData);
 
     }

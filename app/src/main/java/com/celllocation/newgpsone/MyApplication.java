@@ -2,6 +2,7 @@ package com.celllocation.newgpsone;
 
 import android.app.Application;
 
+import com.celllocation.newgpsone.Utils.ObjectBox;
 import com.juntai.disabled.basecomponent.app.BaseApplication;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -24,7 +25,7 @@ public class MyApplication extends BaseApplication {
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
                 .readTimeout(10000L, TimeUnit.MILLISECONDS)
                 .build();
-
+        ObjectBox.init(this);
         OkHttpUtils.initClient(okHttpClient);
         super.onCreate();
     }

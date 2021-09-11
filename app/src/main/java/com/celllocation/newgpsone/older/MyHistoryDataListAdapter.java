@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.celllocation.R;
 import com.celllocation.newgpsone.bean.CellHisData;
-import com.celllocation.newgpsone.older.NewHistoryMapActivity;
 
 import java.util.List;
 
@@ -29,21 +28,25 @@ public class MyHistoryDataListAdapter extends BaseAdapter {
         this.arrays = arrays;
     }
 
+    @Override
     public int getCount() {
         // TODO Auto-generated method stub
         return arrays == null ? 0 : arrays.size();
     }
 
+    @Override
     public Object getItem(int position) {
         // TODO Auto-generated method stub
         return arrays.get(position);
     }
 
+    @Override
     public long getItemId(int position) {
         // TODO Auto-generated method stub
         return position;
     }
 
+    @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         final CellHisData bean = arrays.get(position);
 
@@ -55,7 +58,7 @@ public class MyHistoryDataListAdapter extends BaseAdapter {
             holder.cell_his_nid = (TextView) convertView.findViewById(R.id.cell_his_nid);
             holder.cell_his_address = (TextView) convertView.findViewById(R.id.cell_his_address);
             holder.cell_his_time = (TextView) convertView.findViewById(R.id.cell_his_time);
-            holder.cell_his_accuracy = (TextView) convertView.findViewById(R.id.cell_his_accuracy);
+            holder.cell_loc_type = (TextView) convertView.findViewById(R.id.cell_his_loc_type_tv);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -69,20 +72,46 @@ public class MyHistoryDataListAdapter extends BaseAdapter {
                 context.startActivity(intent);
             }
         });
-        holder.cell_his_jizhan.setText("基站号：" + bean.getCid());
-        holder.cell_his_shanqu.setText("扇区号：" + bean.getLac());
+        holder.cell_his_jizhan.setText(("3".equals(bean.getType())?"SID：":"LAC：" )+ bean.getLac());
+        holder.cell_his_shanqu.setText(("3".equals(bean.getType())?"BID：":"CID：" )+ bean.getCid());
         holder.cell_his_address.setText("地址：" + bean.getAddress());
         holder.cell_his_time.setText("定位时间：" + bean.getTime());
-        holder.cell_his_accuracy.setText("精确度：" + bean.getAccuracy());
+        holder.cell_loc_type.setText("基站类型：" +getCellType(bean.getType()));
         if (bean.getNid() != null&& !TextUtils.isEmpty(bean.getNid())) {
             if (Integer.parseInt(bean.getNid()) > -1) {
-                holder.cell_his_nid.setText("网络识别码(NID)：" + bean.getNid());
+                holder.cell_his_nid.setText("NID：" + bean.getNid());
+            }else {
+                holder.cell_his_nid.setVisibility(View.GONE);
             }
         } else {
-            holder.cell_his_nid.setVisibility(View.INVISIBLE);
+            holder.cell_his_nid.setVisibility(View.GONE);
         }
 
         return convertView;
+    }
+
+    /**
+     * 获取基站类型
+     * @param type
+     * @return
+     */
+    private String  getCellType(String  type){
+        String typeName = null;
+        switch (type) {
+            case "0":
+                typeName = "中国移动";
+                break;
+            case "1":
+                typeName = "中国联通";
+                break;
+            case "3":
+                typeName = "中国电信";
+                break;
+            default:
+                break;
+        }
+
+        return typeName;
     }
 
 
@@ -92,7 +121,7 @@ public class MyHistoryDataListAdapter extends BaseAdapter {
         TextView cell_his_nid;
         TextView cell_his_address;
         TextView cell_his_time;
-        TextView cell_his_accuracy;
+        TextView cell_loc_type;
     }
 
 }

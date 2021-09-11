@@ -27,7 +27,7 @@ public class DataHelper {
     public DataHelper(Context context) {
         dbHelper = new SqliteHelper(context, DB_NAME, null, DB_VERSION);
         db = dbHelper.getWritableDatabase();
-
+        dbHelper.onCreate(db);
     }
 
     public void Close() {
@@ -35,76 +35,6 @@ public class DataHelper {
         dbHelper.close();
     }
 
-    //基站定位中 cell历史数据保存
-
-    public Long saveCellHisData(CellHisData user) {
-        ContentValues values = new ContentValues();
-        values.put(CellHisData.PHONE, user.getPhone());
-        values.put(CellHisData.LNG, user.getLng());
-        values.put(CellHisData.LAT, user.getLat());
-        values.put(CellHisData.LAC, user.getLac());
-        values.put(CellHisData.CID, user.getCid());
-        values.put(CellHisData.NID, user.getNid());
-        values.put(CellHisData.TYPE, user.getType());
-        values.put(CellHisData.ADDRESS, user.getAddress());
-        values.put(CellHisData.ACCURACY, user.getAccuracy());
-        values.put(CellHisData.TIME, user.getTime());
-        Long uid = db.insert(CELL_HISDATA, CellHisData.ID, values);
-        return uid;
-    }
-
-    //cell历史数据提取
-    public List<CellHisData> getCellHisDatas() {
-        List<CellHisData> userList = new ArrayList<CellHisData>();
-        Cursor cursor = db
-                .query(CELL_HISDATA, null, null,
-                        null, null, null, CellHisData.TIME + " DESC"); // DESC
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast() && (cursor.getString(1) != null)) {
-            CellHisData user = new CellHisData();
-            user.setPhone(cursor.getString(1));
-            user.setLng(cursor.getString(2));
-            user.setLat(cursor.getString(3));
-            user.setLac(cursor.getString(4));
-            user.setCid(cursor.getString(5));
-            user.setNid(cursor.getString(6));
-            user.setAddress(cursor.getString(7));
-            user.setAccuracy(cursor.getString(8));
-            user.setTime(cursor.getString(9));
-            user.setType(cursor.getString(10));
-            userList.add(user);
-            cursor.moveToNext();
-
-        }
-        cursor.close();
-        return userList;
-
-    }
-    //cell历史数据查询
-    public CellHisData GetCellHisData(String time_) {
-        String time = time_.trim();
-        Cursor cursor = db
-                .query(CELL_HISDATA, null, CellHisData.TIME + "=?",
-                        new String[]{time}, null, null, null); // DESC
-        cursor.moveToFirst();
-        if (!cursor.isAfterLast() && (cursor.getString(1) != null)) {
-            CellHisData user = new CellHisData();
-            user.setPhone(cursor.getString(1));
-            user.setLng(cursor.getString(2));
-            user.setLat(cursor.getString(3));
-            user.setLac(cursor.getString(4));
-            user.setCid(cursor.getString(5));
-            user.setNid(cursor.getString(6));
-            user.setAddress(cursor.getString(7));
-            user.setAccuracy(cursor.getString(8));
-            user.setTime(cursor.getString(9));
-            cursor.close();
-            return user;
-        } else {
-            return null;
-        }
-
-    }
 
 
     //基站定位中 移动联通话单数据存储

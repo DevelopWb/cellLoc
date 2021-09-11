@@ -36,10 +36,14 @@ import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.geocoder.GeocodeAddress;
 import com.amap.api.services.geocoder.GeocodeSearch;
 import com.celllocation.R;
+import com.celllocation.newgpsone.Utils.ObjectBox;
 import com.celllocation.newgpsone.Utils.PublicUtill;
+import com.celllocation.newgpsone.base.BaseAppActivity;
+import com.celllocation.newgpsone.bean.CellHisData_;
 import com.celllocation.newgpsone.database.DataHelper;
 import com.celllocation.newgpsone.bean.CellHisData;
 import com.celllocation.newgpsone.bean.DataUtil;
+import com.juntai.disabled.basecomponent.mvp.BasePresenter;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -49,20 +53,18 @@ import java.util.List;
  * @date 2021-09-10 16:45
  */
 
-public class NewHistoryMapActivity extends Activity implements
+public class NewHistoryMapActivity extends BaseAppActivity implements
         AMap.OnMarkerClickListener, AMap.OnInfoWindowClickListener, AMap.InfoWindowAdapter {
 
     private MapView mapView;
     private AMap aMap;
     private LatLonPoint latLonPoint;
     private TextView address_tv;
-    private ImageView back;
     GeocodeAddress address;
     private View infoWindow;
     private Button mbtnleft, mbtnright;
     private GeocodeSearch geocoderSearch;
     private double x, y;
-    private DataHelper helper;
     private List<CellHisData> arrays;
     private CellHisData bean;
     private DecimalFormat df;
@@ -70,19 +72,38 @@ public class NewHistoryMapActivity extends Activity implements
     private int position;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.newlayouthistorymap);
-        helper = new DataHelper(this);
+    protected BasePresenter createPresenter() {
+        return null;
+    }
+
+    @Override
+    public int getLayoutView() {
+        return R.layout.newlayouthistorymap;
+    }
+
+    @Override
+    public void initView() {
+        setTitleName("查询记录");
         getNeedDatas();
         findView();
         df = new DecimalFormat("0.000000");
-        mapView.onCreate(savedInstanceState);// 此方法必须重写
+
         setListener();
         init();
         getpositions();
         getposition();
+    }
+
+    @Override
+    public void initData() {
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mapView.onCreate(savedInstanceState);// 此方法必须重写
+
 
     }
 
@@ -90,7 +111,7 @@ public class NewHistoryMapActivity extends Activity implements
 //        TelephonyManager tm = (TelephonyManager) this
 //                .getSystemService(Context.TELEPHONY_SERVICE);
 //        phone = tm.getDeviceId();
-        arrays = helper.getCellHisDatas();
+        arrays = ObjectBox.get().boxFor(CellHisData.class).getAll();
         arrs = new CellHisData[arrays.size()];
         for (int i = 0; i < arrays.size(); i++) {
             arrs[i] = arrays.get(i);
@@ -98,7 +119,7 @@ public class NewHistoryMapActivity extends Activity implements
         Intent intent = getIntent();
         String time = intent.getStringExtra("ClickedTime");
         position = intent.getIntExtra("Position", 0);
-        bean = helper.GetCellHisData(time);
+        bean = (CellHisData) ObjectBox.get().boxFor(CellHisData.class).query().equal(CellHisData_.time,time).build().findUnique();
     }
 
     private void getpositions() {
@@ -170,13 +191,6 @@ public class NewHistoryMapActivity extends Activity implements
     }
 
     private void setListener() {
-        back.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                finish();
-            }
-        });
         mbtnleft.setOnClickListener(new OnClickListener() {
 
                                         @Override
@@ -278,7 +292,6 @@ public class NewHistoryMapActivity extends Activity implements
     }
 
     private void findView() {
-        back = (ImageView) findViewById(R.id.btnHistoryDataMapback);
         mbtnleft = (Button) findViewById(R.id.btnHistoryDataMapLeft);
         mbtnright = (Button) findViewById(R.id.btnHistoryDataMapRight);
         if (position == 0) {
@@ -459,6 +472,11 @@ public class NewHistoryMapActivity extends Activity implements
 
     @Override
     public void onInfoWindowClick(Marker marker) {
+
+    }
+
+    @Override
+    public void onSuccess(String tag, Object o) {
 
     }
 }
