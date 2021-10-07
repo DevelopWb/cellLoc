@@ -69,7 +69,7 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
 
     @Override
     protected void lazyLoad() {
-        ((BaseFunctionActivity) getBaseActivity()).mTitleName.setText("基站定位");
+        ((BaseFunctionActivity) getBaseActivity()).setTitleName("基站定位");
     }
 
     @Override

@@ -8,7 +8,9 @@ import android.view.View;
 import com.celllocation.R;
 import com.celllocation.newgpsone.base.BaseAppActivity;
 import com.celllocation.newgpsone.bean.HomePageMenuBean;
+import com.celllocation.newgpsone.functions.LatlngTransform.LatLngTransformActivity;
 import com.celllocation.newgpsone.functions.celllocate.CellLocateActivity;
+import com.celllocation.newgpsone.functions.persionalLocate.PersionalLocateActivity;
 import com.celllocation.newgpsone.functions.wifilocate.WifiLocateActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.juntai.disabled.basecomponent.mvp.BasePresenter;
@@ -58,19 +60,16 @@ public class MainActivity extends BaseAppActivity {
                         startActivity(intent);
                         break;
                     case HOMEPAGE_MENU_WIFI_LOC:
-                        ToastUtils.toast(mContext,"暂未开放,敬请期待");
-//                        intent.setClass(mContext, WifiLocateActivity.class);
-//                        startActivity(intent);
+                        intent.setClass(mContext, WifiLocateActivity.class);
+                        startActivity(intent);
                         break;
                     case HOMEPAGE_MENU_PEOPLE_LOC:
-                        ToastUtils.toast(mContext,"暂未开放,敬请期待");
-                        //                        intent.setClass(mContext, CellLocateActivity.class);
-//                        startActivity(intent);
+                        intent.setClass(mContext, PersionalLocateActivity.class);
+                        startActivity(intent);
                         break;
                     case HOMEPAGE_MENU_LAT_LNG:
-                        ToastUtils.toast(mContext,"暂未开放,敬请期待");
-                        //                        intent.setClass(mContext, CellLocateActivity.class);
-//                        startActivity(intent);
+                        intent.setClass(mContext, LatLngTransformActivity.class);
+                        startActivity(intent);
                         break;
                     default:
                         break;

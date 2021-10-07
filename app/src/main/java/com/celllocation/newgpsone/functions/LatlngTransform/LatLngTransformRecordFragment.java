@@ -1,15 +1,12 @@
-package com.celllocation.newgpsone.functions.celllocate;
+package com.celllocation.newgpsone.functions.LatlngTransform;
 
-import android.app.Dialog;
 import android.widget.ListView;
 
 import com.celllocation.R;
 import com.celllocation.newgpsone.Utils.ObjectBox;
-import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.base.BaseAppFragment;
 import com.celllocation.newgpsone.bean.CellHisData;
 import com.celllocation.newgpsone.bean.CellHisData_;
-import com.celllocation.newgpsone.database.DataHelper;
 import com.celllocation.newgpsone.functions.BaseFunctionActivity;
 import com.celllocation.newgpsone.functions.MainPageContract;
 import com.celllocation.newgpsone.functions.MainPagePresent;
@@ -26,7 +23,7 @@ import io.objectbox.query.QueryBuilder;
  * @UpdateUser: 更新者
  * @UpdateDate: 2021-09-06 10:06
  */
-public class CellLocateRecordFragment extends BaseAppFragment<MainPagePresent> implements MainPageContract.IMainPageView {
+public class LatLngTransformRecordFragment extends BaseAppFragment<MainPagePresent> implements MainPageContract.IMainPageView {
     MyHistoryDataListAdapter m_ListAdapter;
     private ListView m_listHistoryData;
     @Override

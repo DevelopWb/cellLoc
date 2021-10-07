@@ -34,10 +34,11 @@
         android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".newgpsone.functions.wifilocate.WifiLocateActivity"></activity>
+        <activity android:name=".newgpsone.functions.persionalLocate.PersionalLocateActivity"></activity>
+        <activity android:name=".newgpsone.functions.LatlngTransform.LatLngTransformActivity" />
+        <activity android:name=".newgpsone.functions.wifilocate.WifiLocateActivity" />
         <activity android:name=".newgpsone.MainActivity" />
-        <activity android:name=".newgpsone.functions.celllocate.CellLocateActivity"
-             />
+        <activity android:name=".newgpsone.functions.celllocate.CellLocateActivity" />
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -72,20 +73,16 @@
             android:theme="@android:style/Theme.Dialog" />
         <activity
             android:name=".newgpsone.older.PhoneBillImportActivity"
-            android:configChanges="orientation|keyboardHidden"
-            />
+            android:configChanges="orientation|keyboardHidden" />
         <activity
             android:name=".newgpsone.older.SearchMapActivity"
-            android:configChanges="orientation|keyboardHidden"
-             />
+            android:configChanges="orientation|keyboardHidden" />
         <activity
             android:name=".newgpsone.older.NewHistoryDataActivity"
-            android:configChanges="orientation|keyboardHidden"
-             />
+            android:configChanges="orientation|keyboardHidden" />
         <activity
             android:name=".newgpsone.older.NewHistoryMapActivity"
-            android:configChanges="orientation|keyboardHidden"
-            /> <!-- 定位需要的服务 -->
+            android:configChanges="orientation|keyboardHidden" /> <!-- 定位需要的服务 -->
         <service android:name="com.amap.api.location.APSService" />
     </application>
 

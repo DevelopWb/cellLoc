@@ -28,10 +28,6 @@ public abstract class BaseFunctionActivity extends BaseAppActivity<MainPagePrese
     private MainPagerAdapter adapter;
     private CustomViewPager mainViewpager;
     private TabLayout mainTablayout;
-    private TextView mBackTv;
-    public TextView mTitleName;
-    private Toolbar mTopToolbar;
-    private LinearLayout mMainLayout;
 
     //
 
@@ -43,29 +39,11 @@ public abstract class BaseFunctionActivity extends BaseAppActivity<MainPagePrese
 
     @Override
     public void initView() {
-        initToolbarAndStatusBar(false);
-        mImmersionBar.statusBarColor(R.color.colorAccent)
-                .statusBarDarkFont(false)
-                .init();
         mainViewpager = findViewById(R.id.main_viewpager);
         mainTablayout = findViewById(R.id.main_tablayout);
         mainViewpager.setScanScroll(false);
         mainViewpager.setOffscreenPageLimit(2);
         initTab();
-        mBackTv = (TextView) findViewById(R.id.basefuction_back_tv);
-        mBackTv.setOnClickListener(this);
-        Drawable drawable = mContext.getResources().getDrawable(R.drawable.app_back);
-        // 这一步必须要做,否则不会显示.
-        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-        mBackTv.setCompoundDrawables(drawable, null, null, null);
-        //            mBackTv.setText("返回");
-        mBackTv.setCompoundDrawablePadding(-DisplayUtil.dp2px(this, 3));
-        mTitleName = (TextView) findViewById(R.id.basefuction_title_name);
-        mTopToolbar = (Toolbar) findViewById(R.id.top_toolbar);
-        mMainLayout = (LinearLayout) findViewById(R.id.main_layout);
-        mTopToolbar.setVisibility(View.VISIBLE);
-        mTopToolbar.setNavigationIcon(null);
-        mTopToolbar.setBackgroundResource(com.juntai.disabled.basecomponent.R.color.colorAccent);
     }
 
     @Override
@@ -141,23 +119,16 @@ public abstract class BaseFunctionActivity extends BaseAppActivity<MainPagePrese
     }
 
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.basefuction_back_tv:
-                finish();
-                break;
-            default:
-                break;
-        }
-    }
 
 
     @Override
     protected MainPagePresent createPresenter() {
         return new MainPagePresent();
     }
+    @Override
+    public void onClick(View v) {
 
+    }
 
     @Override
     protected void onResume() {

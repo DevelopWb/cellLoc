@@ -20,6 +20,7 @@ import com.celllocation.R;
 import com.celllocation.newgpsone.Utils.RegOperateTool;
 import com.celllocation.newgpsone.base.BaseAppFragment;
 import com.celllocation.newgpsone.database.DataHelper;
+import com.celllocation.newgpsone.functions.BaseFunctionActivity;
 import com.celllocation.newgpsone.functions.MainPageContract;
 import com.celllocation.newgpsone.functions.MainPagePresent;
 import com.juntai.disabled.basecomponent.utils.DisplayUtil;
@@ -48,6 +49,7 @@ public class WifiLocateFragment extends BaseAppFragment<MainPagePresent> impleme
 
     @Override
     public void lazyLoad() {
+        ((BaseFunctionActivity) getBaseActivity()).setTitleName("WIFI定位");
     }
 
     @Override

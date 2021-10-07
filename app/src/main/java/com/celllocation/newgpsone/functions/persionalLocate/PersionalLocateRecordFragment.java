@@ -1,10 +1,12 @@
-package com.celllocation.newgpsone.functions.wifilocate;
+package com.celllocation.newgpsone.functions.persionalLocate;
 
 import com.celllocation.R;
 import com.celllocation.newgpsone.base.BaseRecyclerviewFragment;
 import com.celllocation.newgpsone.functions.BaseFunctionActivity;
 import com.celllocation.newgpsone.functions.MainPageContract;
 import com.celllocation.newgpsone.functions.MainPagePresent;
+import com.celllocation.newgpsone.functions.wifilocate.WifiLocHisAdapter;
+import com.celllocation.newgpsone.functions.wifilocate.WifiLocateActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 /**
@@ -14,7 +16,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
  * @UpdateUser: 更新者
  * @UpdateDate: 2021-09-06 10:06
  */
-public class WifiLocateRecordFragment extends BaseRecyclerviewFragment<MainPagePresent> implements MainPageContract.IMainPageView {
+public class PersionalLocateRecordFragment extends BaseRecyclerviewFragment<MainPagePresent> implements MainPageContract.IMainPageView {
     @Override
     public MainPagePresent createPresenter() {
         return null;
@@ -22,7 +24,7 @@ public class WifiLocateRecordFragment extends BaseRecyclerviewFragment<MainPageP
 
     @Override
     public void lazyLoad() {
-        ((BaseFunctionActivity) getBaseActivity()).setTitleName("历史记录");
+        ((BaseFunctionActivity)getBaseActivity()).setTitleName("历史记录");
 
     }
 
@@ -40,7 +42,7 @@ public class WifiLocateRecordFragment extends BaseRecyclerviewFragment<MainPageP
 
     @Override
     protected BaseQuickAdapter getAdapter() {
-        return new WifiLocHisAdapter(R.layout.new_layouthistorydatapos);
+        return new PersionalLocHisAdapter(R.layout.new_layouthistorydatapos);
     }
 
     @Override

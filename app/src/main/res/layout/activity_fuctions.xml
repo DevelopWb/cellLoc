@@ -7,31 +7,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/top_toolbar"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="40dp">
-
-        <TextView
-            android:id="@+id/basefuction_back_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:gravity="center"
-            android:textColor="@color/text_title" />
-
-        <TextView
-            android:id="@+id/basefuction_title_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textSize="18dp" />
-
-    </android.support.v7.widget.Toolbar>
-
     <com.celllocation.newgpsone.base.customview.CustomViewPager
         android:id="@+id/main_viewpager"
         android:layout_width="match_parent"

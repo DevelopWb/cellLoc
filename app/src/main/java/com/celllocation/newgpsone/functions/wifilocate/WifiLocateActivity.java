@@ -9,7 +9,11 @@ import com.celllocation.R;
 import com.celllocation.newgpsone.functions.BaseFunctionActivity;
 import com.celllocation.newgpsone.functions.celllocate.CellLocateRecordFragment;
 import com.celllocation.newgpsone.functions.celllocate.CellSearchFragment;
-
+/**
+ * @aouther tobato
+ * @description 描述 wifi定位
+ * @date 2021-10-07 15:56
+ */
 public class WifiLocateActivity extends BaseFunctionActivity {
 
     @Override
