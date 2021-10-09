@@ -64,5 +64,18 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
         }
         return v;
     }
+    /**
+     * 自定义底部消息tab
+     * @param position
+     * @return
+     */
+    public View getTabView(int position) {
+        View v = LayoutInflater.from(mContext).inflate(R.layout.custom_tabitem2, null);
+        ImageView img = v.findViewById(R.id.tabitem_image);
+        img.setImageResource(images[position]);
+        TextView title = v.findViewById(R.id.tabitem_text);
+        title.setText(titles[position]);
+        return v;
+    }
 
 }

@@ -60,11 +60,7 @@ public class LatLngTransformFragment extends BaseAppFragment implements View.OnC
         for (int i = 0; i < getTitleArrays().length; i++) {
             TabLayout.Tab tab = mTablayoutTb.newTab();
             if (tab != null) {
-                if (i == getTitleArrays().length - 1) {
-                    tab.setCustomView(adapter.getTabView(i, true));
-                } else {
-                    tab.setCustomView(adapter.getTabView(i, false));
-                }
+                tab.setCustomView(adapter.getTabView(i));
                 mTablayoutTb.addTab(tab);
             }
         }
@@ -95,15 +91,16 @@ public class LatLngTransformFragment extends BaseAppFragment implements View.OnC
         SparseArray<Fragment> arrays = new SparseArray<>();
         arrays.append(0, LatLngTransformChildFragment.getInstance(0));
         arrays.append(1, LatLngTransformChildFragment.getInstance(1));
+        arrays.append(2, LatLngTransformChildFragment.getInstance(2));
         return arrays;
     }
 
     private int[] getTabDrawables() {
-        return new int[]{R.drawable.cell_search, R.drawable.cell_search_record};
+        return new int[]{R.drawable.latlng_gps, R.drawable.latlng_baidu,R.drawable.latlng_gaode};
     }
 
     private String[] getTitleArrays() {
-        return new String[]{"111", "222"};
+        return new String[]{"GPS坐标", "百度坐标","高德坐标"};
     }
 
     @Override

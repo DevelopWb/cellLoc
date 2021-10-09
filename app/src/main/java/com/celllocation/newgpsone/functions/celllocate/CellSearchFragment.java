@@ -256,35 +256,13 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
             mPresenter.cellLocateCDMA(LAC,CID,NID,PublicUtill.CDMA_CELL_LOC_KEY, MainPageContract.CELL_CDMA);
         }else {
             NID = "";
-            mPresenter.cellLocateOther(LAC,CID,"0",PublicUtill.OTHER_CELL_LOC_KEY, MainPageContract.CELL_CDMA);
+            mPresenter.cellLocateOther(LAC,CID,MNC,PublicUtill.OTHER_CELL_LOC_KEY, MainPageContract.CELL_CDMA);
 
         }
 
-//        GetJizhanPosBySelf(LAC, CID, NID, MNC);
 
     }
 
-//    private void GetJizhanPosBySelf(final String lac, final String cid, final String nid, final String mnc) {
-//
-//        CellPositionNetTask cellPositionNetTask = new CellPositionNetTask(new PositionCallBack() {
-//            @Override
-//            public void onSuccessed(CellPosition position) {
-//                String notice = position.getDesc();
-//                if ("未查询到数据!".equals(notice)) {
-//                    CellLocationFailed("未查询到位置信息，查询失败");
-//                } else {
-//                    GpsPos = resolveResponse(mContext, position, lac, cid, nid);
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onErro() {
-//                CellLocationFailed("未查询到位置信息，查询失败");
-//            }
-//        });
-//        cellPositionNetTask.getCellPosition(lac, cid, nid, mnc);
-//    }
 
     /**
      * 解析数据
@@ -299,18 +277,6 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
     private Position resolveResponse(Context context, CellLocResultBean cellPosition, String lac, String cid, String nid) {
 
         Position p = new Position();
-//        Object model = cellPosition.getModel();
-        //  "注册码已经禁用"
-//        if (model.equals("注册码已经禁用")) {
-//            Toast.makeText(context, "注册码已经禁用,请联系管理员", Toast.LENGTH_SHORT).show();
-//            return p;
-//        } else if (model.equals("注册码次数已用完")) {
-//            Toast.makeText(context, "注册码次数已用完,请联系管理员", Toast.LENGTH_SHORT).show();
-//            return p;
-//        } else if (model.equals("注册码使用时间过期")) {
-//            Toast.makeText(context, "注册码使用时间过期,请联系管理员", Toast.LENGTH_SHORT).show();
-//            return p;
-//        } else {
             p.lac = Integer.parseInt(lac);
             p.cid = Integer.parseInt(cid);
             if (!TextUtils.isEmpty(nid)) {

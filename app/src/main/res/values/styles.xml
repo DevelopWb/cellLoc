@@ -20,6 +20,13 @@
         <item name="android:textColor">@drawable/text_main_tab</item>
         <item name="android:textSize">12dp</item>
     </style>
+    <!--mainactivity - tab 文本-->
+    <style name="tab_textview_black">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textColor">@drawable/text_tab_black</item>
+    </style>
     <!-- Application theme. -->
     <style name="AppTheme" parent="BaseAppTheme">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -27,7 +34,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-<style name="DialogStyle" parent="@android:style/Theme.Dialog">
+
+    <style name="DialogStyle" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 

@@ -1,6 +1,5 @@
 package com.celllocation.newgpsone.older;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -39,8 +38,6 @@ import com.amap.api.services.geocoder.GeocodeSearch;
 import com.amap.api.services.geocoder.GeocodeSearch.OnGeocodeSearchListener;
 import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.celllocation.R;
 import com.celllocation.newgpsone.Utils.AMapUtil;
 import com.celllocation.newgpsone.Utils.PublicUtill;
@@ -69,7 +66,6 @@ public class SearchMapActivity extends BaseAppActivity implements
     String time;
     String la_, lo_;
     double la, lo;
-    private RequestQueue mRequestQueue;
     private RegOperateTool rot;
 
     @Override
@@ -128,15 +124,6 @@ public class SearchMapActivity extends BaseAppActivity implements
             UiSettings uiSettings = aMap.getUiSettings();
             uiSettings.setZoomControlsEnabled(true);
             uiSettings.setZoomPosition(AMapOptions.ZOOM_POSITION_RIGHT_CENTER);
-            // aMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener()
-            // {
-            // @Override
-            // public void onInfoWindowClick(Marker arg0) {
-            // if (arg0.isInfoWindowShown()) {
-            // arg0.hideInfoWindow();// 这个是隐藏infowindow窗口的方法
-            // }
-            // }
-            // });
 
         }
         geocoderSearch = new GeocodeSearch(this);
@@ -357,68 +344,6 @@ public class SearchMapActivity extends BaseAppActivity implements
         TextView la_tv = (TextView) view.findViewById(R.id.new_la_tv);
         la_tv.setText("纬度：" + la_);
 
-//		String str = marker.getSnippet();
-//		String[] strs = str.split("\n");
-//		String col1 = strs[0];
-//		String col2 = strs[1];
-//
-//		String col4;
-//		int cellid = Integer.parseInt(strs[3]);
-//
-//		if (cellid == -1) {
-//			col4 = "基站号： 未知";
-//		} else {
-//			col4 = "基站号： " + String.valueOf(cellid);
-//		}
-//		String col5;
-//		int lac = Integer.parseInt(strs[4]);
-//		if (PublicUtill.dianxin_mar == 100) {
-//
-//			if (lac == -1) {
-//				col5 = "网络识别码： 未知";
-//			} else {
-//				col5 = "系统识别码(SID): " + String.valueOf(lac);
-//			}
-//			String col6 = strs[7];
-//			if (col6 != null || !col6.equals("")) {
-//				LinearLayout dianxin_nid_ll = (LinearLayout) view
-//						.findViewById(R.id.dianxin_nid_ll);
-//				dianxin_nid_ll.setVisibility(view.VISIBLE);
-//
-//				TextView nid_detail_tv = (TextView) view
-//						.findViewById(R.id.nid_detail_tv);
-//				nid_detail_tv.setText(col6);
-//			}
-//		} else {
-//			if (lac == -1) {
-//				col5 = "扇区号： 未知";
-//			} else {
-//				col5 = "扇区号： " + String.valueOf(lac);
-//			}
-//		}
-//
-//		String col3 = strs[2];
-//
-//		TextView me_tv = (TextView) view.findViewById(R.id.new_me_tv);
-//		me_tv.setText("");
-//
-//		address_tv = (TextView) view.findViewById(R.id.new_address_tv);
-//		address_tv.setText(col2);
-//
-//		TextView time_tv = (TextView) view.findViewById(R.id.new_time_tv);
-//		time_tv.setText(col3);
-//
-//		TextView jizhan = (TextView) view.findViewById(R.id.new_jizhan);
-//		jizhan.setText(col4);
-//
-//		TextView shanqu_tv = (TextView) view.findViewById(R.id.new_shanqu_tv);
-//		shanqu_tv.setText(col5);
-//
-//		TextView lo_tv = (TextView) view.findViewById(R.id.new_lo_tv);
-//		lo_tv.setText("经度：" + strs[6]);
-//
-//		TextView la_tv = (TextView) view.findViewById(R.id.new_la_tv);
-//		la_tv.setText("纬度：" + strs[5]);
         ImageView selfpopupclose = (ImageView) view
                 .findViewById(R.id.new_selfpopupclose);
         selfpopupclose.setOnClickListener(new OnClickListener() {
@@ -437,7 +362,7 @@ public class SearchMapActivity extends BaseAppActivity implements
 
                 if (address_tv.getText().toString() != null
                         && !TextUtils.isEmpty(address_tv.getText().toString())) {
-                    showLoginDialog();
+                    showAddrDialog();
 
                 }
 
@@ -446,7 +371,10 @@ public class SearchMapActivity extends BaseAppActivity implements
         });
     }
 
-    private void showLoginDialog() {
+    /**
+     * 地址
+     */
+    private void showAddrDialog() {
         View v = LayoutInflater.from(this).inflate(R.layout.position_popup,
                 null);
         final Dialog dialog_c = new Dialog(this, R.style.DialogStyle);
@@ -471,13 +399,6 @@ public class SearchMapActivity extends BaseAppActivity implements
     }
 
 
-    public RequestQueue getRequestQueue() {
-        if (mRequestQueue == null) {
-            mRequestQueue = Volley
-                    .newRequestQueue(this.getApplicationContext());
-        }
-        return mRequestQueue;
-    }
 
     @Override
     public void onSuccess(String tag, Object o) {

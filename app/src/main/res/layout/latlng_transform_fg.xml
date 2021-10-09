@@ -7,7 +7,7 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/tablayout_tb"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="120dp"
         android:background="@color/white"
         android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"

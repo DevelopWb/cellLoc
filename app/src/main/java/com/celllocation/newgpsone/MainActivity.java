@@ -92,7 +92,7 @@ public class MainActivity extends BaseAppActivity {
         arrays.add(new HomePageMenuBean(HOMEPAGE_MENU_WIFI_LOC,
                 R.mipmap.home_menu_wifi));
 
-        arrays.add(new HomePageMenuBean(HOMEPAGE_MENU_PEOPLE_LOC, R.mipmap.home_menu_people));
+//        arrays.add(new HomePageMenuBean(HOMEPAGE_MENU_PEOPLE_LOC, R.mipmap.home_menu_people));
         arrays.add(new HomePageMenuBean(HOMEPAGE_MENU_LAT_LNG, R.mipmap.home_menu_latlng));
 
         return arrays;
