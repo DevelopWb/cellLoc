@@ -125,7 +125,8 @@ public class LatLngAddrActivity extends BaseAppActivity implements
     private void init() {
         if (aMap == null) {
             aMap = mapView.getMap();
-            setUpMap();
+            aMap.setOnMarkerClickListener(this);// 设置点击marker事件监听器
+            aMap.setInfoWindowAdapter(this);
             UiSettings uiSettings = aMap.getUiSettings();
             uiSettings.setZoomControlsEnabled(true);
             uiSettings.setZoomPosition(AMapOptions.ZOOM_POSITION_RIGHT_CENTER);
@@ -136,21 +137,10 @@ public class LatLngAddrActivity extends BaseAppActivity implements
     }
 
     private Bitmap getBitmap() {
-        Bitmap bitmap = null;
-
-        Resources res = LatLngAddrActivity.this.getResources();
-
-        bitmap = BitmapFactory.decodeResource(res,
+        return BitmapFactory.decodeResource(getResources(),
                 R.drawable.singlepos_mapcenter);
-        return bitmap;
     }
 
-    private void setUpMap() {
-
-        aMap.setOnMarkerClickListener(this);// 设置点击marker事件监听器
-        aMap.setInfoWindowAdapter(this);
-
-    }
 
     /**
      * 响应逆地理编码
@@ -187,6 +177,7 @@ public class LatLngAddrActivity extends BaseAppActivity implements
                 markerOption1
                         .anchor(0.5f, 0.5f)
                         .position(latlng1)
+                        .snippet("")
                         .icon(BitmapDescriptorFactory.fromBitmap(DataUtil
                                 .toRoundBitmap(getBitmap(),
                                         LatLngAddrActivity.this))).draggable(true)
@@ -222,6 +213,11 @@ public class LatLngAddrActivity extends BaseAppActivity implements
         super.onPause();
         mapView.onPause();
     }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mapView.onCreate(savedInstanceState);// 此方法必须重写
+    }
 
     /**
      * 方法必须重写
@@ -250,7 +246,7 @@ public class LatLngAddrActivity extends BaseAppActivity implements
     public View getInfoWindow(Marker marker) {
         infoWindow = getLayoutInflater().inflate(R.layout.lat_lng_addr_info,
                 null);
-//        render(marker, infoWindow);
+        render(marker, infoWindow);
         return infoWindow;
     }
 
@@ -260,17 +256,6 @@ public class LatLngAddrActivity extends BaseAppActivity implements
         return false;
     }
 
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
-            case R.id.info_close_iv:
-                mMarker.hideInfoWindow();
-                break;
-            default:
-                break;
-        }
-    }
 
     @Override
     public void onGeocodeSearched(GeocodeResult arg0, int arg1) {
@@ -278,11 +263,6 @@ public class LatLngAddrActivity extends BaseAppActivity implements
 
     }
 
-    @Override
-    public void onBackPressed() {
-        PublicUtill.dianxin_mar = 0;
-        super.onBackPressed();
-    }
 
     public void render(final Marker marker, View view) {
         mInfoAddressTv = (TextView) view.findViewById(R.id.info_address_tv);
@@ -325,5 +305,16 @@ public class LatLngAddrActivity extends BaseAppActivity implements
     @Override
     public void onSuccess(String tag, Object o) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.info_close_iv:
+                mMarker.hideInfoWindow();
+                break;
+            default:
+                break;
+        }
     }
 }

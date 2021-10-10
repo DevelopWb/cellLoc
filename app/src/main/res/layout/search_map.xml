@@ -4,26 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.amap.api.maps.MapView
-            android:id="@+id/search_map"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"></com.amap.api.maps.MapView>
-
-        <TextView
-            android:id="@+id/cell_end_tv"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/singlepos_bottom1"
-            android:gravity="center"
-            android:text="基站定位"
-            android:textColor="#ffffff"
-            android:textSize="20sp" />
-    </RelativeLayout>
+    <com.amap.api.maps.MapView
+        android:id="@+id/search_map"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"></com.amap.api.maps.MapView>
 
 </LinearLayout>
