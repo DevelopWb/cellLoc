@@ -1,6 +1,8 @@
 package com.celllocation.newgpsone.functions.LatlngTransform;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -80,7 +82,18 @@ public class LatLngTransformChildFragment extends BaseAppFragment implements Vie
             default:
                 break;
             case R.id.cell_search_tv:
-                ToastUtils.toast(mContext,String.valueOf(latlngType));
+
+                if (TextUtils.isEmpty(getBaseActivity().getTextViewValue(mLngValueEt))) {
+                    ToastUtils.toast(mContext,"请输入经度");
+                    return;
+                }
+                if (TextUtils.isEmpty(getBaseActivity().getTextViewValue(mLatValueEt))) {
+                    ToastUtils.toast(mContext,"请输入纬度");
+                    return;
+                }
+                startActivity(new Intent(mContext,LatLngAddrActivity.class).putExtra(LatLngAddrActivity.KEY_LAT,
+                        Double.parseDouble(getBaseActivity().getTextViewValue(mLatValueEt))).putExtra(LatLngAddrActivity.KEY_LNG,
+                        Double.parseDouble(getBaseActivity().getTextViewValue(mLngValueEt))));
                 break;
         }
     }

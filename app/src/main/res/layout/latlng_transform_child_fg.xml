@@ -17,7 +17,7 @@
             android:layout_marginLeft="10dp"
             android:gravity="center|left"
             android:paddingLeft="10dp"
-            android:text="111："
+            android:text="经度："
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -25,10 +25,10 @@
             android:id="@+id/lng_value_et"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:text="116.4887651177236"
             android:layout_marginRight="10dp"
+            android:inputType="numberDecimal"
             android:background="@drawable/singlepos_textbox"
-            android:maxLength="9"
-            android:numeric="integer"
             android:paddingLeft="6dp" />
     </LinearLayout>
 
@@ -45,7 +45,7 @@
             android:layout_marginLeft="10dp"
             android:gravity="center|left"
             android:paddingLeft="10dp"
-            android:text="222："
+            android:text="纬度："
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -53,10 +53,10 @@
             android:id="@+id/lat_value_et"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:text="40.00742541169681"
+            android:inputType="numberDecimal"
             android:layout_marginRight="10dp"
             android:background="@drawable/singlepos_textbox"
-            android:maxLength="9"
-            android:numeric="integer"
             android:paddingLeft="6dp" />
     </LinearLayout>
 
@@ -65,5 +65,5 @@
         android:id="@+id/cell_search_tv"
         style="@style/bt_style"
         android:layout_marginTop="50dp"
-        android:text="提交" />
+        android:text="查询" />
 </LinearLayout>
