@@ -53,7 +53,7 @@ public class MyHistoryDataListAdapter extends BaseAdapter {
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = Inflater.inflate(R.layout.new_layouthistorydatapos, parent, false);
-            holder.cell_his_jizhan = (TextView) convertView.findViewById(R.id.cell_his_jizhan);
+            holder.cell_his_jizhan = (TextView) convertView.findViewById(R.id.lat_tv);
             holder.cell_his_shanqu = (TextView) convertView.findViewById(R.id.cell_his_shanqu);
             holder.cell_his_nid = (TextView) convertView.findViewById(R.id.cell_his_nid);
             holder.cell_his_address = (TextView) convertView.findViewById(R.id.cell_his_address);

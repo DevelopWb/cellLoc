@@ -8,7 +8,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.celllocation.R;
+import com.celllocation.newgpsone.Utils.LatLngTransFormUtil;
+import com.celllocation.newgpsone.Utils.ObjectBox;
 import com.celllocation.newgpsone.base.BaseAppFragment;
+import com.celllocation.newgpsone.bean.DataUtil;
+import com.celllocation.newgpsone.bean.LatLngBean;
 import com.juntai.disabled.basecomponent.mvp.IPresenter;
 import com.juntai.disabled.basecomponent.utils.ToastUtils;
 
@@ -22,7 +26,7 @@ import com.juntai.disabled.basecomponent.utils.ToastUtils;
 public class LatLngTransformChildFragment extends BaseAppFragment implements View.OnClickListener {
     //坐标类型 0是gps  1是百度 2是国标
     public static String LATLNG_TYPE = "lng_type";
-    private int latlngType;
+    private int latlngType;// //坐标类型 0是gps  1是百度 2是国标
     private View view;
     private EditText mLngValueEt;
     private EditText mLatValueEt;
@@ -84,16 +88,37 @@ public class LatLngTransformChildFragment extends BaseAppFragment implements Vie
             case R.id.cell_search_tv:
 
                 if (TextUtils.isEmpty(getBaseActivity().getTextViewValue(mLngValueEt))) {
-                    ToastUtils.toast(mContext,"请输入经度");
+                    ToastUtils.toast(mContext, "请输入经度");
                     return;
                 }
                 if (TextUtils.isEmpty(getBaseActivity().getTextViewValue(mLatValueEt))) {
-                    ToastUtils.toast(mContext,"请输入纬度");
+                    ToastUtils.toast(mContext, "请输入纬度");
                     return;
                 }
-                startActivity(new Intent(mContext,LatLngAddrActivity.class).putExtra(LatLngAddrActivity.KEY_LAT,
-                        Double.parseDouble(getBaseActivity().getTextViewValue(mLatValueEt))).putExtra(LatLngAddrActivity.KEY_LNG,
-                        Double.parseDouble(getBaseActivity().getTextViewValue(mLngValueEt))));
+
+                double lat = Double.parseDouble(getBaseActivity().getTextViewValue(mLatValueEt));
+                double lng = Double.parseDouble(getBaseActivity().getTextViewValue(mLngValueEt));
+                ObjectBox.get().boxFor(LatLngBean.class).put(new LatLngBean(lat,lng,latlngType, DataUtil.getDateToString(System
+                        .currentTimeMillis())));
+                LatLngBean latLngBean = null;
+                switch (latlngType) {
+                    case 0:
+                        latLngBean = LatLngTransFormUtil.gps84_To_Gcj02(lat, lng);
+                        break;
+                    case 1:
+                        latLngBean = LatLngTransFormUtil.bd09_To_Gcj02(lat, lng);
+                        break;
+                    case 2:
+                        latLngBean = new LatLngBean(lat, lng);
+                        break;
+                    default:
+                        break;
+                }
+
+
+                startActivity(new Intent(mContext, LatLngAddrActivity.class)
+                        .putExtra(LatLngAddrActivity.KEY_LOC_TYPE, latlngType)
+                        .putExtra(LatLngAddrActivity.KEY_LAT_LNG_BEAN, latLngBean));
                 break;
         }
     }

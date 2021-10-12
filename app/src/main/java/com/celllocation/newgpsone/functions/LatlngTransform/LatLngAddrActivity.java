@@ -41,8 +41,11 @@ import com.celllocation.newgpsone.Utils.AMapUtil;
 import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.base.BaseAppActivity;
 import com.celllocation.newgpsone.bean.DataUtil;
+import com.celllocation.newgpsone.bean.LatLngBean;
 import com.juntai.disabled.basecomponent.mvp.BasePresenter;
 import com.juntai.disabled.basecomponent.utils.ToastUtils;
+
+import java.text.DecimalFormat;
 
 /**
  * @aouther tobato
@@ -62,8 +65,8 @@ public class LatLngAddrActivity extends BaseAppActivity implements
     private double lat;
     private double lng;
 
-    public static String KEY_LAT = "key_lat";
-    public static String KEY_LNG = "key_lng";
+    public static String KEY_LOC_TYPE = "key_loctype";
+    public static String KEY_LAT_LNG_BEAN = "key_latlng";
     /**
      * 位置
      */
@@ -86,6 +89,8 @@ public class LatLngAddrActivity extends BaseAppActivity implements
      */
     private TextView mTimeTv;
     private Marker mMarker;
+    private String addressName;
+    private int locType;
 
     @Override
     protected BasePresenter createPresenter() {
@@ -99,12 +104,16 @@ public class LatLngAddrActivity extends BaseAppActivity implements
 
     @Override
     public void initView() {
+        time = DataUtil.getDateToString(System
+                .currentTimeMillis());
         setTitleName("经纬度查询");
         mapView = (MapView) findViewById(R.id.search_map);
         init();
         Intent intent = getIntent();
-        lat = (double) intent.getDoubleExtra(KEY_LAT, 0.0);
-        lng = (double) intent.getDoubleExtra(KEY_LNG, 0.0);
+        locType = intent.getIntExtra(KEY_LOC_TYPE, 0);
+        LatLngBean latLngBean = intent.getParcelableExtra(KEY_LAT_LNG_BEAN);
+        lat = Double.parseDouble(new DecimalFormat("0.000000").format(latLngBean.getWgLat()));
+        lng =Double.parseDouble(new DecimalFormat("0.000000").format(latLngBean.getWgLon()));
         if (lat > 0 && lng > 0) {
             getAddress(new LatLonPoint(lat, lng));
         }
@@ -160,7 +169,7 @@ public class LatLngAddrActivity extends BaseAppActivity implements
         if (rCode == 0) {
             if (result != null && result.getRegeocodeAddress() != null
                     && result.getRegeocodeAddress().getFormatAddress() != null) {
-                String addressName = result.getRegeocodeAddress().getFormatAddress()
+                addressName = result.getRegeocodeAddress().getFormatAddress()
                         + "附近";
                 aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                         AMapUtil.convertToLatLng(latLonPoint), 16));
@@ -213,6 +222,7 @@ public class LatLngAddrActivity extends BaseAppActivity implements
         super.onPause();
         mapView.onPause();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -266,18 +276,38 @@ public class LatLngAddrActivity extends BaseAppActivity implements
 
     public void render(final Marker marker, View view) {
         mInfoAddressTv = (TextView) view.findViewById(R.id.info_address_tv);
+        mInfoAddressTv.setText(addressName);
+        mInfoAddressTv.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                showAddrDialog(addressName);
+
+                return true;
+            }
+        });
         mInfoCloseIv = (ImageView) view.findViewById(R.id.info_close_iv);
         mInfoCloseIv.setOnClickListener(this);
         mLngTv = (TextView) view.findViewById(R.id.lng_tv);
+        mLngTv.append(String.valueOf(lng));
         mLatTv = (TextView) view.findViewById(R.id.lat_tv);
+        mLatTv.append(String.valueOf(lat));
+
         mLatlngTypeTv = (TextView) view.findViewById(R.id.latlng_type_tv);
+        if (0 == locType) {
+            mLatlngTypeTv.append("GPS坐标");
+        } else if (1 == locType) {
+            mLatlngTypeTv.append("百度坐标");
+        } else {
+            mLatlngTypeTv.append("高德坐标");
+        }
         mTimeTv = (TextView) view.findViewById(R.id.time_tv);
+        mTimeTv.setText(time);
     }
 
     /**
      * 地址
      */
-    private void showAddrDialog() {
+    private void showAddrDialog(String addr) {
         View v = LayoutInflater.from(this).inflate(R.layout.position_popup,
                 null);
         final Dialog dialog_c = new Dialog(this, R.style.DialogStyle);
@@ -292,7 +322,7 @@ public class LatLngAddrActivity extends BaseAppActivity implements
         window.setAttributes(lp);
         window.setContentView(v);
         TextView bigtext = (TextView) v.findViewById(R.id.bigtext_tv);
-        //        bigtext.setText(address_tv.getText().toString());
+        bigtext.setText(addr);
 
     }
 
