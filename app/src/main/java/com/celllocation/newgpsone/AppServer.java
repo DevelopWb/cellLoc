@@ -2,6 +2,7 @@ package com.celllocation.newgpsone;
 
 
 import com.celllocation.newgpsone.bean.CellLocResultBean;
+import com.celllocation.newgpsone.bean.WifiLocBean;
 import com.juntai.disabled.basecomponent.base.BaseResult;
 
 import io.reactivex.Observable;
@@ -22,6 +23,17 @@ public interface AppServer {
      */
     @POST(AppHttpPath.REGIST)
     Observable<BaseResult> regist(@Body RequestBody requestBody);
+
+
+    /**
+     *
+     * @param requestdata
+     * @param type	返回坐标类型 0(google坐标),1( 百度坐标),2(gps坐标)；默认值：0
+     * @return
+     */
+    @GET(AppHttpPath.WIFI_LOC)
+    Observable<WifiLocBean> wifiLoc(@Query("requestdata") String requestdata, @Query("type") int type,
+                                    @Query("key") String key);
 
 
     @GET(AppHttpPath.CELL_LOCATE_CDMA)

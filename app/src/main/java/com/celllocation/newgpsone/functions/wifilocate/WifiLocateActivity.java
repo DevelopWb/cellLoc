@@ -31,11 +31,11 @@ public class WifiLocateActivity extends BaseFunctionActivity {
 
     @Override
     protected int[] getTabDrawables() {
-        return new int[]{R.drawable.cell_search, R.drawable.cell_search_record};
+        return new int[]{R.drawable.wifi_loc, R.drawable.cell_search_record};
     }
 
     @Override
     protected String[] getTitleArrays() {
-        return new String[]{"基站查询", "历史记录"};
+        return new String[]{"wifi定位", "历史记录"};
     }
 }

@@ -23,4 +23,8 @@ public class AppHttpPath {
     public static final String MODIFY_PWD = BASE + "u/appConnector/updatePaWd.shtml";
 
 
+
+    public static final String WIFI_LOC = " http://api.haoservice.com/api/LocationByWifiData";
+
+
 }

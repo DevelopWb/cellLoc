@@ -5,9 +5,12 @@ import com.celllocation.newgpsone.AppNetModule;
 import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.base.BaseAppPresent;
 import com.celllocation.newgpsone.bean.CellLocResultBean;
+import com.celllocation.newgpsone.bean.WifiLocBean;
 import com.juntai.disabled.basecomponent.base.BaseObserver;
 import com.juntai.disabled.basecomponent.mvp.IModel;
 import com.juntai.disabled.basecomponent.utils.RxScheduler;
+
+import okhttp3.RequestBody;
 
 /**
  * Describe:首页present
@@ -25,6 +28,26 @@ public class MainPagePresent extends BaseAppPresent<IModel, MainPageContract.IMa
 
 
 
+    public void wifiLoc(String json,int type,String key, String tag) {
+        AppNetModule.createrRetrofit()
+                .wifiLoc(json,type,key)
+                .compose(RxScheduler.ObsIoMain(getView()))
+                .subscribe(new BaseObserver<WifiLocBean>(null) {
+                    @Override
+                    public void onSuccess(WifiLocBean o) {
+                        if (getView() != null) {
+                            getView().onSuccess(tag, o);
+                        }
+                    }
+
+                    @Override
+                    public void onError(String msg) {
+                        if (getView() != null) {
+                            getView().onError(tag, msg);
+                        }
+                    }
+                });
+    }
     public void cellLocateCDMA(String lac,String cid,String nid,String key, String tag) {
         AppNetModule.createrRetrofit()
                 .cellLocateCDMA(lac,cid,nid, PublicUtill.LOC_TYPE,key)
