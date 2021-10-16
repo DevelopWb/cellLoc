@@ -77,6 +77,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Toolba
 
     public abstract void initData();
 
+    public static String PARCELABLE_KEY = "parcelable";
 
     public Context mContext;
     public Toast toast;
@@ -619,6 +620,17 @@ public abstract class BaseActivity extends RxAppCompatActivity implements Toolba
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         hideKeyboardFromView(view);
+    }
+    /**
+     * view获取焦点
+     */
+    public  void getViewFocus(View view,boolean hideHeyboard) {
+        view.setFocusable(true);
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        if (hideHeyboard) {
+            hideKeyboardFromView(view);
+        }
     }
     /**
      * 显示软键盘

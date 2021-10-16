@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import com.amap.api.maps.model.LatLng;
 import com.celllocation.newgpsone.bean.Position;
-import com.celllocation.newgpsone.bean.GpsCorrect;
 import com.celllocation.newgpsone.bean.CellPosition;
 import com.celllocation.newgpsone.cellInfos.CellPositionNetTask;
 import com.celllocation.newgpsone.cellInfos.PositionCallBack;

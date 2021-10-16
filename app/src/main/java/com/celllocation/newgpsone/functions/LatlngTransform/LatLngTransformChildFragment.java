@@ -11,7 +11,7 @@ import com.celllocation.R;
 import com.celllocation.newgpsone.Utils.LatLngTransFormUtil;
 import com.celllocation.newgpsone.Utils.ObjectBox;
 import com.celllocation.newgpsone.base.BaseAppFragment;
-import com.celllocation.newgpsone.bean.DataUtil;
+import com.celllocation.newgpsone.Utils.DataUtil;
 import com.celllocation.newgpsone.bean.LatLngBean;
 import com.juntai.disabled.basecomponent.mvp.IPresenter;
 import com.juntai.disabled.basecomponent.utils.ToastUtils;

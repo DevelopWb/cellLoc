@@ -66,9 +66,46 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "2:1154348824806199906",
+      "lastPropertyId": "5:671368064772909167",
+      "name": "LatLngBean",
+      "properties": [
+        {
+          "id": "1:4145276586315194604",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2059728414263629582",
+          "name": "wgLat",
+          "type": 8,
+          "flags": 4
+        },
+        {
+          "id": "3:4476854590863424323",
+          "name": "wgLon",
+          "type": 8,
+          "flags": 4
+        },
+        {
+          "id": "4:125089484906863994",
+          "name": "locType",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "5:671368064772909167",
+          "name": "time",
+          "type": 9
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "1:4259050212222892913",
+  "lastEntityId": "2:1154348824806199906",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",

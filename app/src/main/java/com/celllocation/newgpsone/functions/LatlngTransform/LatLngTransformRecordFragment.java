@@ -12,6 +12,7 @@ import com.celllocation.R;
 import com.celllocation.newgpsone.Utils.LatLngTransFormUtil;
 import com.celllocation.newgpsone.Utils.ObjectBox;
 import com.celllocation.newgpsone.base.BaseAppFragment;
+import com.celllocation.newgpsone.base.BaseRecyclerviewFragment;
 import com.celllocation.newgpsone.bean.LatLngBean;
 import com.celllocation.newgpsone.bean.LatLngBean_;
 import com.celllocation.newgpsone.functions.BaseFunctionActivity;
@@ -31,10 +32,7 @@ import io.objectbox.query.QueryBuilder;
  * @UpdateUser: 更新者
  * @UpdateDate: 2021-09-06 10:06
  */
-public class LatLngTransformRecordFragment extends BaseAppFragment<MainPagePresent> implements MainPageContract.IMainPageView {
-    private RecyclerView mRecyclerview;
-    private SmartRefreshLayout mSmartrefreshlayout;
-    private LatLngLocAdapter adapter;
+public class LatLngTransformRecordFragment extends BaseRecyclerviewFragment<MainPagePresent> implements MainPageContract.IMainPageView {
 
     @Override
     public MainPagePresent createPresenter() {
@@ -49,29 +47,29 @@ public class LatLngTransformRecordFragment extends BaseAppFragment<MainPagePrese
         if (adapter != null) {
             adapter.setNewData(arrays);
         }
+    }
 
+
+
+    @Override
+    protected void freshlayoutOnLoadMore() {
 
     }
 
     @Override
-    public int getLayoutRes() {
-        return R.layout.recycleview_layout;
+    protected void freshlayoutOnRefresh() {
+
     }
 
     @Override
-    public void initView() {
-
-        mRecyclerview = (RecyclerView) getView(R.id.recyclerview);
-        mSmartrefreshlayout = (SmartRefreshLayout) getView(R.id.smartrefreshlayout);
-        mSmartrefreshlayout.setEnableRefresh(false);
-        mSmartrefreshlayout.setEnableLoadMore(false);
-        adapter = new LatLngLocAdapter(R.layout.latlng_loc_item);
-        getBaseActivity().initRecyclerview(mRecyclerview, adapter, LinearLayoutManager.VERTICAL);
-        getBaseActivity().addDivider(true,mRecyclerview,false,true);
+    protected BaseQuickAdapter getAdapter() {
+        return new LatLngLocAdapter(R.layout.latlng_loc_item);
     }
 
     @Override
     public void initData() {
+        mSmartrefreshlayout.setEnableRefresh(false);
+        mSmartrefreshlayout.setEnableLoadMore(false);
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -99,20 +97,5 @@ public class LatLngTransformRecordFragment extends BaseAppFragment<MainPagePrese
         });
     }
 
-    @Override
-    public void onSuccess(String tag, Object o) {
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
 
 }

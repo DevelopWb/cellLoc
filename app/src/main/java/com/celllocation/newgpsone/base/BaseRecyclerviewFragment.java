@@ -19,7 +19,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
  * @UpdateDate: 2021/4/29 16:16
  */
 public abstract class BaseRecyclerviewFragment<P extends IPresenter> extends BaseAppFragment<P> {
-    private RecyclerView mRecyclerview;
+    protected RecyclerView mRecyclerview;
     protected SmartRefreshLayout mSmartrefreshlayout;
     protected BaseQuickAdapter adapter;
 

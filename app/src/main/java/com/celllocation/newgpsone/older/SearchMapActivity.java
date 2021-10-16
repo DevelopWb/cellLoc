@@ -43,7 +43,7 @@ import com.celllocation.newgpsone.Utils.AMapUtil;
 import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.Utils.RegOperateTool;
 import com.celllocation.newgpsone.base.BaseAppActivity;
-import com.celllocation.newgpsone.bean.DataUtil;
+import com.celllocation.newgpsone.Utils.DataUtil;
 import com.celllocation.newgpsone.bean.Position;
 import com.juntai.disabled.basecomponent.mvp.BasePresenter;
 import com.juntai.disabled.basecomponent.utils.ToastUtils;
@@ -75,7 +75,7 @@ public class SearchMapActivity extends BaseAppActivity implements
 
     @Override
     public int getLayoutView() {
-        return R.layout.search_map;
+        return R.layout.map_layout;
     }
 
     @Override

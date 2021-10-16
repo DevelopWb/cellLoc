@@ -35,31 +35,30 @@
         android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".newgpsone.functions.persionalLocate.PersionalLocateActivity"
-            android:launchMode="singleTop"></activity>
+        <activity android:name=".newgpsone.functions.wifilocate.WifiLocAddrActivity"></activity>
         <activity
-            android:launchMode="singleTop"
-            android:name=".newgpsone.functions.LatlngTransform.LatLngTransformActivity" />
+            android:name=".newgpsone.functions.persionalLocate.PersionalLocateActivity"
+            android:launchMode="singleTop" />
         <activity
-            android:launchMode="singleTop"
-            android:name=".newgpsone.functions.wifilocate.WifiLocateActivity" />
+            android:name=".newgpsone.functions.LatlngTransform.LatLngTransformActivity"
+            android:launchMode="singleTop" />
         <activity
-            android:launchMode="singleTop"
-            android:name=".newgpsone.MainActivity" />
+            android:name=".newgpsone.functions.wifilocate.WifiLocateActivity"
+            android:launchMode="singleTop" />
         <activity
-            android:launchMode="singleTop"
-            android:name=".newgpsone.functions.celllocate.CellLocateActivity" />
+            android:name=".newgpsone.MainActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".newgpsone.functions.celllocate.CellLocateActivity"
+            android:launchMode="singleTop" />
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="e6835123bad4409c696e7a59c7cb510e" />
 
         <activity
-            android:launchMode="singleTop"
-            android:name=".newgpsone.older.CellPositionActivity" />
-        <activity
-            android:launchMode="singleTop"
             android:name=".newgpsone.functions.BaseFunctionActivity"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".newgpsone.app_entrance.SplashActivity"
@@ -71,45 +70,18 @@
             </intent-filter>
         </activity> <!-- 基站定位 -->
         <activity
-            android:launchMode="singleTop"
-            android:name=".newgpsone.older.FormDataLocationMapActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.NoTitleBar" />
-        <activity
-            android:launchMode="singleTop"
-            android:name=".newgpsone.older.PhoneDataHistoryActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.NoTitleBar" />
-        <activity
-            android:launchMode="singleTop"
-            android:name=".newgpsone.older.FileManagerExportActivity"
-            android:theme="@android:style/Theme.Dialog" />
-        <activity
-            android:launchMode="singleTop"
-            android:name=".newgpsone.older.FileManagerActivity"
-            android:theme="@android:style/Theme.Dialog" />
-        <activity
-            android:launchMode="singleTop"
-            android:name=".newgpsone.older.PhoneBillImportActivity"
-            android:configChanges="orientation|keyboardHidden" />
-        <activity
-            android:launchMode="singleTop"
             android:name=".newgpsone.older.SearchMapActivity"
-            android:configChanges="orientation|keyboardHidden" />
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop" />
         <activity
-            android:launchMode="singleTop"
-            android:name=".newgpsone.older.NewHistoryDataActivity"
-            android:configChanges="orientation|keyboardHidden" />
-        <activity
-            android:launchMode="singleTop"
             android:name=".newgpsone.older.NewHistoryMapActivity"
-            android:configChanges="orientation|keyboardHidden" /> <!-- 定位需要的服务 -->
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop" /> <!-- 定位需要的服务 -->
         <service android:name="com.amap.api.location.APSService" />
 
-
         <activity
-            android:launchMode="singleTop"
-            android:name=".newgpsone.functions.LatlngTransform.LatLngAddrActivity"></activity>
+            android:name=".newgpsone.functions.LatlngTransform.LatLngAddrActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

@@ -5,8 +5,6 @@ import com.celllocation.newgpsone.base.BaseRecyclerviewFragment;
 import com.celllocation.newgpsone.functions.BaseFunctionActivity;
 import com.celllocation.newgpsone.functions.MainPageContract;
 import com.celllocation.newgpsone.functions.MainPagePresent;
-import com.celllocation.newgpsone.functions.wifilocate.WifiLocHisAdapter;
-import com.celllocation.newgpsone.functions.wifilocate.WifiLocateActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 /**

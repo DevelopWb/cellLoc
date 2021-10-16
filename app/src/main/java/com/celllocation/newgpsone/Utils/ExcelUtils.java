@@ -1,4 +1,4 @@
-package com.celllocation.newgpsone.bean;
+package com.celllocation.newgpsone.Utils;
 
 import android.content.Context;
 import android.widget.Toast;

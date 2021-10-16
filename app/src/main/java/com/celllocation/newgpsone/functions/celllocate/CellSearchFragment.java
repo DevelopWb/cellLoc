@@ -18,7 +18,7 @@ import com.celllocation.newgpsone.Utils.RegOperateTool;
 import com.celllocation.newgpsone.base.BaseAppFragment;
 import com.celllocation.newgpsone.bean.CellHisData;
 import com.celllocation.newgpsone.bean.CellLocResultBean;
-import com.celllocation.newgpsone.bean.DataUtil;
+import com.celllocation.newgpsone.Utils.DataUtil;
 import com.celllocation.newgpsone.bean.Position;
 import com.celllocation.newgpsone.database.DataHelper;
 import com.celllocation.newgpsone.functions.BaseFunctionActivity;

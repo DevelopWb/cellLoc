@@ -33,52 +33,52 @@
             <EditText
                 android:id="@+id/mac_et1"
                 style="@style/mac_et_style"
-                android:text="2" />
+                 />
 
             <TextView
                 android:text=":"
                 style="@style/mac_text_style"></TextView>
 
             <EditText
-                android:id="@+id/mac_et1"
+                android:id="@+id/mac_et2"
                 style="@style/mac_et_style"
-                android:text="2" />
+                 />
 
             <TextView
                 android:text=":"
                 style="@style/mac_text_style"></TextView>
 
             <EditText
-                android:id="@+id/mac_et1"
+                android:id="@+id/mac_et3"
                 style="@style/mac_et_style"
-                android:text="2" />
+                 />
 
             <TextView
                 android:text=":"
                 style="@style/mac_text_style"></TextView>
 
             <EditText
-                android:id="@+id/mac_et1"
+                android:id="@+id/mac_et4"
                 style="@style/mac_et_style"
-                android:text="2" />
+                 />
 
             <TextView
                 android:text=":"
                 style="@style/mac_text_style"></TextView>
 
             <EditText
-                android:id="@+id/mac_et1"
+                android:id="@+id/mac_et5"
                 style="@style/mac_et_style"
-                android:text="2" />
+                 />
 
             <TextView
                 android:text=":"
                 style="@style/mac_text_style"></TextView>
 
             <EditText
-                android:id="@+id/mac_et1"
+                android:id="@+id/mac_et6"
                 style="@style/mac_et_style"
-                android:text="2" />
+                 />
 
         </LinearLayout>
     </LinearLayout>

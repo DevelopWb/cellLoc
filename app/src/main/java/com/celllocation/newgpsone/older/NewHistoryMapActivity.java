@@ -1,6 +1,5 @@
 package com.celllocation.newgpsone.older;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -37,12 +36,10 @@ import com.amap.api.services.geocoder.GeocodeAddress;
 import com.amap.api.services.geocoder.GeocodeSearch;
 import com.celllocation.R;
 import com.celllocation.newgpsone.Utils.ObjectBox;
-import com.celllocation.newgpsone.Utils.PublicUtill;
 import com.celllocation.newgpsone.base.BaseAppActivity;
 import com.celllocation.newgpsone.bean.CellHisData_;
-import com.celllocation.newgpsone.database.DataHelper;
 import com.celllocation.newgpsone.bean.CellHisData;
-import com.celllocation.newgpsone.bean.DataUtil;
+import com.celllocation.newgpsone.Utils.DataUtil;
 import com.juntai.disabled.basecomponent.mvp.BasePresenter;
 
 import java.text.DecimalFormat;

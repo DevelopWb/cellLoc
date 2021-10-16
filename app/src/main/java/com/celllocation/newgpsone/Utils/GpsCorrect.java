@@ -1,4 +1,4 @@
-package com.celllocation.newgpsone.bean;
+package com.celllocation.newgpsone.Utils;
 /**
  * gps纠偏算法，适用于google,高德体系的地图
  * @author Administrator
