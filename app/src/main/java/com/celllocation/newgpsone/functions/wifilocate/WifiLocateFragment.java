@@ -65,9 +65,8 @@ public class WifiLocateFragment extends BaseAppFragment<MainPagePresent> impleme
         switch (v.getId()) {
             case R.id.cell_search_tv:
                 String mac = getMacInfo();
-                ToastUtils.toast(mContext,mac);
-//                WifiLocRequestJson wifiLocRequestJson = new WifiLocRequestJson("5c：d0：6e：c6：2e：48", 0, 8);
-//                mPresenter.wifiLoc(GsonTools.createGsonString(wifiLocRequestJson), 0, PublicUtill.WIFI_LOC_KEY, "");
+                WifiLocRequestJson wifiLocRequestJson = new WifiLocRequestJson("5c：d0：6e：c6：2e：48", 0, 8);
+                mPresenter.wifiLoc(GsonTools.createGsonString(wifiLocRequestJson), 0, PublicUtill.WIFI_LOC_KEY, "");
                 break;
             default:
                 break;
@@ -183,9 +182,11 @@ public class WifiLocateFragment extends BaseAppFragment<MainPagePresent> impleme
         WifiLocBean wifiLocBean = (WifiLocBean) o;
         if (wifiLocBean != null) {
             WifiLocBean.LocationBean locationBean = wifiLocBean.getLocation();
-            ToastUtils.toast(mContext, wifiLocBean.toString());
             if (locationBean != null) {
                 WifiLocRecordBean bean = new WifiLocRecordBean(getMacInfo(),locationBean.getLatitude(),locationBean.getLongitude(),locationBean.getAddressDescription());
+                WifiLocAddrActivity.startWifiLocAddrActivity(mContext,WifiLocAddrActivity.class,bean);
+            }else {
+                WifiLocRecordBean bean = new WifiLocRecordBean("00:0b:0e:7d:17:82",30.26541,120.10214,"中国浙江省杭州市西湖区文新街道沈家门");
                 WifiLocAddrActivity.startWifiLocAddrActivity(mContext,WifiLocAddrActivity.class,bean);
             }
         }

@@ -103,9 +103,50 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "3:2937964400017758375",
+      "lastPropertyId": "6:7967070182809690903",
+      "name": "WifiLocRecordBean",
+      "properties": [
+        {
+          "id": "1:7408582188940032733",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5308043305617158245",
+          "name": "addr",
+          "type": 9
+        },
+        {
+          "id": "3:5026775515377841009",
+          "name": "locTime",
+          "type": 9
+        },
+        {
+          "id": "4:463105897091459463",
+          "name": "mac",
+          "type": 9
+        },
+        {
+          "id": "5:4103303211222018583",
+          "name": "longitude",
+          "type": 8,
+          "flags": 4
+        },
+        {
+          "id": "6:7967070182809690903",
+          "name": "latitude",
+          "type": 8,
+          "flags": 4
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "2:1154348824806199906",
+  "lastEntityId": "3:2937964400017758375",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",

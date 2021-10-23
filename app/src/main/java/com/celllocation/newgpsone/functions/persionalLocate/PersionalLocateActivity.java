@@ -1,20 +1,38 @@
 package com.celllocation.newgpsone.functions.persionalLocate;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.SparseArray;
+import android.view.View;
 
 import com.celllocation.R;
 import com.celllocation.newgpsone.functions.BaseFunctionActivity;
 import com.celllocation.newgpsone.functions.wifilocate.WifiLocateFragment;
 import com.celllocation.newgpsone.functions.wifilocate.WifiLocateRecordFragment;
+/**
+ * @aouther tobato
+ * @description 描述  人员定位
+ * @date 2021/10/23 20:15
+ */
+
 
 public class PersionalLocateActivity extends BaseFunctionActivity {
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void initData() {
+        super.initData();
+        getTitleRightTv().setText("添加");
+        getTitleRightTv().setTextColor(ContextCompat.getColor(mContext,R.color.white));
+        getTitleRightTv().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext,AddPersionActivity.class));
+            }
+        });
     }
 
     @Override

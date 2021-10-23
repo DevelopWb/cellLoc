@@ -35,6 +35,11 @@ android {
             storePassword 'JZDW_Alpha_CN_MB_V1.0'
         }
     }
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "智能定位-${variant.versionCode}-${variant.versionName}.apk"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false

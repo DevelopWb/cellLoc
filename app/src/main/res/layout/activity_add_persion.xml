@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    tools:context=".newgpsone.functions.persionalLocate.AddPersionActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp">
+
+        <EditText
+            android:id="@+id/user_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/singlepos_textbox"
+            android:hint="请输入成员名称"
+            android:inputType="numberDecimal"
+            android:paddingLeft="6dp" />
+
+        <EditText
+            android:id="@+id/dev_tag_tv"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/singlepos_textbox"
+            android:hint="请输入标识号码"
+            android:inputType="numberDecimal"
+            android:paddingLeft="6dp" />
+
+        <RadioGroup
+            android:id="@+id/dev_type_rg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/mobile_dev_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="手机" />
+
+            <RadioButton
+                android:id="@+id/gps_dev_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="GPS设备" />
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/select_head_icon_iv"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/default_head_icon"></ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="上传照片"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="可选"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:id="@+id/commit_tv"
+                style="@style/bt_style"
+                android:text="确定"></TextView>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

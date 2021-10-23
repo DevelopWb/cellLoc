@@ -16,13 +16,17 @@ import android.widget.TextView;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.AMapOptions;
+import com.amap.api.maps.CameraUpdate;
+import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
+import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.celllocation.R;
+import com.celllocation.newgpsone.Utils.AMapUtil;
 import com.celllocation.newgpsone.Utils.ObjectBox;
 import com.celllocation.newgpsone.base.BaseAppActivity;
 import com.celllocation.newgpsone.Utils.DataUtil;
@@ -65,7 +69,6 @@ public class WifiLocAddrActivity extends BaseAppActivity implements
      */
     private TextView mTimeTv;
     private Marker mMarker;
-    private String addressName;
     private WifiLocRecordBean recordBean;
     private String mac;
 
@@ -110,7 +113,8 @@ public class WifiLocAddrActivity extends BaseAppActivity implements
                 .period(50);
         mMarker = aMap.addMarker(markerOption1);
         mMarker.showInfoWindow();
-
+        aMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(
+                new LatLng(lat,lng) , 18, 30, 0)));
     }
 
 
@@ -205,11 +209,11 @@ public class WifiLocAddrActivity extends BaseAppActivity implements
 
     public void render(final Marker marker, View view) {
         mInfoAddressTv = (TextView) view.findViewById(R.id.info_address_tv);
-        mInfoAddressTv.setText(addressName);
+        mInfoAddressTv.setText(recordBean.getAddr());
         mInfoAddressTv.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                showAddrDialog(addressName);
+                showAddrDialog(recordBean.getAddr());
 
                 return true;
             }
