@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.celllocation.newgpsone.base.selectPics.BaseSelectPicsActivity;
 import com.juntai.disabled.basecomponent.base.BaseMvpActivity;
 import com.juntai.disabled.basecomponent.mvp.BasePresenter;
 
@@ -27,11 +28,18 @@ import okhttp3.RequestBody;
  * @description 描述
  * @date 2020/4/27 8:48  app的基类
  */
-public abstract class BaseAppActivity<P extends BasePresenter> extends BaseMvpActivity<P> {
+public abstract class BaseAppActivity<P extends BasePresenter> extends BaseSelectPicsActivity<P> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+
+    @Override
+    protected void selectedPicsAndEmpressed(List icons) {
+        if (icons.size() > 0) {
+            String path = (String) icons.get(0);
+        }
+    }
 }
