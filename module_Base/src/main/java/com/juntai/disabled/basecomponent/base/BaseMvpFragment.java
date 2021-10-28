@@ -85,14 +85,5 @@ public abstract class BaseMvpFragment<P extends IPresenter> extends BaseLazyFrag
     public <T> LifecycleTransformer<T> bindToLife() {
         return this.bindUntilEvent(FragmentEvent.DESTROY_VIEW);
     }
-    /**
-     * 查找viewid
-     * @param viewId
-     * @param <V>
-     * @return
-     */
-    public <V extends View> V getView(int viewId){
-        return mRootView.findViewById(viewId);
-    }
 
 }

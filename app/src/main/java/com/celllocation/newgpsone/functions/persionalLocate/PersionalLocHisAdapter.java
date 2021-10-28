@@ -1,5 +1,6 @@
 package com.celllocation.newgpsone.functions.persionalLocate;
 
+import com.celllocation.newgpsone.bean.PeopleLocateRecordBean;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -10,13 +11,13 @@ import com.chad.library.adapter.base.BaseViewHolder;
  * @UpdateUser: 更新者
  * @UpdateDate: 2021-09-07 15:16
  */
-public class PersionalLocHisAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
+public class PersionalLocHisAdapter extends BaseQuickAdapter<PeopleLocateRecordBean, BaseViewHolder> {
     public PersionalLocHisAdapter(int layoutResId) {
         super(layoutResId);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, String item) {
+    protected void convert(BaseViewHolder helper, PeopleLocateRecordBean item) {
 
     }
 }

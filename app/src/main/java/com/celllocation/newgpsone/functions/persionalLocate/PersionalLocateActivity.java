@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.View;
 
@@ -25,12 +26,14 @@ public class PersionalLocateActivity extends BaseFunctionActivity {
     @Override
     public void initData() {
         super.initData();
-        getTitleRightTv().setText("添加");
+
         getTitleRightTv().setTextColor(ContextCompat.getColor(mContext,R.color.white));
         getTitleRightTv().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(mContext,AddPersionActivity.class));
+                if (!TextUtils.isEmpty(getTextViewValue(getTitleRightTv()))) {
+                    startActivity(new Intent(mContext,AddPersionActivity.class));
+                }
             }
         });
     }

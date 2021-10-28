@@ -1,11 +1,20 @@
 package com.celllocation.newgpsone.functions.persionalLocate;
 
 import com.celllocation.R;
+import com.celllocation.newgpsone.Utils.ObjectBox;
 import com.celllocation.newgpsone.base.BaseRecyclerviewFragment;
+import com.celllocation.newgpsone.bean.PeopleLocateRecordBean;
+import com.celllocation.newgpsone.bean.PeopleLocateRecordBean_;
+import com.celllocation.newgpsone.bean.WifiLocRecordBean;
+import com.celllocation.newgpsone.bean.WifiLocRecordBean_;
 import com.celllocation.newgpsone.functions.BaseFunctionActivity;
 import com.celllocation.newgpsone.functions.MainPageContract;
 import com.celllocation.newgpsone.functions.MainPagePresent;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+
+import java.util.List;
+
+import io.objectbox.query.QueryBuilder;
 
 /**
  * @Author: tobato
@@ -23,6 +32,13 @@ public class PersionalLocateRecordFragment extends BaseRecyclerviewFragment<Main
     @Override
     public void lazyLoad() {
         ((BaseFunctionActivity)getBaseActivity()).setTitleName("历史记录");
+        getBaseActivity(). getTitleRightTv().setText("");
+        List<PeopleLocateRecordBean> arrays =
+                ObjectBox.get().boxFor(PeopleLocateRecordBean.class).query().order(PeopleLocateRecordBean_.locTime,
+                QueryBuilder.DESCENDING).build().find();
+        if (adapter != null) {
+            adapter.setNewData(arrays);
+        }
 
     }
 

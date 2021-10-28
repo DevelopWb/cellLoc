@@ -1,6 +1,6 @@
 package com.celllocation.newgpsone.functions.persionalLocate;
 
-import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -9,9 +9,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.celllocation.R;
+import com.celllocation.newgpsone.Utils.ObjectBox;
 import com.celllocation.newgpsone.base.BaseAppActivity;
+import com.celllocation.newgpsone.bean.PeopleLocateUserBean;
 import com.juntai.disabled.basecomponent.mvp.BasePresenter;
 import com.juntai.disabled.basecomponent.utils.ImageLoadUtil;
+import com.juntai.disabled.basecomponent.utils.RuleTools;
+import com.juntai.disabled.basecomponent.utils.ToastUtils;
 
 import java.util.List;
 
@@ -44,6 +48,7 @@ public class AddPersionActivity extends BaseAppActivity implements View.OnClickL
      * 确定
      */
     private TextView mCommitTv;
+    private PeopleLocateUserBean peopleLocateDetailBean;
 
     @Override
     protected BasePresenter createPresenter() {
@@ -57,6 +62,7 @@ public class AddPersionActivity extends BaseAppActivity implements View.OnClickL
 
     @Override
     public void initView() {
+        peopleLocateDetailBean = new PeopleLocateUserBean();
         setTitleName("成员添加");
         mUserNameTv = (EditText) findViewById(R.id.user_name_tv);
         mDevMobileTv = (EditText) findViewById(R.id.dev_mobile_tv);
@@ -90,6 +96,19 @@ public class AddPersionActivity extends BaseAppActivity implements View.OnClickL
                 choseImage(0, AddPersionActivity.this, 1);
                 break;
             case R.id.commit_tv:
+                if (TextUtils.isEmpty(getTextViewValue(mUserNameTv))) {
+                    ToastUtils.toast(mContext,"请输入成员名称");
+                    return;
+                }
+                if (!RuleTools.isMobileNO(getTextViewValue(mDevMobileTv))) {
+                    ToastUtils.toast(mContext,"请输入正确手机号码");
+                    return;
+                }
+                peopleLocateDetailBean.setPeopleName(getTextViewValue(mUserNameTv));
+                peopleLocateDetailBean.setPeopleMobile(getTextViewValue(mDevMobileTv));
+                peopleLocateDetailBean.setLocType(0);
+                ObjectBox.get().boxFor(PeopleLocateUserBean.class).put(peopleLocateDetailBean);
+                finish();
                 break;
         }
     }
@@ -98,6 +117,7 @@ public class AddPersionActivity extends BaseAppActivity implements View.OnClickL
         if (icons.size() > 0) {
             String path = (String) icons.get(0);
             ImageLoadUtil.loadImage(mContext,path,mSelectHeadIconIv);
+            peopleLocateDetailBean.setHeadPicPath(path);
         }
     }
 

@@ -144,17 +144,92 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "5:1061661845593296861",
+      "lastPropertyId": "4:3788865787716378176",
+      "name": "PeopleLocateRecordBean",
+      "properties": [
+        {
+          "id": "1:3109173600786574452",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5266963267762188893",
+          "name": "lat",
+          "type": 9
+        },
+        {
+          "id": "3:5330538114155187746",
+          "name": "lng",
+          "type": 9
+        },
+        {
+          "id": "4:3788865787716378176",
+          "name": "locTime",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "6:2531466602774077005",
+      "lastPropertyId": "5:8661389450457556393",
+      "name": "PeopleLocateUserBean",
+      "properties": [
+        {
+          "id": "1:8885790068164242969",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1873789186570148749",
+          "name": "peopleName",
+          "type": 9
+        },
+        {
+          "id": "3:6947051689246038249",
+          "name": "peopleMobile",
+          "type": 9
+        },
+        {
+          "id": "4:3417999796917425052",
+          "name": "locType",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "5:8661389450457556393",
+          "name": "headPicPath",
+          "type": 9
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "3:2937964400017758375",
+  "lastEntityId": "6:2531466602774077005",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
-  "retiredEntityUids": [],
+  "retiredEntityUids": [
+    2428283293324924923
+  ],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    95478423892989653,
+    8869308293075291287,
+    5402236688358162145,
+    830799958497728387,
+    3378917739388826920,
+    2115716677244955566,
+    1303307705199444606,
+    4413635900055709631
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

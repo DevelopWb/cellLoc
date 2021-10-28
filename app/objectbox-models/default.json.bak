@@ -144,9 +144,59 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "4:2428283293324924923",
+      "lastPropertyId": "8:4413635900055709631",
+      "name": "PeopleLocateDetailBean",
+      "properties": [
+        {
+          "id": "1:95478423892989653",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8869308293075291287",
+          "name": "peopleName",
+          "type": 9
+        },
+        {
+          "id": "3:5402236688358162145",
+          "name": "peopleMobile",
+          "type": 9
+        },
+        {
+          "id": "4:830799958497728387",
+          "name": "locType",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "5:3378917739388826920",
+          "name": "headPicPath",
+          "type": 9
+        },
+        {
+          "id": "6:2115716677244955566",
+          "name": "lat",
+          "type": 9
+        },
+        {
+          "id": "7:1303307705199444606",
+          "name": "lng",
+          "type": 9
+        },
+        {
+          "id": "8:4413635900055709631",
+          "name": "locTime",
+          "type": 9
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "3:2937964400017758375",
+  "lastEntityId": "4:2428283293324924923",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",

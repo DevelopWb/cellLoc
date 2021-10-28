@@ -103,8 +103,10 @@ public abstract class BaseSelectPicsActivity<P extends BasePresenter> extends Ba
     @SuppressLint("CheckResult")
     public void choseImage(int type, Fragment fragment, int maxSelectable) {
         icons.clear();
-        new RxPermissions(this).request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA).compose(this.bindToLife()).subscribe(new Consumer<Boolean>() {
+        new RxPermissions(this)
+                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+                .compose(this.bindToLife()).subscribe(new Consumer<Boolean>() {
             @Override
             public void accept(Boolean aBoolean) throws Exception {
                 if (aBoolean) {
