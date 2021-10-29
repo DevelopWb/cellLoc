@@ -17,19 +17,47 @@ public class PeopleLocateRecordBean {
     @Id
     public long id;
 
-    @Transient
-    private PeopleLocateUserBean peopleLocateUserBean;
-
+    private String peopleName;
+    private String peopleMobile;
+    /**
+     * 0代表手机定位 1代表gps设备
+     */
+    private int locType = 0;
+    private String headPicPath;
     private String lat;
     private String lng;
     private String locTime;
 
-    public PeopleLocateUserBean getPeopleLocateUserBean() {
-        return peopleLocateUserBean;
+    public String getPeopleName() {
+        return peopleName == null ? "" : peopleName;
     }
 
-    public void setPeopleLocateUserBean(PeopleLocateUserBean peopleLocateUserBean) {
-        this.peopleLocateUserBean = peopleLocateUserBean;
+    public void setPeopleName(String peopleName) {
+        this.peopleName = peopleName == null ? "" : peopleName;
+    }
+
+    public String getPeopleMobile() {
+        return peopleMobile == null ? "" : peopleMobile;
+    }
+
+    public void setPeopleMobile(String peopleMobile) {
+        this.peopleMobile = peopleMobile == null ? "" : peopleMobile;
+    }
+
+    public int getLocType() {
+        return locType;
+    }
+
+    public void setLocType(int locType) {
+        this.locType = locType;
+    }
+
+    public String getHeadPicPath() {
+        return headPicPath == null ? "" : headPicPath;
+    }
+
+    public void setHeadPicPath(String headPicPath) {
+        this.headPicPath = headPicPath == null ? "" : headPicPath;
     }
 
     public String getLat() {

@@ -31,17 +31,16 @@ public class PersionalLocateRecordFragment extends BaseRecyclerviewFragment<Main
 
     @Override
     public void lazyLoad() {
-        ((BaseFunctionActivity)getBaseActivity()).setTitleName("历史记录");
-        getBaseActivity(). getTitleRightTv().setText("");
+        ((BaseFunctionActivity) getBaseActivity()).setTitleName("历史记录");
+        getBaseActivity().getTitleRightTv().setText("");
         List<PeopleLocateRecordBean> arrays =
                 ObjectBox.get().boxFor(PeopleLocateRecordBean.class).query().order(PeopleLocateRecordBean_.locTime,
-                QueryBuilder.DESCENDING).build().find();
+                        QueryBuilder.DESCENDING).build().find();
         if (adapter != null) {
             adapter.setNewData(arrays);
         }
 
     }
-
 
 
     @Override
@@ -56,12 +55,17 @@ public class PersionalLocateRecordFragment extends BaseRecyclerviewFragment<Main
 
     @Override
     protected BaseQuickAdapter getAdapter() {
-        return new PersionalLocHisAdapter(R.layout.new_layouthistorydatapos);
+        return new PersionalLocHisAdapter(R.layout.people_loc_record_item);
     }
+    @Override
+    public void initView() {
+        super.initView();
 
+        mSmartrefreshlayout.setEnableLoadMore(false);
+        mSmartrefreshlayout.setEnableRefresh(false);
+    }
     @Override
     public void initData() {
-
     }
 
     @Override
