@@ -79,7 +79,8 @@ public class PersionalLocateFragment extends BaseRecyclerviewFragment<MainPagePr
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 PeopleLocateUserBean userBean = (PeopleLocateUserBean) adapter.getData().get(position);
                 PeopleLocateRecordBean recordBean = new PeopleLocateRecordBean();
-                recordBean.setPeopleLocateUserBean(userBean);
+                recordBean.setPeopleName(userBean.getPeopleName());
+                recordBean.setPeopleMobile(userBean.getPeopleMobile());
                 recordBean.setLat("35.12345465");
                 recordBean.setLat("110.12345465");
                 recordBean.setLocTime(CalendarUtil.getCurrentTime());
