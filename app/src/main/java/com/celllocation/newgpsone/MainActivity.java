@@ -14,14 +14,20 @@ import android.util.Log;
 import android.view.View;
 
 import com.celllocation.R;
+import com.celllocation.newgpsone.Utils.DataUtil;
+import com.celllocation.newgpsone.Utils.ObjectBox;
 import com.celllocation.newgpsone.base.BaseAppActivity;
 import com.celllocation.newgpsone.bean.HomePageMenuBean;
+import com.celllocation.newgpsone.bean.LatLngBean;
+import com.celllocation.newgpsone.bean.PeopleLocateRecordBean;
+import com.celllocation.newgpsone.functions.LatlngTransform.LatLngAddrActivity;
 import com.celllocation.newgpsone.functions.LatlngTransform.LatLngTransformActivity;
 import com.celllocation.newgpsone.functions.celllocate.CellLocateActivity;
 import com.celllocation.newgpsone.functions.persionalLocate.PersionalLocateActivity;
 import com.celllocation.newgpsone.functions.wifilocate.WifiLocateActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.juntai.disabled.basecomponent.mvp.BasePresenter;
+import com.juntai.disabled.basecomponent.utils.CalendarUtil;
 import com.juntai.disabled.basecomponent.utils.LogUtil;
 import com.juntai.disabled.basecomponent.utils.ToastUtils;
 
@@ -36,7 +42,8 @@ public class MainActivity extends BaseAppActivity {
     public final static String HOMEPAGE_MENU_WIFI_LOC = "WIFI定位";
     public final static String HOMEPAGE_MENU_PEOPLE_LOC = "人员定位";
     public final static String HOMEPAGE_MENU_LAT_LNG = "经纬度查询";
-    private DynamicReceiver receiverSMS = new DynamicReceiver();
+
+
     @Override
     protected BasePresenter createPresenter() {
         return null;
@@ -86,37 +93,11 @@ public class MainActivity extends BaseAppActivity {
             }
         });
 
-        IntentFilter filterSMS = new IntentFilter(
-                "android.provider.Telephony.SMS_RECEIVED");
-        registerReceiver(receiverSMS, filterSMS);
-    }
-    // 对收到的短信内容进行提取
-    public class DynamicReceiver extends BroadcastReceiver {
-        public static final String SMS_ACTION = "android.provider.Telephony.SMS_RECEIVED";
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (SMS_ACTION.equals(action)) {
-                Bundle bundle = intent.getExtras();
-                Object messages[] = (Object[]) bundle.get("pdus");
-                final SmsMessage smsMessage[] = new SmsMessage[messages.length];
-
-                for (int n = 0; n < messages.length; n++) {
-                    smsMessage[n] = SmsMessage
-                            .createFromPdu((byte[]) messages[n]);
-                    if (smsMessage[n].getMessageBody().startsWith("#RDW")) {
-                        LogUtil.d("收到短信内容8888888888");
-                        final String num = smsMessage[n].getOriginatingAddress();
-                        //收到短信指令后  开始解析经纬度  然后跳转到定位页面
-
-                    }
-                }
-
-            }
-        }
 
     }
+
+
+
     /**
      * 获取菜单列表
      *

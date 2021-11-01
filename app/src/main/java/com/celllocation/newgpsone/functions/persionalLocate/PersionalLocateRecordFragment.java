@@ -1,13 +1,19 @@
 package com.celllocation.newgpsone.functions.persionalLocate;
 
+import android.content.Intent;
+import android.view.View;
+
 import com.celllocation.R;
+import com.celllocation.newgpsone.Utils.DataUtil;
 import com.celllocation.newgpsone.Utils.ObjectBox;
 import com.celllocation.newgpsone.base.BaseRecyclerviewFragment;
+import com.celllocation.newgpsone.bean.LatLngBean;
 import com.celllocation.newgpsone.bean.PeopleLocateRecordBean;
 import com.celllocation.newgpsone.bean.PeopleLocateRecordBean_;
 import com.celllocation.newgpsone.bean.WifiLocRecordBean;
 import com.celllocation.newgpsone.bean.WifiLocRecordBean_;
 import com.celllocation.newgpsone.functions.BaseFunctionActivity;
+import com.celllocation.newgpsone.functions.LatlngTransform.LatLngAddrActivity;
 import com.celllocation.newgpsone.functions.MainPageContract;
 import com.celllocation.newgpsone.functions.MainPagePresent;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -66,6 +72,18 @@ public class PersionalLocateRecordFragment extends BaseRecyclerviewFragment<Main
     }
     @Override
     public void initData() {
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                PeopleLocateRecordBean recordBean = (PeopleLocateRecordBean) adapter.getData().get(position);
+                LatLngBean latLngBean = new LatLngBean(Double.parseDouble(recordBean.getLat()),
+                        Double.parseDouble(recordBean.getLng()), recordBean.getLocType(),
+                        recordBean.getLocTime());
+                startActivity(new Intent(mContext, LatLngAddrActivity.class)
+                        .putExtra(LatLngAddrActivity.KEY_LOC_TYPE, latLngBean.getLocType())
+                        .putExtra(LatLngAddrActivity.KEY_LAT_LNG_BEAN, latLngBean));
+            }
+        });
     }
 
     @Override

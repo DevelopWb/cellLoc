@@ -104,11 +104,16 @@ public class LatLngAddrActivity extends BaseAppActivity implements
     public void initView() {
         time = DataUtil.getDateToString(System
                 .currentTimeMillis());
-        setTitleName("经纬度查询");
+
         mapView = (MapView) findViewById(R.id.search_map);
         init();
         Intent intent = getIntent();
         locType = intent.getIntExtra(KEY_LOC_TYPE, 0);
+        if (3==locType) {
+            setTitleName("人员定位");
+        }else {
+            setTitleName("经纬度查询");
+        }
         LatLngBean latLngBean = intent.getParcelableExtra(KEY_LAT_LNG_BEAN);
         lat = Double.parseDouble(new DecimalFormat("0.000000").format(latLngBean.getWgLat()));
         lng =Double.parseDouble(new DecimalFormat("0.000000").format(latLngBean.getWgLon()));
@@ -296,8 +301,10 @@ public class LatLngAddrActivity extends BaseAppActivity implements
             mLatlngTypeTv.append("GPS坐标");
         } else if (1 == locType) {
             mLatlngTypeTv.append("百度坐标");
-        } else {
+        } else if(2==locType){
             mLatlngTypeTv.append("高德坐标");
+        }else {
+            mLatlngTypeTv.append("人员定位");
         }
         mTimeTv = (TextView) view.findViewById(R.id.time_tv);
         mTimeTv.setText(time);

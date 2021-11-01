@@ -147,7 +147,7 @@
     },
     {
       "id": "5:1061661845593296861",
-      "lastPropertyId": "4:3788865787716378176",
+      "lastPropertyId": "8:2560631969405610711",
       "name": "PeopleLocateRecordBean",
       "properties": [
         {
@@ -169,6 +169,27 @@
         {
           "id": "4:3788865787716378176",
           "name": "locTime",
+          "type": 9
+        },
+        {
+          "id": "5:3877344863227054904",
+          "name": "peopleName",
+          "type": 9
+        },
+        {
+          "id": "6:6897082064436521730",
+          "name": "peopleMobile",
+          "type": 9
+        },
+        {
+          "id": "7:1395994817156766963",
+          "name": "locType",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "8:2560631969405610711",
+          "name": "headPicPath",
           "type": 9
         }
       ],
