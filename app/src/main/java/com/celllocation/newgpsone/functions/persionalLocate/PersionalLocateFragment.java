@@ -11,6 +11,7 @@ import android.telephony.SmsMessage;
 import android.view.View;
 
 import com.celllocation.R;
+import com.celllocation.newgpsone.Utils.AESTool;
 import com.celllocation.newgpsone.Utils.DataUtil;
 import com.celllocation.newgpsone.Utils.ObjectBox;
 import com.celllocation.newgpsone.base.BaseRecyclerviewFragment;
@@ -27,6 +28,8 @@ import com.juntai.disabled.basecomponent.utils.LogUtil;
 
 import java.util.Collections;
 import java.util.List;
+
+import javax.crypto.Cipher;
 
 /**
  * @Author: tobato
@@ -65,31 +68,37 @@ public class PersionalLocateFragment extends BaseRecyclerviewFragment<MainPagePr
                     smsMessage[n] = SmsMessage
                             .createFromPdu((byte[]) messages[n]);
                     String body = smsMessage[n].getMessageBody();
-                    if (body.startsWith("DW")|| body.startsWith("RDW")) {
-                        this.abortBroadcast();
-                    }
-                    if (body.startsWith("#RDW,")) {
-                        LogUtil.d("收到短信内容8888888888");
-                        String[] latlngs = body.split(",");
-                        final String num = smsMessage[n].getOriginatingAddress();
-                        //收到短信指令后  开始解析经纬度  然后跳转到定位页面
-                        LatLngBean latLngBean = new LatLngBean(Double.parseDouble(latlngs[1]),
-                                Double.parseDouble(latlngs[2]), 3,
-                                DataUtil.getDateToString(System
-                                        .currentTimeMillis()));
-                        startActivity(new Intent(mContext, LatLngAddrActivity.class)
-                                .putExtra(LatLngAddrActivity.KEY_LOC_TYPE, latLngBean.getLocType())
-                                .putExtra(LatLngAddrActivity.KEY_LAT_LNG_BEAN, latLngBean));
-                        PeopleLocateRecordBean recordBean = new PeopleLocateRecordBean();
-                        recordBean.setPeopleName(userBean.getPeopleName());
-                        recordBean.setPeopleMobile(userBean.getPeopleMobile());
-                        recordBean.setLat(latlngs[1]);
-                        recordBean.setLocType(3);
-                        recordBean.setLng(latlngs[2]);
-                        recordBean.setLocTime(CalendarUtil.getCurrentTime());
-                        ObjectBox.get().boxFor(PeopleLocateRecordBean.class).put(recordBean);
+                    try {
+                        body = AESTool.des(body,Cipher.DECRYPT_MODE);
+                        if (body.startsWith("DW") || body.startsWith("RDW")) {
+                            this.abortBroadcast();
+                        }
+                        if (body.startsWith("#RDW,")) {
+                            LogUtil.d("收到短信内容8888888888");
+                            String[] latlngs = body.split(",");
+                            final String num = smsMessage[n].getOriginatingAddress();
+                            //收到短信指令后  开始解析经纬度  然后跳转到定位页面
+                            LatLngBean latLngBean = new LatLngBean(Double.parseDouble(latlngs[1]),
+                                    Double.parseDouble(latlngs[2]), 3,
+                                    DataUtil.getDateToString(System
+                                            .currentTimeMillis()));
+                            startActivity(new Intent(mContext, LatLngAddrActivity.class)
+                                    .putExtra(LatLngAddrActivity.KEY_LOC_TYPE, latLngBean.getLocType())
+                                    .putExtra(LatLngAddrActivity.KEY_LAT_LNG_BEAN, latLngBean));
+                            PeopleLocateRecordBean recordBean = new PeopleLocateRecordBean();
+                            recordBean.setPeopleName(userBean.getPeopleName());
+                            recordBean.setPeopleMobile(userBean.getPeopleMobile());
+                            recordBean.setLat(latlngs[1]);
+                            recordBean.setLocType(3);
+                            recordBean.setLng(latlngs[2]);
+                            recordBean.setLocTime(CalendarUtil.getCurrentTime());
+                            ObjectBox.get().boxFor(PeopleLocateRecordBean.class).put(recordBean);
 
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
+
                 }
 
             }
@@ -150,10 +159,16 @@ public class PersionalLocateFragment extends BaseRecyclerviewFragment<MainPagePr
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 
                 userBean = (PeopleLocateUserBean) adapter.getData().get(position);
+                String msg = "#DW";
+                try {
+                    msg = AESTool.des(msg, Cipher.ENCRYPT_MODE);
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(userBean.getPeopleMobile(), null,msg , null,
+                            null);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-                SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(userBean.getPeopleMobile(), null, "#DW", null,
-                        null);
 
             }
         });
