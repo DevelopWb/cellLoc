@@ -304,7 +304,7 @@ public class LatLngAddrActivity extends BaseAppActivity implements
         } else if(2==locType){
             mLatlngTypeTv.append("高德坐标");
         }else {
-            mLatlngTypeTv.append("人员定位");
+            mLatlngTypeTv.setText("定位类型：人员定位");
         }
         mTimeTv = (TextView) view.findViewById(R.id.time_tv);
         mTimeTv.setText(time);
