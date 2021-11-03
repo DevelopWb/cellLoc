@@ -24,6 +24,7 @@ import com.celllocation.newgpsone.functions.MainPageContract;
 import com.celllocation.newgpsone.functions.MainPagePresent;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.juntai.disabled.basecomponent.utils.CalendarUtil;
+import com.juntai.disabled.basecomponent.utils.LoadingDialog;
 import com.juntai.disabled.basecomponent.utils.LogUtil;
 
 import java.util.Collections;
@@ -74,7 +75,7 @@ public class PersionalLocateFragment extends BaseRecyclerviewFragment<MainPagePr
                             this.abortBroadcast();
                         }
                         if (body.startsWith("#RDW,")) {
-                            LogUtil.d("收到短信内容8888888888");
+                            LoadingDialog.getInstance().dismissProgress();
                             String[] latlngs = body.split(",");
                             final String num = smsMessage[n].getOriginatingAddress();
                             //收到短信指令后  开始解析经纬度  然后跳转到定位页面
@@ -159,12 +160,20 @@ public class PersionalLocateFragment extends BaseRecyclerviewFragment<MainPagePr
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 
                 userBean = (PeopleLocateUserBean) adapter.getData().get(position);
+                //  2021-11-03 发送指令
                 String msg = "#DW";
                 try {
                     msg = AESTool.des(msg, Cipher.ENCRYPT_MODE);
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(userBean.getPeopleMobile(), null,msg , null,
                             null);
+                    LoadingDialog.getInstance().showProgress(mContext);
+                    mRecyclerview.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            LoadingDialog.getInstance().dismissProgress();
+                        }
+                    },60000);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
