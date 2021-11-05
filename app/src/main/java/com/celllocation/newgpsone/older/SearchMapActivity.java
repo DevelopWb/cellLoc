@@ -45,6 +45,7 @@ import com.celllocation.newgpsone.Utils.RegOperateTool;
 import com.celllocation.newgpsone.base.BaseAppActivity;
 import com.celllocation.newgpsone.Utils.DataUtil;
 import com.celllocation.newgpsone.bean.Position;
+import com.celllocation.newgpsone.functions.celllocate.CellSearchFragment;
 import com.juntai.disabled.basecomponent.mvp.BasePresenter;
 import com.juntai.disabled.basecomponent.utils.ToastUtils;
 
@@ -280,7 +281,7 @@ public class SearchMapActivity extends BaseAppActivity implements
 
     @Override
     public void onBackPressed() {
-        PublicUtill.dianxin_mar = 0;
+        CellSearchFragment.DianxinClicked= false;
         super.onBackPressed();
     }
 
@@ -292,16 +293,16 @@ public class SearchMapActivity extends BaseAppActivity implements
         if (cellid == -1) {
             col4 = "基站号： 未知";
         } else {
-            if (PublicUtill.dianxin_mar == 100) {
+            if (CellSearchFragment.DianxinClicked) {
                 col4 = "基站号(BID)： " + String.valueOf(cellid);
             } else {
-                col4 = "基站号： " + String.valueOf(cellid);
+                col4 = "基站号(CELLID)： " + String.valueOf(cellid);
             }
         }
 
         String col5;
         int lac = gpspos.lac;
-        if (PublicUtill.dianxin_mar == 100) {
+        if (CellSearchFragment.DianxinClicked) {
 
             if (lac == -1) {
                 col5 = "网络识别码： 未知";
@@ -320,7 +321,7 @@ public class SearchMapActivity extends BaseAppActivity implements
             if (lac == -1) {
                 col5 = "扇区号： 未知";
             } else {
-                col5 = "扇区号： " + String.valueOf(lac);
+                col5 = "扇区号(LAC)： " + String.valueOf(lac);
             }
         }
         String col3 = time;

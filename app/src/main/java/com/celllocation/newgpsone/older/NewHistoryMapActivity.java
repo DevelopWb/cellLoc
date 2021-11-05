@@ -394,13 +394,15 @@ public class NewHistoryMapActivity extends BaseAppActivity implements
         String nid = snippets[2];
         TextView cell_his_nid_tv = (TextView) view.findViewById(R.id.cell_his_nid_tv);
         TextView lac = (TextView) view.findViewById(R.id.cell_his_shanqu_tv);
-
-        if (!nid.equals("")) {
+        TextView cid = (TextView) view.findViewById(R.id.cell_his_jizhan_tv);
+        if (!TextUtils.isEmpty(nid)) {
+            cid.setText("基站号(BID)：" + snippets[1]);
             cell_his_nid_tv.setVisibility(View.VISIBLE);
-            lac.setText("系统识别码：" + snippets[0]);
-            cell_his_nid_tv.setText("网络识别码："+snippets[2]);
+            lac.setText("系统识别码(SID)：" + snippets[0]);
+            cell_his_nid_tv.setText("网络识别码(NID)："+snippets[2]);
         }else{
-            lac.setText("扇区号：" + snippets[0]);
+            cid.setText("基站号(CELLID)：" + snippets[1]);
+            lac.setText("扇区号(LAC)：" + snippets[0]);
             cell_his_nid_tv.setVisibility(View.GONE);
         }
         TextView lng = (TextView) view.findViewById(R.id.cell_his_lng);
@@ -408,9 +410,9 @@ public class NewHistoryMapActivity extends BaseAppActivity implements
         TextView lat = (TextView) view.findViewById(R.id.cell_his_lat);
         lat.setText("纬度：" + snippets[5]);
 
-        TextView cid = (TextView) view.findViewById(R.id.cell_his_jizhan_tv);
 
-        cid.setText("基站号：" + snippets[1]);
+
+
         address_tv = (TextView) view.findViewById(R.id.cell_his_address_tv);
         address_tv.setText("地址：" + snippets[4]);
 

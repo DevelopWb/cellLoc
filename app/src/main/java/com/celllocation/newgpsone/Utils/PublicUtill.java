@@ -12,9 +12,7 @@ import android.util.Log;
 
 public class PublicUtill {
 	
-	public static int dianxin_mar = 0;
 	public static int MCC = 460;//国家标识
-	public static boolean isDianxin = false;
 	public static String CDMA_CELL_LOC_KEY ="68e19fece33d40808befd223985b2f03";//cdma  key
 	public static String OTHER_CELL_LOC_KEY ="a3c2561c497146fda61ac311be810826";//  key
 	public static String WIFI_LOC_KEY ="7be4e269654943caa3710076de1ab22d";//  key

@@ -59,7 +59,7 @@ public class CellSearchFragment extends BaseAppFragment<MainPagePresent> impleme
     private ImageView mCmccLogoIv;
     private ImageView mUnicomLogoIv;
     private ImageView mTelecomLogoIv;
-    private boolean DianxinClicked = false;
+    public static boolean DianxinClicked = false;
     private DataHelper helper;
 
     @Override
