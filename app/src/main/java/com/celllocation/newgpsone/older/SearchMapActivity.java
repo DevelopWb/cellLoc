@@ -294,9 +294,9 @@ public class SearchMapActivity extends BaseAppActivity implements
             col4 = "基站号： 未知";
         } else {
             if (CellSearchFragment.DianxinClicked) {
-                col4 = "基站号(BID)： " + String.valueOf(cellid);
+                col4 = "基站号(BID):" + String.valueOf(cellid);
             } else {
-                col4 = "基站号(CELLID)： " + String.valueOf(cellid);
+                col4 = "基站号(CELLID):" + String.valueOf(cellid);
             }
         }
 
@@ -307,9 +307,9 @@ public class SearchMapActivity extends BaseAppActivity implements
             if (lac == -1) {
                 col5 = "网络识别码： 未知";
             } else {
-                col5 = "系统识别码(SID): " + String.valueOf(lac);
+                col5 = "系统识别码(SID):" + String.valueOf(lac);
             }
-            String col6 = "网络识别码(NID)：" + gpspos.nid + "";
+            String col6 = "网络识别码(NID):" + gpspos.nid + "";
             if (col6 != null || !col6.equals("")) {
 
                 TextView nid_detail_tv = (TextView) view
@@ -321,7 +321,7 @@ public class SearchMapActivity extends BaseAppActivity implements
             if (lac == -1) {
                 col5 = "扇区号： 未知";
             } else {
-                col5 = "扇区号(LAC)： " + String.valueOf(lac);
+                col5 = "扇区号(LAC):" + String.valueOf(lac);
             }
         }
         String col3 = time;
